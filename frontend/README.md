@@ -1,12 +1,29 @@
-# React + Vite
+# Project Directory Structure
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```plaintext
+src/
+│
+├── assets/                # For images, icons, fonts, etc.
+│
+├── components/            # Reusable UI components
+│   ├── Navbar/            # Sidebar (vertical navbar)
+│   │   └── Navbar.jsx
+│   ├── Topbar/            # Topbar
+│   │   └── Topbar.jsx
+│   └── Layout.jsx         # Common layout with navbar & topbar
+│
+├── pages/                 # Different pages for routing
+│   ├── Home.jsx
+│   ├── Academics.jsx
+│   ├── Admissions.jsx
+│   ├── Research.jsx
+│   ├── People.jsx
+│   ├── Contact.jsx
+│   └── ...                # Other pages
+│
+├── routes/                # All route configs
+│   └── AppRoutes.jsx
+│
+├── App.jsx                # Entry component
+└── main.jsx               # Vite main entry point
+```
