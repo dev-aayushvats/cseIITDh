@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
+import Topbar from './components/Topbar'; 
 import Carousel from './components/Carousel';
 import FacultyList from './components/FacultyList';
 
@@ -14,8 +15,9 @@ function App() {
 
   return (
     <div className={`App ${isDarkMode ? 'dark-mode' : ''}`}>
+      <Topbar />
       <Navbar />
-      <div className="content">
+      <div className="content pt-[60px] px-4">
         <FacultyList />
         <div className="content-wrapper">
           <h2 className="department-title">Department of Computer Science, IIT Dharwad</h2>
