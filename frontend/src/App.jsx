@@ -1,25 +1,33 @@
-// frontend/src/App.jsx
-import Topbar from './components/Topbar/Topbar.jsx';
-import './App.css';
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Navbar from './components/Navbar/Navbar'
+// App.jsx
+import Topbar from './components/Topbar/Topbar';
+import Navbar from './components/Navbar/Navbar';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+// import Academics from './pages/Academics';
+// import Admissions from './pages/Admissions';
+// import Research from './pages/Research';
+// ...other page imports
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Topbar />
-      <div className='w-50'>
-        <Navbar />
+      <div style={{ display: 'flex' }}>
+        <div className="w-50">
+          <Navbar />
+        </div>
+        <main style={{ flexGrow: 1, padding: '1rem' }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* <Route path="/academics" element={<Academics />} />
+            <Route path="/admissions" element={<Admissions />} />
+            <Route path="/research" element={<Research />} /> */}
+            {/* Add more routes here */}
+          </Routes>
+        </main>
       </div>
-      <div className="content pt-[60px] px-4">
-        <h2 className="text-2xl font-bold text-center mt-8">Hello from Frontend!</h2>
-      </div>
-    </div>
+    </>
   );
-      
 }
 
 export default App;
