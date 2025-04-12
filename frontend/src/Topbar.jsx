@@ -1,6 +1,6 @@
-// src/components/Topbar/Topbar.jsx
+// src/components/Topbar.jsx
 import React, { useState } from 'react'
-import logo from '../../assets/institute-logo.png'
+import logo from './institute-logo.png'
 import './Topbar.css'
 
 function Topbar() {
@@ -13,12 +13,11 @@ function Topbar() {
 
   return (
     <header className="topbar">
-      {/* Left: Logo + Text */}
       <div className="topbar-left">
-        <img src={logo} alt="Institute Logo" className="topbar-logo" />
+       <img src={logo} alt="Institute Logo" className="topbar-logo" />
         <div className="topbar-text">
-          <h1 className="institute-name">Indian Institute of Technology Dharwad</h1>
-          <p className="department-name">Department of CSE</p>
+          <h1 className="institute-name">DEPARTMENT OF COMPUTER SCIENCE ENGINEERING</h1>
+          <p className="department-name">IIT DH</p>
         </div>
       </div>
 
