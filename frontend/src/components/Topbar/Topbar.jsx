@@ -1,6 +1,6 @@
 // src/components/Topbar.jsx
 import React, { useState } from 'react'
-import logo from './institute-logo.png'
+import logo from '../../assets/institute-logo.png'
 import './Topbar.css'
 
 function Topbar() {

@@ -1,5 +1,5 @@
 // frontend/src/App.jsx
-import Topbar from './Topbar.jsx';
+import Topbar from './components/Topbar/Topbar.jsx';
 import './App.css';
 
 function App() {
