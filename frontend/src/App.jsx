@@ -11,17 +11,15 @@ function App() {
   return (
     <div className="App">
       <Topbar />
+      <div className='w-50'>
+        <Navbar />
+      </div>
       <div className="content pt-[60px] px-4">
         <h2 className="text-2xl font-bold text-center mt-8">Hello from Frontend!</h2>
       </div>
     </div>
   );
-      <div className='w-50 font-roboto'>
-        <Navbar />
-      </div>
-      Workin on this.
-
-  )
+      
 }
 
 export default App;
