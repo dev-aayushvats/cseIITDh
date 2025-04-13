@@ -36,13 +36,9 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
           className="h-[40px] sm:h-[45px] md:h-[55px] w-auto transition-transform duration-200 hover:scale-[1.02]" 
         />
         <div className="flex flex-col justify-center">
-          <h1 className="text-[0.65rem] sm:text-[0.8rem] md:text-[0.9rem] font-semibold m-0 text-[#1a1a1a] tracking-wide">
-            <span className="md:inline hidden">DEPARTMENT OF</span> CS & ENGINEERING
+          <h1 className="text-[0.75rem] sm:text-[0.9rem] md:text-[1.1rem] font-semibold m-0 text-[#1a1a1a] tracking-wide">
+            DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
           </h1>
-          <p className="text-[0.55rem] sm:text-[0.7rem] md:text-[0.8rem] text-[#555] m-0 font-medium truncate max-w-[150px] sm:max-w-full">
-            <span className="hidden sm:inline">INDIAN INSTITUTE OF TECHNOLOGY,</span>
-            <span className="sm:hidden">IIT</span> DHARWAD
-          </p>
         </div>
       </div>
 
