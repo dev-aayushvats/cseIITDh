@@ -37,9 +37,16 @@ const Section = ({ id, title, children }) => {
 const Academics = () => {
   return (
     <div className="py-6 px-4 md:px-8">
+      {/* Page Title */}
+      <div id="academics-top" className="mb-10">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">Academics</h1>
+        <p className="text-gray-600">
+          Learn about our academic programs, courses, and resources for computer science and engineering students.
+        </p>
+      </div>
+
       {/* Navigation Cards */}
       <div className="mb-12">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Academics</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
           <NavCard 
             title="Time Table" 
@@ -64,7 +71,7 @@ const Academics = () => {
           <NavCard 
             title="FAQs" 
             icon={<i className="fas fa-question-circle"></i>}
-            targetId="faqs" 
+            targetId="faq" 
           />
         </div>
       </div>
@@ -335,50 +342,52 @@ const Academics = () => {
       </Section>
 
       {/* FAQs Section */}
-      <Section id="faqs" title="Frequently Asked Questions">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="space-y-4">
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="text-lg font-medium text-gray-800">How do I register for courses?</h3>
-              <p className="mt-2 text-gray-600">
-                Course registration is done through the online student portal at the beginning of each semester. The registration window is typically open for two weeks, and students must consult with their academic advisor before finalizing their course selection.
-              </p>
+      <Section id="faq" title="Frequently Asked Questions">
+        <div className="space-y-8">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="space-y-6">
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-medium text-gray-800">How do I register for courses?</h3>
+                <p className="mt-2 text-gray-600">
+                  Course registration is done through the online student portal at the beginning of each semester. The registration window is typically open for two weeks, and students must consult with their academic advisor before finalizing their course selection.
+                </p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-medium text-gray-800">What is the process for adding/dropping courses?</h3>
+                <p className="mt-2 text-gray-600">
+                  Students can add or drop courses during the first two weeks of the semester without any penalty. After this period, dropping a course will result in a 'W' (Withdrawal) grade on the transcript. No course changes are permitted after the fourth week.
+                </p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-medium text-gray-800">How is the CGPA calculated?</h3>
+                <p className="mt-2 text-gray-600">
+                  The Cumulative Grade Point Average (CGPA) is calculated by multiplying the grade point value of each course by its credit hours, summing these values, and dividing by the total number of credit hours attempted. The result is rounded to two decimal places.
+                </p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-medium text-gray-800">What resources are available for academic support?</h3>
+                <p className="mt-2 text-gray-600">
+                  The department offers various support resources including faculty office hours, teaching assistants, peer tutoring programs, and the academic learning center. Additionally, the library provides access to study spaces, reference materials, and online resources.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium text-gray-800">What is the minimum CGPA required to avoid academic probation?</h3>
+                <p className="mt-2 text-gray-600">
+                  Students must maintain a minimum CGPA of 5.0 to remain in good academic standing. Those falling below this threshold will be placed on academic probation and will need to meet with an academic advisor to develop an improvement plan.
+                </p>
+              </div>
             </div>
             
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="text-lg font-medium text-gray-800">What is the process for adding/dropping courses?</h3>
+            <div className="mt-8 bg-gray-50 p-4 rounded-lg">
+              <h3 className="text-lg font-medium text-gray-800">Still have questions?</h3>
               <p className="mt-2 text-gray-600">
-                Students can add or drop courses during the first two weeks of the semester without any penalty. After this period, dropping a course will result in a 'W' (Withdrawal) grade on the transcript. No course changes are permitted after the fourth week.
+                Contact the Academic Office at <a href="mailto:academics@cs.iitdh.ac.in" className="text-indigo-600 hover:underline">academics@cs.iitdh.ac.in</a> or visit during office hours (Monday-Friday, 9:00 AM - 5:00 PM).
               </p>
             </div>
-            
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="text-lg font-medium text-gray-800">How is the CGPA calculated?</h3>
-              <p className="mt-2 text-gray-600">
-                The Cumulative Grade Point Average (CGPA) is calculated by multiplying the grade point value of each course by its credit hours, summing these values, and dividing by the total number of credit hours attempted. The result is rounded to two decimal places.
-              </p>
-            </div>
-            
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="text-lg font-medium text-gray-800">What resources are available for academic support?</h3>
-              <p className="mt-2 text-gray-600">
-                The department offers various support resources including faculty office hours, teaching assistants, peer tutoring programs, and the academic learning center. Additionally, the library provides access to study spaces, reference materials, and online resources.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-medium text-gray-800">What is the minimum CGPA required to avoid academic probation?</h3>
-              <p className="mt-2 text-gray-600">
-                Students must maintain a minimum CGPA of 5.0 to remain in good academic standing. Those falling below this threshold will be placed on academic probation and will need to meet with an academic advisor to develop an improvement plan.
-              </p>
-            </div>
-          </div>
-          
-          <div className="mt-8 bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-lg font-medium text-gray-800">Still have questions?</h3>
-            <p className="mt-2 text-gray-600">
-              Contact the Academic Office at <a href="mailto:academics@cs.iitdh.ac.in" className="text-indigo-600 hover:underline">academics@cs.iitdh.ac.in</a> or visit during office hours (Monday-Friday, 9:00 AM - 5:00 PM).
-            </p>
           </div>
         </div>
       </Section>

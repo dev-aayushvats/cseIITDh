@@ -34,9 +34,16 @@ const Section = ({ id, title, children }) => {
 const Admissions = () => {
   return (
     <div className="py-6 px-4 md:px-8">
+      {/* Page Title */}
+      <div id="admissions-top" className="mb-10">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">Admissions</h1>
+        <p className="text-gray-600">
+          Learn about admission requirements, application procedures, and opportunities for prospective students.
+        </p>
+      </div>
+
       {/* Navigation Cards */}
       <div className="mb-12">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Admissions</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           <NavCard 
             title="B.Tech" 
