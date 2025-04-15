@@ -1,13 +1,21 @@
 // src/components/Topbar.jsx
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom' // 🆕 added
 import logo from '../../assets/institute-logo.png'
 
 function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
   const [searchQuery, setSearchQuery] = useState('')
+  const navigate = useNavigate() // 🆕 added
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value)
-    // Add real search logic if needed
+  }
+
+  const handleSearchKeyDown = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`) // 🆕 navigate to search
+      setSearchQuery('') // optional: clear the input after search
+    }
   }
 
   return (
@@ -57,6 +65,7 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
           placeholder="Search..."
           value={searchQuery}
           onChange={handleSearchChange}
+          onKeyDown={handleSearchKeyDown} // 🆕 handles Enter key
           aria-label="Search"
           className="py-[0.4rem] px-[0.8rem] border border-[#e0e0ff] rounded-full text-[0.85rem] bg-white/70 w-[150px] md:w-[180px] transition-all duration-200 focus:outline-none focus:border-[#d0d0ff] focus:shadow focus:shadow-[#d0d0ff]/40 focus:w-[200px]"
         />

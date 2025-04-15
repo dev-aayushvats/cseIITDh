@@ -42,41 +42,6 @@ const Admissions = () => {
         </p>
       </div>
 
-      {/* Navigation Cards */}
-      <div className="mb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          <NavCard 
-            title="B.Tech" 
-            description="4-year Undergraduate Program"
-            targetId="btech" 
-          />
-          <NavCard 
-            title="M.Tech" 
-            description="2-year Postgraduate Program"
-            targetId="mtech" 
-          />
-          <NavCard 
-            title="MS (Research)" 
-            description="Research-based Master's Program"
-            targetId="ms" 
-          />
-          <NavCard 
-            title="PhD" 
-            description="Doctoral Program"
-            targetId="phd" 
-          />
-          <NavCard 
-            title="BS-MS Dual Degree" 
-            description="5-year Integrated Program"
-            targetId="bsms" 
-          />
-          <NavCard 
-            title="International Students" 
-            description="Admission for Foreign Nationals"
-            targetId="international" 
-          />
-        </div>
-      </div>
 
       {/* B.Tech Section */}
       <Section id="btech" title="B.Tech Admission">

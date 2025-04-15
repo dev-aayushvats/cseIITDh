@@ -1,4 +1,4 @@
-// App.jsx
+// App.jsx 
 import React, { useState } from 'react';
 import Topbar from './components/Topbar/Topbar';
 import Navbar from './components/Navbar/Navbar';
@@ -11,7 +11,7 @@ import Contact from './pages/Contact';
 import People from './pages/People';
 import Research from './pages/Research';
 import Footer from './components/Footer/Footer';
-// ...other page imports
+import SearchResults from './pages/SearchResults';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,6 +54,10 @@ function App() {
               <Route path="/join-as-faculty" element={<JoinAsFaculty />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/research" element={<Research />} />
+
+              {/* 🆕 Search results page route */}
+              <Route path="/search" element={<SearchResults />} />
+
               {/* Add more routes here */}
             </Routes>
           </div>
