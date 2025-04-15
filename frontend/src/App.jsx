@@ -10,6 +10,7 @@ import JoinAsFaculty from './pages/JoinAsFaculty';
 import Contact from './pages/Contact';
 import People from './pages/People';
 import Research from './pages/Research';
+import About from './pages/About';
 import Footer from './components/Footer/Footer';
 import SearchResults from './pages/SearchResults';
 
@@ -54,6 +55,7 @@ function App() {
               <Route path="/join-as-faculty" element={<JoinAsFaculty />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/research" element={<Research />} />
+              <Route path="/about" element={<About />} />
 
               {/* 🆕 Search results page route */}
               <Route path="/search" element={<SearchResults />} />
