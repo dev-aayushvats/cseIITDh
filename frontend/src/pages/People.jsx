@@ -37,12 +37,12 @@ const Section = ({ id, title, children }) => {
 const FacultyCard = ({ name, title, image, expertise, email, phone, website }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col h-full">
-      <div className="relative h-[240px] bg-gray-100 flex items-center justify-center">
+      <div className="w-48 h-48 mx-auto mt-4 mb-2 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
         {image ? (
           <img 
             src={image}
             alt={name} 
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover"
             onError={(e) => {
               e.target.onerror = null; // Prevent infinite fallback loop
               e.target.style.display = 'none';
@@ -103,12 +103,12 @@ const StaffCard = ({ name, title, image, email, phone, office }) => {
     <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col h-full">
       <div className="p-4 flex items-start border-b border-gray-100">
         <div className="flex-shrink-0 mr-4">
-          <div className="h-20 w-20 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
             {image ? (
               <img 
                 src={image}
                 alt={name} 
-                className="absolute inset-0 w-full h-full object-cover"
+                className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.onerror = null; // Prevent infinite fallback loop
                   e.target.style.display = 'none';
@@ -178,62 +178,147 @@ const FormerMemberCard = ({ name, title, period, currentAffiliation }) => {
 
 // People Page Component
 const People = () => {
-  // Sample faculty data
+  // HOD and Associate Head data
+  const leadership = [
+    {
+      name: "Dr. Ramchandra Phawade",
+      title: "Assistant Professor and Head of Department",
+      expertise: "Computer Science and Engineering",
+      email: "prb@iitdh.ac.in",
+      phone: "+91-836-2212-001",
+      website: "https://iitdh.ac.in/prb/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/phawade.jpg"
+    },
+    {
+      name: "Dr. Vandana Bharti",
+      title: "Assistant Professor and Associate Head",
+      expertise: "Computer Science and Engineering",
+      email: "vandana@iitdh.ac.in",
+      phone: "+91-836-2212-002",
+      website: "https://sites.google.com/iitdh.ac.in/vandana",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/VB_iitdh%20-%20Vandana%20Bharti.png"
+    }
+  ];
+
+  // Faculty data
   const facultyMembers = [
     {
-      name: "Dr. Anand Kumar",
-      title: "Professor and Head",
-      expertise: "Artificial Intelligence, Machine Learning, Computer Vision",
-      email: "anand.kumar@iitdh.ac.in",
-      phone: "+91-836-2212-001",
-      website: "https://faculty.iitdh.ac.in/anand",
-      image: null
-    },
-    {
-      name: "Dr. Priya Sharma",
-      title: "Associate Professor",
-      expertise: "Algorithms, Complexity Theory, Graph Theory",
-      email: "priya.sharma@iitdh.ac.in",
-      phone: "+91-836-2212-002",
-      website: "https://faculty.iitdh.ac.in/priya",
-      image: null
-    },
-    {
-      name: "Dr. Rajesh Venkat",
-      title: "Assistant Professor",
-      expertise: "Cybersecurity, Network Security, Cryptography",
-      email: "rajesh.venkat@iitdh.ac.in",
+      name: "Dr. Dileep A D",
+      title: "Professor and Dean Administration",
+      expertise: "Computer Science and Engineering",
+      email: "addileep@iitdh.ac.in",
       phone: "+91-836-2212-003",
-      website: "https://faculty.iitdh.ac.in/rajesh",
-      image: null
+      website: "https://faculty.iitmandi.ac.in/~addileep/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/Dileep%20-%20Dileep%20A%20D.jpg"
     },
     {
-      name: "Dr. Meena Iyer",
+      name: "Dr. Achyut Mani Tripathi",
       title: "Assistant Professor",
-      expertise: "Database Systems, Data Mining, Big Data Analytics",
-      email: "meena.iyer@iitdh.ac.in",
+      expertise: "Computer Science and Engineering",
+      email: "t.achyut@iitdh.ac.in",
       phone: "+91-836-2212-004",
-      website: "https://faculty.iitdh.ac.in/meena",
-      image: null
+      website: "https://achyutmani.github.io/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/Achyut%20-%20Achyut%20Mani%20Tripathi%20-%20Achyut%20Mani%20Tripathi.jpeg"
     },
     {
-      name: "Dr. Sanjay Patel",
-      title: "Associate Professor",
-      expertise: "Computer Networks, Wireless Communications, IoT",
-      email: "sanjay.patel@iitdh.ac.in",
-      phone: "+91-836-2212-005",
-      website: "https://faculty.iitdh.ac.in/sanjay",
-      image: null
-    },
-    {
-      name: "Dr. Neha Desai",
+      name: "Dr. Gayathri Ananthanarayanan",
       title: "Assistant Professor",
-      expertise: "Human-Computer Interaction, User Experience, Design Thinking",
-      email: "neha.desai@iitdh.ac.in",
-      phone: "+91-836-2212-006",
-      website: "https://faculty.iitdh.ac.in/neha",
-      image: null
+      expertise: "Computer Science and Engineering",
+      email: "gayathri@iitdh.ac.in",
+      phone: "+91-836-2212-005",
+      website: "https://homepages.iitdh.ac.in/~gayathri/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/recent-photo%20-%20Gayathri%20Ananthanarayanan.jpg"
     },
+    {
+      name: "Dr. Jivnesh Balasaheb Sandhan",
+      title: "Visiting Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "jivnesh@iitdh.ac.in",
+      phone: "+91-836-2212-006",
+      website: "https://jivnesh.github.io/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/Jivnesh_500%20-%20Jivnesh%20Balasaheb%20Sandhan_0.png"
+    },
+    {
+      name: "Dr. Kedar Vithal Khandeparkar",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "kedark@iitdh.ac.in",
+      phone: "+91-836-2212-007",
+      website: "https://iitdh.ac.in/~kedark/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/kedar2%20-%20Kedar%20Vithal%20Khandeparkar.jpeg"
+    },
+    {
+      name: "Dr. Konjengbam Anand",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "konjengbam.anand@iitdh.ac.in",
+      phone: "+91-836-2212-008",
+      website: "https://sites.google.com/view/drkonjengbamanand?pli=1",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/anand%20profile23c%20-%20Konjengbam%20Anand_0.jpg"
+    },
+    {
+      name: "Dr. Koteswararao Kondepu",
+      title: "Associate Professor and Associate Dean IPS Network",
+      expertise: "Computer Science and Engineering",
+      email: "k.kondepu@iitdh.ac.in",
+      phone: "+91-836-2212-009",
+      website: "https://scholar.google.com/citations?user=X-yZFQkAAAAJ&hl=en",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/kondepu.jpeg"
+    },
+    {
+      name: "Dr. Nikhil D Hegde",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "nikhilh@iitdh.ac.in",
+      phone: "+91-836-2212-010",
+      website: "https://hegden.github.io/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/IMG_0847%20-%20Copy%20-%20Nikhil%20Hegde.jpg"
+    },
+    {
+      name: "Dr. Rajshekar K",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "rajshekar.k@iitdh.ac.in",
+      phone: "+91-836-2212-011",
+      website: "https://www.iitdh.ac.in/rajshekar.k/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/self%20-%20Rajshekar%20K.jpg"
+    },
+    {
+      name: "Dr. Sandeep R B",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "sandeeprb@iitdh.ac.in",
+      phone: "+91-836-2212-012",
+      website: "https://sites.google.com/site/homepagesandeeprb/",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/IMG_0599_2%20-%20Sandeep%20Ramani%20Balakrishnan.jpg"
+    },
+    {
+      name: "Dr. Siba Narayan Swain",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "sibaswain@iitdh.ac.in",
+      phone: "+91-836-2212-013",
+      website: "https://shivanarayan06.wixsite.com/website",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/siba-.png"
+    },
+    {
+      name: "Dr. Tamal Das",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "tamal@iitdh.ac.in",
+      phone: "+91-836-2212-014",
+      website: "https://sites.google.com/view/dtamal",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/Dec%2016%2C%202018%20%282%29%20-%20Tamal%20Das.jpg"
+    },
+    {
+      name: "Dr. Vijeth J Kotagi",
+      title: "Assistant Professor",
+      expertise: "Computer Science and Engineering",
+      email: "vijethjk@iitdh.ac.in",
+      phone: "+91-836-2212-015",
+      website: "https://scholar.google.com/citations?user=2d8W5cYAAAAJ",
+      image: "https://iitdh.ac.in/sites/default/files/2024-02/Photo%20-%20Vijeth%20Jinachandra%20Kotagi%20-%20Vijeth%20Jinachandra%20Kotagi.jpg"
+    }
   ];
 
   // Sample staff data
@@ -313,7 +398,7 @@ const People = () => {
   ];
 
   return (
-    <div className="py-6 px-4 md:px-8">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Page Title */}
       <div id="people-top" className="mb-10">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">People</h1>
@@ -323,7 +408,12 @@ const People = () => {
       </div>
 
       {/* Navigation Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
+        <NavCard 
+          title="Department Leadership" 
+          icon={<i className="fas fa-user-tie"></i>}
+          targetId="leadership" 
+        />
         <NavCard 
           title="Faculty" 
           icon={<i className="fas fa-chalkboard-teacher"></i>}
@@ -340,53 +430,39 @@ const People = () => {
           targetId="former-members" 
         />
       </div>
+      
+      {/* Leadership Section */}
+      <Section id="leadership" title="Department Leadership">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {leadership.map((member, index) => (
+            <FacultyCard key={index} {...member} />
+          ))}
+        </div>
+      </Section>
 
       {/* Faculty Section */}
       <Section id="faculty" title="Faculty Members">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {facultyMembers.map((faculty, index) => (
-            <FacultyCard 
-              key={index}
-              name={faculty.name}
-              title={faculty.title}
-              expertise={faculty.expertise}
-              email={faculty.email}
-              phone={faculty.phone}
-              website={faculty.website}
-              image={faculty.image}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {facultyMembers.map((member, index) => (
+            <FacultyCard key={index} {...member} />
           ))}
         </div>
       </Section>
 
       {/* Staff Section */}
       <Section id="staff" title="Staff Members">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {staffMembers.map((staff, index) => (
-            <StaffCard 
-              key={index}
-              name={staff.name}
-              title={staff.title}
-              email={staff.email}
-              phone={staff.phone}
-              office={staff.office}
-              image={staff.image}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {staffMembers.map((member, index) => (
+            <StaffCard key={index} {...member} />
           ))}
         </div>
       </Section>
 
       {/* Former Members Section */}
       <Section id="former-members" title="Former Members">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {formerMembers.map((member, index) => (
-            <FormerMemberCard 
-              key={index}
-              name={member.name}
-              title={member.title}
-              period={member.period}
-              currentAffiliation={member.currentAffiliation}
-            />
+            <FormerMemberCard key={index} {...member} />
           ))}
         </div>
       </Section>
