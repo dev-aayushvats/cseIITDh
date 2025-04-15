@@ -69,54 +69,32 @@ const JoinAsFaculty = () => {
           <p className="text-gray-700">
             IIT Dharwad provides state-of-the-art research facilities to support faculty in their research endeavors. The CSE department has dedicated laboratories equipped with high-performance computing resources.
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            <div className="border rounded-lg p-4 hover:shadow-md transition">
-              <h3 className="font-semibold text-gray-800 mb-2">AI and Machine Learning Lab</h3>
-              <p className="text-sm text-gray-600">
-                High-performance GPU clusters, specialized for deep learning and AI research with NVIDIA RTX A6000 GPUs and dedicated servers.
-              </p>
-            </div>
-            <div className="border rounded-lg p-4 hover:shadow-md transition">
-              <h3 className="font-semibold text-gray-800 mb-2">Systems Laboratory</h3>
-              <p className="text-sm text-gray-600">
-                Equipped for research in distributed systems, cloud computing, and networking with cluster computing facilities.
-              </p>
-            </div>
-            <div className="border rounded-lg p-4 hover:shadow-md transition">
-              <h3 className="font-semibold text-gray-800 mb-2">Security Research Lab</h3>
-              <p className="text-sm text-gray-600">
-                Specialized infrastructure for cybersecurity research, including isolated network environments for security testing.
-              </p>
-            </div>
-            <div className="border rounded-lg p-4 hover:shadow-md transition">
-              <h3 className="font-semibold text-gray-800 mb-2">HCI and Visualization Lab</h3>
-              <p className="text-sm text-gray-600">
-                Studios for user experience research with eye-tracking systems, VR/AR equipment, and visualization tools.
-              </p>
-            </div>
-            <div className="border rounded-lg p-4 hover:shadow-md transition">
-              <h3 className="font-semibold text-gray-800 mb-2">Theoretical CS Research Areas</h3>
-              <p className="text-sm text-gray-600">
-                Collaborative spaces with computing resources dedicated to algorithm design, computational complexity, and formal methods research.
-              </p>
-            </div>
-            <div className="border rounded-lg p-4 hover:shadow-md transition">
-              <h3 className="font-semibold text-gray-800 mb-2">Central Computing Facility</h3>
-              <p className="text-sm text-gray-600">
-                Institute-wide high-performance computing infrastructure with support for parallel computing and simulation.
-              </p>
-            </div>
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Instructional Labs</h3>
+            <ul className="list-disc list-inside ml-6 text-gray-700">
+              {["Programming Laboratory","Data Structures and Algorithms Laboratory","Software Systems Laboratory","Artificial Intelligence Laboratory","Computer Architecture Laboratory","Database Systems Laboratory","Operating Systems Laboratory","Computer Networks Laboratory","Compilers Laboratory"].map((lab, idx) => (
+                <li key={idx}>{lab}</li>
+              ))}
+            </ul>
           </div>
-          
-          <div className="bg-indigo-50 p-4 rounded-md mt-6">
-            <h3 className="font-semibold text-gray-800 mb-2">Research Support</h3>
-            <ul className="list-disc list-inside space-y-1 text-gray-700">
-              <li>Startup research grant for new faculty members</li>
-              <li>Support for conference travel and research collaborations</li>
-              <li>Access to digital libraries and research journals</li>
-              <li>Technical support staff for laboratory management</li>
-              <li>Opportunities for industry-sponsored research</li>
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Research & Development Labs</h3>
+            <ul className="list-disc list-inside ml-6 text-gray-700">
+              {[{ name: "AIML Lab" },{ name: "FutureG Networks Lab", link: "https://futuregnetworks.iitdh.ac.in/" },{ name: "Emerging Multimedia and AI (EMA) Lab", link: "http://ema.iitdh.ac.in/", img: "/sites/default/files/inline-images/EEMAA.jpg", imgWidth: 26, imgHeight: 17, hiring: true }].map((lab, idx) => (
+                <li key={idx} className="mb-2">
+                  {lab.link ? (
+                    <a href={lab.link} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                      {lab.name}
+                      {lab.img && (
+                        <img src={lab.img} alt="EMA" width={lab.imgWidth} height={lab.imgHeight} className="inline ml-2 align-middle" />
+                      )}
+                    </a>
+                  ) : lab.name}
+                  {lab.hiring && (
+                    <span className="ml-2 text-xs text-green-700 font-semibold">(EMA Lab is hiring now! <a href="/emerging-multimedia-and-ai-lab-ema-lab-hiring-were-looking-passionate-researchers-join-us-ms-phd" target="_blank" className="underline">Click Here to know more</a>)</span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

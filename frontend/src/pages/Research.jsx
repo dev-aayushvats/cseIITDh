@@ -167,48 +167,22 @@ const PatentCard = ({ title, inventors, filingDate, patentNumber, status }) => {
 
 // Research Page Component
 const Research = () => {
-  // Sample lab data
-  const labs = [
-    {
-      name: "Artificial Intelligence and Machine Learning Lab",
-      description: "Research focused on developing novel machine learning algorithms and applying AI techniques to solve real-world problems.",
-      equipment: [
-        "NVIDIA DGX Station",
-        "High-performance GPU cluster",
-        "Robotics test environment"
-      ],
-      image: null
-    },
-    {
-      name: "Systems and Networking Lab",
-      description: "Work on distributed systems, cloud computing, and next-generation networking protocols.",
-      equipment: [
-        "Software-defined networking testbed",
-        "Cluster computing setup",
-        "Network simulation environment"
-      ],
-      image: null
-    },
-    {
-      name: "Cybersecurity Research Lab",
-      description: "Research on network security, cryptography, privacy-preserving technologies, and secure systems design.",
-      equipment: [
-        "Hardware security module",
-        "Penetration testing tools",
-        "Isolated network environment"
-      ],
-      image: null
-    },
-    {
-      name: "Human-Computer Interaction Lab",
-      description: "Investigating novel user interfaces, user experience, and interaction paradigms for future computing systems.",
-      equipment: [
-        "Eye tracking systems",
-        "VR/AR headsets",
-        "Biometric sensors"
-      ],
-      image: null
-    }
+  // Facilities data from facilities.html
+  const instructionalLabs = [
+    "Programming Laboratory",
+    "Data Structures and Algorithms Laboratory",
+    "Software Systems Laboratory",
+    "Artificial Intelligence Laboratory",
+    "Computer Architecture Laboratory",
+    "Database Systems Laboratory",
+    "Operating Systems Laboratory",
+    "Computer Networks Laboratory",
+    "Compilers Laboratory"
+  ];
+  const rndLabs = [
+    { name: "AIML Lab" },
+    { name: "FutureG Networks Lab", link: "https://futuregnetworks.iitdh.ac.in/" },
+    { name: "Emerging Multimedia and AI (EMA) Lab", link: "http://ema.iitdh.ac.in/", img: "/sites/default/files/inline-images/EEMAA.jpg", imgWidth: 26, imgHeight: 17, hiring: true }
   ];
 
   // Sample publication data
@@ -364,17 +338,34 @@ const Research = () => {
       </div>
 
       {/* Labs Section */}
-      <Section id="labs" title="Research Laboratories">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {labs.map((lab, index) => (
-            <LabCard 
-              key={index}
-              name={lab.name}
-              description={lab.description}
-              equipment={lab.equipment}
-              image={lab.image}
-            />
-          ))}
+      <Section id="labs" title="Department Facilities">
+        <div className="mb-8">
+          <h3 className="text-xl font-bold text-gray-800 mb-4">Instructional Labs</h3>
+          <ul className="list-disc list-inside ml-6 text-gray-700">
+            {instructionalLabs.map((lab, idx) => (
+              <li key={idx}>{lab}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-gray-800 mb-4">Research & Development Labs</h3>
+          <ul className="list-disc list-inside ml-6 text-gray-700">
+            {rndLabs.map((lab, idx) => (
+              <li key={idx} className="mb-2">
+                {lab.link ? (
+                  <a href={lab.link} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                    {lab.name}
+                    {lab.img && (
+                      <img src={lab.img} alt="EMA" width={lab.imgWidth} height={lab.imgHeight} className="inline ml-2 align-middle" />
+                    )}
+                  </a>
+                ) : lab.name}
+                {lab.hiring && (
+                  <span className="ml-2 text-xs text-green-700 font-semibold">(EMA Lab is hiring now! <a href="/emerging-multimedia-and-ai-lab-ema-lab-hiring-were-looking-passionate-researchers-join-us-ms-phd" target="_blank" className="underline">Click Here to know more</a>)</span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
 

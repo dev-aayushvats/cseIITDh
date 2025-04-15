@@ -18,26 +18,19 @@ const Contact = () => {
             <h2 className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Department Address</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Department of Computer Science and Engineering</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">Department of Computer Science & Engineering</h3>
                 <p className="text-gray-700">
                   Indian Institute of Technology Dharwad<br />
-                  WALMI Campus, PB Road<br />
-                  Dharwad, Karnataka - 580011<br />
-                  India
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-2">General Inquiries</h3>
-                <p className="text-gray-700">
-                  <span className="block">Phone: +91-836-2212-839</span>
-                  <span className="block">Email: <a href="mailto:office.cse@iitdh.ac.in" className="text-indigo-600 hover:underline">office.cse@iitdh.ac.in</a></span>
+                  Permanent Campus, Chikkamalligawad<br />
+                  Dharwad - 580 011, Karnataka, India
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800 mb-2">Department Head</h3>
                 <p className="text-gray-700">
-                  <span className="block">Prof. Rajshekar K.</span>
-                  <span className="block">Email: <a href="mailto:hod.cse@iitdh.ac.in" className="text-indigo-600 hover:underline">hod.cse@iitdh.ac.in</a></span>
+                  A1 - 501, Head of Computer Science and Engineering<br />
+                  Prof Ramchandra Phawade<br />
+                  Phone: +91 8362309624
                 </p>
               </div>
             </div>
@@ -50,31 +43,39 @@ const Contact = () => {
             <h2 className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Contact Points</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Admissions</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">Department Office</h3>
                 <p className="text-gray-700">
-                  For B.Tech, M.Tech, MS, PhD admissions<br />
-                  Email: <a href="mailto:admissions.cse@iitdh.ac.in" className="text-indigo-600 hover:underline">admissions.cse@iitdh.ac.in</a>
+                  Email: <a href="mailto:cse.office@iitdh.ac.in" className="text-indigo-600 hover:underline">cse.office@iitdh.ac.in</a>
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Faculty Recruitment</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">Head CSE</h3>
                 <p className="text-gray-700">
-                  For faculty positions and recruitment inquiries<br />
-                  Email: <a href="mailto:faculty.recruitment@iitdh.ac.in" className="text-indigo-600 hover:underline">faculty.recruitment@iitdh.ac.in</a>
+                  Email: <a href="mailto:head.cse@iitdh.ac.in" className="text-indigo-600 hover:underline">head.cse@iitdh.ac.in</a>
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Research Collaborations</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">PG Admissions (CSE)</h3>
                 <p className="text-gray-700">
-                  For research and industry collaborations<br />
-                  Email: <a href="mailto:research.cse@iitdh.ac.in" className="text-indigo-600 hover:underline">research.cse@iitdh.ac.in</a>
+                  Email: <a href="mailto:pgadmissions.cse@iitdh.ac.in" className="text-indigo-600 hover:underline">pgadmissions.cse@iitdh.ac.in</a>
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Placement Cell</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">Faculty Recruitment (CS)</h3>
                 <p className="text-gray-700">
-                  For internships and placements<br />
-                  Email: <a href="mailto:placements@iitdh.ac.in" className="text-indigo-600 hover:underline">placements@iitdh.ac.in</a>
+                  Email: <a href="mailto:facrec.cs@iitdh.ac.in" className="text-indigo-600 hover:underline">facrec.cs@iitdh.ac.in</a>
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Training and Placement Officer (TPO)</h3>
+                <p className="text-gray-700">
+                  Email: <a href="mailto:tpo@iitdh.ac.in" className="text-indigo-600 hover:underline">tpo@iitdh.ac.in</a>
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Associate Dean R&D, Projects</h3>
+                <p className="text-gray-700">
+                  Email: <a href="mailto:adean.rnd@iitdh.ac.in" className="text-indigo-600 hover:underline">adean.rnd@iitdh.ac.in</a>
                 </p>
               </div>
             </div>
