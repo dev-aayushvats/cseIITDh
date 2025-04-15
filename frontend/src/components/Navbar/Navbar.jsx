@@ -10,7 +10,7 @@ const Navbar = ({ closeMenu }) => {
         <nav className="h-full w-full bg-white overflow-y-auto pb-20">
             <div className="flex justify-between items-center p-4 sm:hidden">
                 <h2 className="font-bold text-gray-800">Menu</h2>
-                <button 
+                <button
                     onClick={closeMenu}
                     className="p-2 rounded-full hover:bg-gray-100"
                 >
@@ -21,72 +21,72 @@ const Navbar = ({ closeMenu }) => {
             </div>
             <ul className="space-y-1 p-3">
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
                         onClick={handleLinkClick}
                     >
                         Home
                     </NavLink>
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/academics" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
-                        onClick={handleLinkClick}
-                    >
-                        Academics
-                    </NavLink>
-                </li>
-                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/admissions" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
-                        onClick={handleLinkClick}
-                    >
-                        Admissions
-                    </NavLink>
-                </li>
-                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/people" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
-                        onClick={handleLinkClick}
-                    >
-                        People
-                    </NavLink>
-                </li>
-                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/research" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
-                        onClick={handleLinkClick}
-                    >
-                        Research
-                    </NavLink>
-                </li>
-                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/about" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                    <NavLink
+                        to="/about"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
                         onClick={handleLinkClick}
                     >
                         About
                     </NavLink>
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/join-as-faculty" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                    <NavLink
+                        to="/academics"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                        onClick={handleLinkClick}
+                    >
+                        Academics
+                    </NavLink>
+                </li>
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <NavLink
+                        to="/admissions"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                        onClick={handleLinkClick}
+                    >
+                        Admissions
+                    </NavLink>
+                </li>
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <NavLink
+                        to="/join-as-faculty"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
                         onClick={handleLinkClick}
                     >
                         Join As Faculty
                     </NavLink>
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink 
-                        to="/contact" 
-                        className={({isActive})=>`py-2 rounded-lg pl-3 font-medium block w-full ${isActive? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                    <NavLink
+                        to="/people"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                        onClick={handleLinkClick}
+                    >
+                        People
+                    </NavLink>
+                </li>
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <NavLink
+                        to="/research"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                        onClick={handleLinkClick}
+                    >
+                        Research
+                    </NavLink>
+                </li>
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <NavLink
+                        to="/contact"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
                         onClick={handleLinkClick}
                     >
                         Contact Us
