@@ -46,10 +46,10 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
         />
         {/* Mobile Logo (visible only on small screens) */}
         <img 
-          src="/insti_fav_white.jpg" 
+          src="/institute_favicon.png" 
           alt="IIT DH" 
           onClick={()=> window.open('https://www.iitdh.ac.in/', '_blank')}
-          className="block sm:hidden cursor-pointer h-[40px] w-auto transition-transform duration-200 hover:scale-[1.02]" 
+          className="block sm:hidden cursor-pointer h-[50px] w-auto transition-transform duration-200 hover:scale-[1.02]" 
         />
       </div>
       
