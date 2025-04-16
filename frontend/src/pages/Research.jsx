@@ -320,7 +320,7 @@ const Research = () => {
           icon={<i className="fas fa-flask"></i>}
           targetId="labs" 
         />
-        <NavCard 
+        {/* <NavCard 
           title="Publications" 
           icon={<i className="fas fa-book"></i>}
           targetId="publications" 
@@ -334,7 +334,7 @@ const Research = () => {
           title="Patents" 
           icon={<i className="fas fa-certificate"></i>}
           targetId="patents" 
-        />
+        /> */}
       </div>
 
       {/* Labs Section */}
@@ -361,7 +361,7 @@ const Research = () => {
                   </a>
                 ) : lab.name}
                 {lab.hiring && (
-                  <span className="ml-2 text-xs text-green-700 font-semibold">(EMA Lab is hiring now! <a href="/emerging-multimedia-and-ai-lab-ema-lab-hiring-were-looking-passionate-researchers-join-us-ms-phd" target="_blank" className="underline">Click Here to know more</a>)</span>
+                  <span className="ml-2 text-xs text-green-700 font-semibold">(EMA Lab is hiring now! <a href="https://www.iitdh.ac.in/emerging-multimedia-and-ai-lab-ema-lab-hiring-were-looking-passionate-researchers-join-us-ms-phd" target="_blank" className="underline">Click Here to know more</a>)</span>
                 )}
               </li>
             ))}
@@ -370,7 +370,7 @@ const Research = () => {
       </Section>
 
       {/* Publications Section */}
-      <Section id="publications" title="Publications">
+      {/* <Section id="publications" title="Publications">
         <div className="mb-6 bg-gray-50 border border-gray-200 p-4 rounded-md">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Recent Publications</h3>
           <p className="text-sm text-gray-600">
@@ -389,10 +389,10 @@ const Research = () => {
             />
           ))}
         </div>
-      </Section>
+      </Section> */}
 
       {/* Research Areas Section */}
-      <Section id="research-areas" title="Research Areas">
+      {/* <Section id="research-areas" title="Research Areas">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {researchAreas.map((area, index) => (
             <ResearchAreaCard 
@@ -404,10 +404,10 @@ const Research = () => {
             />
           ))}
         </div>
-      </Section>
+      </Section> */}
 
       {/* Patents Section */}
-      <Section id="patents" title="Patents">
+      {/* <Section id="patents" title="Patents">
         <div className="mb-6 bg-gray-50 border border-gray-200 p-4 rounded-md">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Intellectual Property</h3>
           <p className="text-sm text-gray-600">
@@ -426,7 +426,7 @@ const Research = () => {
             />
           ))}
         </div>
-      </Section>
+      </Section> */}
       
       {/* Back to Top Button */}
       <div className="text-center mt-10">
