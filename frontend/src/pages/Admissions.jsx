@@ -109,171 +109,466 @@ const Admissions = () => {
 
       {/* M.Tech Section */}
       <Section id="mtech" title="M.Tech Admission">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Program Overview</h3>
-              <p className="text-gray-700 mb-3">
-                The M.Tech program in Computer Science and Engineering is a 2-year postgraduate degree designed to provide advanced knowledge in specialized areas of computer science. Students can specialize in areas such as Artificial Intelligence, Data Science, Computer Systems, and Security.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Admission Process</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                <li>Admissions are primarily through the <strong>Graduate Aptitude Test in Engineering (GATE)</strong>.</li>
-                <li>Shortlisted candidates may be called for a written test and/or interview.</li>
-                <li>Final selection is based on GATE score, academic record, and performance in the interview/written test.</li>
-                <li>Some seats may be available for sponsored candidates from industry or government organizations.</li>
-              </ol>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Eligibility</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>B.Tech/B.E. degree in Computer Science, Information Technology, or related disciplines with at least 60% marks or 6.5 CGPA on a 10-point scale (55% or 6.0 CGPA for SC/ST/PwD candidates).</li>
-                <li>Valid GATE score in Computer Science and Information Technology (CS), or Electronics and Communication (EC).</li>
-              </ul>
-            </div>
-            
-            <div className="bg-indigo-50 p-4 rounded-md">
-              <h3 className="text-lg font-semibold mb-2">Specializations Offered</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                <div className="bg-white p-2 rounded-md">Artificial Intelligence</div>
-                <div className="bg-white p-2 rounded-md">Machine Learning</div>
-                <div className="bg-white p-2 rounded-md">Data Science</div>
-                <div className="bg-white p-2 rounded-md">Computer Systems</div>
-                <div className="bg-white p-2 rounded-md">Information Security</div>
-                <div className="bg-white p-2 rounded-md">Computer Vision</div>
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-xl font-semibold mb-3">M.Tech in Computer Science and Engineering</h3>
+            <p className="text-gray-700 mb-3">
+              The Department of CSE at IIT Dharwad invites applications for the M.Tech. in CSE under the TA category for the Academic Year 2025-26.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Eligibility for Admission</h3>
+            <h4 className="font-medium mb-2">Qualifying Degree</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 pl-3">
+              <li>B. Tech / B. E. in Computer Science and Engineering</li>
+              <li>Any B. Tech / B. E. in allied Engineering branches</li>
+              <li>Master of Computer Applications (MCA)</li>
+              <li>M.Sc. in Computer Science</li>
+            </ul>
+            <p className="mt-2 text-gray-700">
+              A valid GATE score in CSE is essential for all candidates, except for candidates who have B.Tech. or equivalent degree in CSE and allied branches from IITs or BS degree or equivalent degree in CSE or allied branches from IISc with a minimum CPI/CGPA of 8.0 on the scale of 10.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">Minimum Eligibility Criteria</h4>
+            <p className="text-gray-700 mb-2">For General/General (EWS)/OBC category candidates:</p>
+            <ul className="list-disc list-inside space-y-1 text-gray-700 pl-3">
+              <li>Minimum of 60% marks (without round off) in aggregate over the entire duration of the undergraduate program</li>
+              <li>Minimum CGPA/CPI of 6.0 on the scale of 0-10</li>
+              <li>For MSc in Computer Science: minimum of 60% marks in both BSc and MSc in Computer Science</li>
+              <li>For MCA: minimum of 60% marks in both BCA and MCA</li>
+            </ul>
+            <p className="mt-2 text-gray-700">
+              For SC/ST/PwD category candidates, a relaxation of 5% in the performance at the qualifying degree is applicable.
+            </p>
+            <p className="mt-2 text-sm italic text-gray-600">
+              Merely satisfying the eligibility conditions does not guarantee selection into the program.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Selection Process</h3>
+            <p className="text-gray-700 mb-2">
+              The eligibility requirement in the GATE score is:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-gray-700 pl-3">
+              <li>General/General (EWS): Soft cutoff of 600</li>
+              <li>OBC-NCL: 540 (0.9 × 600)</li>
+              <li>SC/ST/PwD: 400 (⅔ × 600)</li>
+            </ul>
+            <p className="mt-2 text-gray-700">
+              For admission through GATE score, candidates with higher GATE scores will be allotted seats based on their social category through the common offer acceptance portal (COAP).
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Available Seats</h3>
+            <p className="text-gray-700">
+              Total available seats: <strong>33</strong> (30 seats distributed as per seat matrix for different social categories + 3 supernumerary seats for IIT/IISc graduates)
+            </p>
+          </div>
+          
+          <div className="bg-indigo-50 p-4 rounded-md">
+            <h3 className="text-lg font-semibold mb-2">Program Structure (125 credits)</h3>
+            <div className="grid grid-cols-1 gap-3">
+              <div className="bg-white p-3 rounded-md">
+                <p className="font-medium">Coursework: 61 Credits</p>
+                <ul className="list-disc list-inside text-sm pl-3">
+                  <li>4 credits: Seminar course (Institute Core)</li>
+                  <li>21 credits: Program Core courses</li>
+                  <li>36 credits: Electives (at least 24 credits from CSE discipline)</li>
+                </ul>
+              </div>
+              <div className="bg-white p-3 rounded-md">
+                <p className="font-medium">M.Tech Project: 64 Credits</p>
+                <ul className="list-disc list-inside text-sm pl-3">
+                  <li>Phase I: 32 credits</li>
+                  <li>Phase II: 32 credits</li>
+                </ul>
+              </div>
+              <div className="bg-white p-3 rounded-md">
+                <p className="font-medium">Additional</p>
+                <ul className="list-disc list-inside text-sm pl-3">
+                  <li>Compulsory communications skills course (Pass/Not Passed)</li>
+                </ul>
               </div>
             </div>
-            
-            <div className="text-center">
-              <a href="https://gate.iitb.ac.in" target="_blank" rel="noopener noreferrer" className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">
-                GATE Portal
-              </a>
-            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Core Courses</h3>
+            <ul className="list-disc list-inside space-y-1 text-gray-700 pl-3">
+              <li>Advanced Data Structures and Algorithms (PC, 6 credits)</li>
+              <li>Combinatorics and Probability (PC, 6 credits)</li>
+              <li>Advanced Data Structures and Algorithms Lab (PC, 3 credits)</li>
+              <li>Advanced Software Development Laboratory (PC, 6 credits)</li>
+            </ul>
+          </div>
+          
+          <div className="text-center mt-4">
+            <p className="text-sm text-gray-600 mb-3">For queries related to MTech admissions in CSE, contact:</p>
+            <a href="mailto:pgadmissions.cse@iitdh.ac.in" className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">
+              Email: pgadmissions.cse@iitdh.ac.in
+            </a>
           </div>
         </div>
-      </Section>
+      </div>
+    </Section>
 
       {/* MS Research Section */}
       <Section id="ms" title="MS (Research) Admission">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Program Overview</h3>
-              <p className="text-gray-700 mb-3">
-                The MS (Research) program is a research-oriented master's degree focusing on developing research skills and expertise in specific areas of computer science. The program typically involves coursework and a substantial research thesis.
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-xl font-semibold mb-3">F. DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</h3>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">F.1. Eligibility for Admission</h3>
+            
+            <div className="ml-4 mb-4">
+              <h4 className="font-semibold mb-2">F.1.a. Qualifying Degree</h4>
+              <ul className="list-disc list-inside space-y-1 text-gray-700">
+                <li>B. Tech / B. E. in Computer Science and Engineering OR</li>
+                <li>Any B. Tech / B. E. in allied Engineering branches OR</li>
+                <li>Master of Computer Applications (MCA) OR</li>
+                <li>M.Sc. in Computer Science</li>
+              </ul>
+              
+              <p className="mt-2 text-gray-700">
+                A valid GATE score in Computer Science and Engineering or Data Science and AI* is required.
+              </p>
+              
+              <p className="mt-1 text-sm text-gray-600 italic">
+                *Valid GATE score is essential for candidates applying in TA and PA categories (except for candidates who have B.Tech. or equivalent degree from IITs or BS degree from IISc with minimum CPI/CGPA of 8.0 on the scale of 10). GATE score is not mandatory for the EX-category.
               </p>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Admission Process</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                <li>Applications are invited twice a year (May and November).</li>
-                <li>Shortlisted candidates are called for a written test and interview.</li>
-                <li>Selection is based on academic background, research aptitude, and performance in the interview.</li>
-                <li>GATE score is preferred but not mandatory for candidates with exceptional academic records.</li>
-              </ol>
+            <div className="ml-4 mb-4">
+              <h4 className="font-semibold mb-2">F.1.b. Minimum eligibility criteria</h4>
+              
+              <div className="ml-4 mb-3">
+                <h5 className="font-medium mb-1">F.1.b.1 Minimum score in the qualifying degree</h5>
+                <p className="text-gray-700 mb-1">For General/General (EWS)/OBC category candidates and/or for candidates where no concession in academic performance is called for, the eligibility criteria in the qualifying degree is either:</p>
+                <ol className="list-decimal list-inside space-y-1 text-gray-700 ml-2">
+                  <li>A minimum of 60% marks (without round off) in aggregate over the entire duration of the undergraduate program.</li>
+                  <li>A minimum Cumulative Grade Point Average (CGPA) or Cumulative Performance Index (CPI) of 6.0 on the scale of 0-10.</li>
+                  <li>Candidates with MSc in Computer Science have eligibility criteria of a minimum of 60% marks in both BSc in Computer Science and MSc in Computer Science.</li>
+                  <li>Candidates with MCA have eligibility criteria of a minimum of 60% marks in both BCA and MCA.</li>
+                  <li>For SC/ST/PwD category candidates, a relaxation of 5% in the performance at the qualifying degree is applicable.</li>
+                </ol>
+              </div>
+              
+              <div className="ml-4">
+                <h5 className="font-medium mb-1">F.1.b.2 Minimum score in GATE</h5>
+                <p className="text-gray-700">
+                  For General/General (EWS) category candidates and/or for candidates where no concession in academic performance is called for, the eligibility requirement in the GATE score is cutoff of 500. And for other categories, relaxation is given as per GOI norms, i.e. 0.9*500 = 450 for OBC-NCL and ⅔*500 = 333 for SC/ST/PwD candidates.
+                </p>
+                <p className="text-gray-700 mt-1 italic">
+                  Note that merely satisfying the eligibility conditions does not guarantee selection into the program.
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Eligibility</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>B.Tech/B.E. or equivalent degree in Computer Science, Information Technology, or related disciplines with at least 60% marks or 6.5 CGPA (55% or 6.0 CGPA for SC/ST/PwD candidates).</li>
-                <li>Candidates in their final year of qualifying degree can also apply, subject to meeting the criteria by the time of admission.</li>
-              </ul>
+            <div className="ml-4">
+              <h4 className="font-semibold mb-2">F.1.c. Applicants in the final phase of getting a qualifying degree</h4>
+              <p className="text-gray-700">
+                Students who are in the final phase of receiving the above-mentioned qualifying degree and who are likely to graduate before commencement of Spring 2024-25 semester of IIT Dharwad are also eligible to apply. However, if offered, the admission to those candidates would be provisional.
+              </p>
             </div>
-            
-            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-3">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm text-yellow-700">
-                    It is highly recommended that prospective students contact potential faculty supervisors before applying to discuss research interests and opportunities.
-                  </p>
-                </div>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">F.2. Financial support category</h3>
+            <p className="text-gray-700 mb-2">
+              The Dept. of Computer Science and Engineering at IIT Dharwad invites application for the MS program under the following categories only for the Spring 2024-25 semester:
+            </p>
+            <ol className="list-decimal list-inside space-y-1 text-gray-700 ml-4">
+              <li>TA: The applicant may be asked to indicate the choice of research topics in the order of preference.</li>
+              <li>EX: The applicant may be asked to indicate the choice of the research topics in the order of preference.</li>
+            </ol>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">F.3. Selection Process</h3>
+            <p className="text-gray-700 mb-2">
+              Only the eligible applicants are permitted to participate in the selection process. The selection process would involve two rounds:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-gray-700 ml-4">
+              <li>Round-1: An online interview to test the aptitude, programming skills and knowledge of Discrete Structures and Data Structures and Algorithms.</li>
+              <li>Round-2: Candidates shortlisted from round 1 will be called for an interview (online) by the respective panel based on the research area preference mentioned in the admission form.</li>
+            </ul>
+            <p className="text-gray-700 mt-2">
+              The candidates are encouraged to check the Institute Website (https://www.iitdh.ac.in/mtech-research) from time to time. Selection committee decisions are final in all matters.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">F.4. Focus areas of research</h3>
+            <div className="space-y-2 text-gray-700 ml-4">
+              <div>
+                <p className="font-medium">1. Computer Networks, IoT and Security (CN):</p>
+                <p className="ml-4">5G/IoT Networks, AI Driven Networking, Network Virtualization, Network/Cyber Security, Blockchains, Software Defined Networks, Network Function Virtualization, Data Center Networking.</p>
+              </div>
+              <div>
+                <p className="font-medium">2. Computer Systems and Programming:</p>
+                <p className="ml-4">Approximate Computing, Systems for AI/ML, Modeling and characterization of heterogeneous processors, Runtime Verification of Hardware, Efficient Computer Architectures, Parallel Computing, Compilers and Translation Systems, Programming models and runtime systems.</p>
+              </div>
+              <div>
+                <p className="font-medium">3. Machine learning (ML) and Artificial Intelligence (AI):</p>
+                <p className="ml-4">Machine Learning (ML), Deep Learning (DL), Reinforcement Learning (RL), Stochastic Control and Optimization, Bayesian Optimization, Text Mining, Speech and Audio Processing, Handwriting and Document Processing, Natural Language Processing, Machine Translation, LLMs, AI Chatbot Assistant, Computer Vision, ML for Cyber Physical Systems, AR/VR/MX, Mining large data streams, ML for Cyber Security, Big Data Analytics, Distributed data processing, Application of neural networks on Edge devices, Hardware for machine learning systems, GPU/TPU/NPU/ML systems and software stack, quantized and low-precision machine learning.</p>
+              </div>
+              <div>
+                <p className="font-medium">4. Theoretical Computer Science (TCS):</p>
+                <p className="ml-4">Algorithms, Concurrency, Formal Verification, Graph Theory, Logic.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Important Dates</h3>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm text-gray-700">
+                <tbody>
+                  <tr className="bg-gray-50">
+                    <td className="px-4 py-2 border">Launching applications online</td>
+                    <td className="px-4 py-2 border">26/03/2025</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2 border">Deadline for M.Tech (R) online applications</td>
+                    <td className="px-4 py-2 border">25/04/2025</td>
+                  </tr>
+                  <tr className="bg-gray-50">
+                    <td className="px-4 py-2 border">Announcing Round 1: eligibility shortlist on the website and Exam/Interview timeline</td>
+                    <td className="px-4 py-2 border">16/05/2025 to 22/06/2025</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2 border">Date of results (Tentative)</td>
+                    <td className="px-4 py-2 border">03-07-2025</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-3">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-blue-700">
+                  For admission related queries, please contact <span className="font-semibold">pgadmissions@iitdh.ac.in</span>.
+                </p>
+                <p className="text-sm text-blue-700 mt-1">
+                  For CSE department specific queries, email <span className="font-semibold">pgadmissions.cse@iitdh.ac.in</span> with the Subject "Query related to M.Tech. by Research Admissions for CSE".
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </Section>
-
+      </div>
+    </Section>
       {/* PhD Section */}
-      <Section id="phd" title="PhD Admission">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Program Overview</h3>
-              <p className="text-gray-700 mb-3">
-                The PhD program in Computer Science and Engineering is designed for students interested in pursuing advanced research. The program typically takes 4-5 years to complete and involves coursework, a comprehensive exam, and original research leading to a dissertation.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Admission Process</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-700">
-                <li>Applications are accepted twice a year for admission in January and August semesters.</li>
-                <li>Shortlisted candidates are invited for a written test followed by an interview.</li>
-                <li>Selection is based on academic background, research potential, and alignment with faculty research interests.</li>
-                <li>Candidates must identify potential research areas and faculty supervisors in their application.</li>
-              </ol>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Eligibility</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>M.Tech/MS/M.E. in Computer Science, Information Technology, or related areas with at least 65% marks or 7.0 CGPA (60% or 6.5 CGPA for SC/ST/PwD candidates).</li>
-                <li>Exceptional B.Tech/B.E. graduates with outstanding academic records may be considered under the direct PhD program.</li>
-                <li>Valid GATE score or other national level test scores (UGC/CSIR NET, etc.) are preferred.</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Research Areas</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-medium mb-2">Theoretical Computer Science</h4>
-                  <ul className="text-sm text-gray-600 list-disc list-inside">
-                    <li>Algorithms and Complexity</li>
-                    <li>Formal Methods</li>
-                    <li>Logic and Automata Theory</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">Artificial Intelligence</h4>
-                  <ul className="text-sm text-gray-600 list-disc list-inside">
-                    <li>Machine Learning</li>
-                    <li>Natural Language Processing</li>
-                    <li>Computer Vision</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">Systems</h4>
-                  <ul className="text-sm text-gray-600 list-disc list-inside">
-                    <li>Distributed Systems</li>
-                    <li>Operating Systems</li>
-                    <li>Computer Networks</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">Security and Privacy</h4>
-                  <ul className="text-sm text-gray-600 list-disc list-inside">
-                    <li>Cryptography</li>
-                    <li>Network Security</li>
-                    <li>Privacy-preserving Computing</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+      <Section id="phd" title="PhD Admission - Computer Science and Engineering">
+  <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Program Overview</h3>
+        <p className="text-gray-700 mb-3">The PhD program in Computer Science and Engineering is designed for students interested in pursuing advanced research. The program typically takes 4-5 years to complete and involves coursework, a comprehensive exam, and original research leading to a dissertation.</p>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Important Dates</h3>
+        <ul className="list-none space-y-1 text-gray-700">
+          <li><span className="font-medium">Launching applications online:</span> 26/03/2025</li>
+          <li><span className="font-medium">Deadline for PhD online applications:</span> 25/04/2025</li>
+          <li><span className="font-medium">Announcing Round 1 eligibility shortlist and Exam/Interview timeline:</span> 16/05/2025 to 22/06/2025</li>
+          <li><span className="font-medium">Date of results (Tentative):</span> 03/07/2025</li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Qualifying Degree</h3>
+        <p className="text-gray-700">M. Tech. or equivalent degree in Computer Science and Engineering or any related stream.</p>
+        
+        <h4 className="font-medium mt-4 mb-2">Minimum score in the qualifying degree</h4>
+        <p className="text-gray-700 mb-2">For General/OBC category candidates and/or for candidates where no concession in academic performance is called for, the eligibility criteria in the qualifying degree (M.Tech./M.E.):</p>
+        <ul className="list-disc list-inside space-y-1 text-gray-700 mb-3">
+          <li>A minimum of 60% marks (without round off) in aggregate, OR,</li>
+          <li>A minimum Cumulative Grade Point Average (CGPA) or Cumulative Performance Index (CPI) of 6.0 on the scale of 0-10; with corresponding proportional requirements when the scales are other than on 0-10, (for example, 4.8 on a scale of 0-8).</li>
+        </ul>
+        <p className="text-gray-700">For SC/ST category candidates and differently abled candidates (PwD), a relaxation of 5% (or CPI/CGPA of 0.5 on the scale of 0-10) in the qualifying degree is applicable.</p>
+        
+        <h4 className="font-medium mt-4 mb-2">Eligibility of applicants in the final phase of getting the qualifying degree</h4>
+        <p className="text-gray-700">Students who are in the final phase of receiving the above-mentioned qualifying degree and who are likely to graduate before commencement of Autumn 2025-26 semester of IIT Dharwad are also eligible to apply. However, if offered, admission to those candidates would be provisional.</p>
+        <p className="text-gray-700 mt-2">To join an academic program at IIT Dharwad, such candidates need to furnish necessary documents regarding completion of the degree on the date of joining. They need to meet the criteria specified in the section above considering updated score in the qualifying degree. In the meanwhile, the aggregate academic performance announced by the respective university till the last date for submission should be used to determine eligibility for application and same to be reported in the online application.</p>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Selection Process</h3>
+        <p className="text-gray-700 mb-3">Only eligible applicants are permitted to participate in the selection process. The selection process involves two rounds:</p>
+        <ol className="list-decimal list-inside space-y-2 text-gray-700">
+          <li><span className="font-medium">Round 1:</span> An online interview to test the aptitude, programming skills and knowledge of discrete structures, data structures and algorithms of the candidate.</li>
+          <li><span className="font-medium">Round 2:</span> The shortlisted candidates from round-1 will be called for interview (online) by the respective panel based on the research area preference mentioned in the admission form.</li>
+        </ol>
+        <p className="text-gray-700 mt-3">The candidates are encouraged to check the Institute website <a href="https://www.iitdh.ac.in/doctoral-0" className="text-blue-600 hover:underline">https://www.iitdh.ac.in/doctoral-0</a> from time to time. Selection committee decisions are final in all matters including any disciplinary matters/malpractice.</p>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Research Areas</h3>
+        <p className="text-gray-700 mb-3">The research topics are broadly classified as given below. The applicant may be asked to indicate the choice of research topics in order of preference.</p>
+        
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-medium mb-2">1. Computer Networks, IoT and Security (CN)</h4>
+            <ul className="text-sm text-gray-600 list-disc list-inside">
+              <li>5G/IoT Networks, AI Driven Networking, Network Virtualization</li>
+              <li>Network/Cyber Security, Blockchains</li>
+              <li>Software Defined Networks, Network Function Virtualization</li>
+              <li>Data Center Networking</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">2. Computer Systems and Programming</h4>
+            <ul className="text-sm text-gray-600 list-disc list-inside">
+              <li>Approximate Computing, Systems for AI/ML</li>
+              <li>Modeling and characterization of heterogeneous processors</li>
+              <li>Runtime Verification of Hardware and Efficient Computer Architectures</li>
+              <li>Parallel Computing, Compilers and Translation Systems</li>
+              <li>Programming models and runtime systems</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">3. Machine Learning (ML) and Artificial Intelligence (AI)</h4>
+            <ul className="text-sm text-gray-600 list-disc list-inside">
+              <li>Machine Learning (ML), Deep Learning (DL), Reinforcement Learning (RL)</li>
+              <li>Computer Vision, Stochastic Control and Optimization</li>
+              <li>Bayesian Optimization, Text Mining, Speech and Audio Processing</li>
+              <li>Handwriting and Document Processing, Natural Language Processing</li>
+              <li>Machine Translation, LLMs, AI Chatbot Assistant</li>
+              <li>ML for Cyber Physical Systems, AR/VR/MX</li>
+              <li>Mining large data streams, ML for Cyber Security</li>
+              <li>Big Data Analytics, Distributed data processing</li>
+              <li>Application of neural networks on Edge devices</li>
+              <li>Hardware for machine learning systems (GPU/TPU/NPU/ML systems and software stack)</li>
+              <li>Quantized and low precision machine learning</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">4. Theoretical Computer Science (TCS)</h4>
+            <ul className="text-sm text-gray-600 list-disc list-inside">
+              <li>Algorithms, Concurrency, Formal Verification</li>
+              <li>Graph Theory, Logic</li>
+            </ul>
           </div>
         </div>
-      </Section>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Financial Assistance</h3>
+        <div className="space-y-3">
+          <div>
+            <h4 className="font-medium mb-2">Teaching Assistantship (TA)</h4>
+            <p className="text-gray-700">The applicant may be asked to indicate the choice of research topics in the order of preference.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">Externally Sponsored (EX)</h4>
+            <p className="text-gray-700">In this call, applications are invited under EX category for all research areas (1) - (4).</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-2">Project Assistantship (PA)</h4>
+            <p className="text-gray-700">There are no PA positions available this time.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Syllabus for Selection Process</h3>
+        <div className="space-y-3">
+          <div>
+            <h4 className="font-medium mb-1">Discrete Mathematics</h4>
+            <p className="text-sm text-gray-600">Propositional and first order logic. Sets, relations, functions, partial orders, and lattices. Groups. Graphs: connectivity, matching, coloring. Combinatorics: counting, recurrence relations, generating functions, Linear Algebra: Matrices, determinants, system of linear equations, eigenvalues and eigenvectors, LU decomposition. Calculus: Limits, continuity, and differentiability. Maxima and minima. Mean value theorem. Integration. Probability: Random variables. Uniform, normal, exponential, Poisson, and binomial distributions. Mean, median, mode and standard deviation. Conditional probability and Bayes theorem.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Computer Organization and Architecture</h4>
+            <p className="text-sm text-gray-600">Machine instructions and addressing modes. ALU, data‐path and control unit. Instruction pipelining. Memory hierarchy: cache, main memory, and secondary storage; I/O interface (interrupt and DMA mode).</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Programming and Data Structures</h4>
+            <p className="text-sm text-gray-600">Programming in C. Recursion. Arrays, stacks, queues, linked lists, trees, binary search trees, binary heaps, graphs.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Algorithms</h4>
+            <p className="text-sm text-gray-600">Searching, sorting, hashing. Asymptotic worst-case time and space complexity. Algorithm design techniques: greedy, dynamic programming and divide‐and‐conquer. Graph search, minimum spanning trees, shortest paths.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Theory of Computation</h4>
+            <p className="text-sm text-gray-600">Regular expressions and finite automata. Context-free grammar and push-down automata. Regular and context-free languages, pumping lemma. Turing machines and undecidability.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Compiler Design</h4>
+            <p className="text-sm text-gray-600">Lexical analysis, parsing, syntax-directed translation. Runtime environments. Intermediate code generation.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Operating System</h4>
+            <p className="text-sm text-gray-600">Processes, threads, inter‐process communication, concurrency and synchronization. Deadlock. CPU scheduling. Memory management and virtual memory. File systems.</p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-1">Computer Networks</h4>
+            <p className="text-sm text-gray-600">Concept of layering. LAN technologies (Ethernet). Flow and error control techniques, switching. IPv4/IPv6, routers and routing algorithms (distance vector, link state). TCP/UDP and sockets, congestion control. Application layer protocols (DNS, SMTP, POP, FTP, HTTP). Basics of Wi-Fi. Network security: authentication, basics of public key and private key cryptography, digital signatures and certificates, firewalls.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-semibold mb-3">Updates</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <li>For admission related queries, please contact <a href="mailto:pgadmissions@iitdh.ac.in" className="text-blue-600 hover:underline">pgadmissions@iitdh.ac.in</a></li>
+        </ul>
+        
+        <div className="mt-4">
+          <h4 className="font-medium mb-2">For all International Applicants to PhD program:</h4>
+          <p className="text-sm text-gray-600">All international applicants, i.e. those with a passport other than Indian Passport, can apply using the study-in-india portal to select programs in IIT Dharwad. <a href="#" className="text-blue-600 hover:underline">Click Here</a></p>
+        </div>
+        
+        <div className="mt-4">
+          <h4 className="font-medium mb-2">DIA Fellowship scheme:</h4>
+          <p className="text-sm text-gray-600">Government of India has announced a special fellowship scheme for applicants from ASEAN countries to PhD programs in IITs - Doctoral Fellowships in India for ASEAN (DIA). (Note- It was also referred to as ASEAN fellowship in the past.)</p>
+          <p className="text-sm text-gray-600 mt-2">
+            Website - <a href="http://www.asean.iitd.ac.in/" className="text-blue-600 hover:underline">http://www.asean.iitd.ac.in/</a> and <a href="http://www.asean-iit.in/" className="text-blue-600 hover:underline">http://www.asean-iit.in/</a><br/>
+            DIA YouTube promotional video - <a href="https://youtu.be/B5wxQU715Ec" className="text-blue-600 hover:underline">https://youtu.be/B5wxQU715Ec</a>
+          </p>
+        </div>
+        
+        <div className="mt-4">
+          <p className="text-sm text-gray-600">For any queries kindly contact <a href="mailto:pgadmissions@iitdh.ac.in" className="text-blue-600 hover:underline">pgadmissions@iitdh.ac.in</a></p>
+        </div>
+      </div>
+      
+      <div className="mt-6">
+        <a href="https://admissions.cims.iitdh.ac.in/#/userLogin" className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">Click Here To Apply</a>
+      </div>
+    </div>
+  </div>
+</Section>
 
       {/* BS-MS Dual Degree Section */}
       <Section id="bsms" title="BS-MS Dual Degree Admission">

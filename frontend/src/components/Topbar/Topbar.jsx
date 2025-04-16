@@ -54,7 +54,7 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
       {/* Department name - mobile only - abbreviated */}
       <div className="flex sm:hidden max-w-[190px]">
         <h1 className="text-[0.65rem] font-semibold text-[#1a1a1a] tracking-wide text-center">
-          DEPT. OF CS AND ENGINEERING
+         Dept of Computer Science & Engineering
         </h1>
       </div>
 
