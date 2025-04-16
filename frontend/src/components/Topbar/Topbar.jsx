@@ -37,24 +37,35 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
             </svg>
           )}
         </button>
+        {/* Default Logo (hidden on small screens) */}
         <img 
           src={logo} 
           alt="IIT DH" 
-          className="h-[40px] sm:h-[45px] md:h-[55px] w-auto transition-transform duration-200 hover:scale-[1.02]" 
+          onClick={()=> window.open('https://www.iitdh.ac.in/', '_blank')}
+          className="hidden sm:block cursor-pointer h-[40px] sm:h-[45px] md:h-[55px] w-auto transition-transform duration-200 hover:scale-[1.02]" 
+        />
+        {/* Mobile Logo (visible only on small screens) */}
+        <img 
+          src="/insti_fav_white.jpg" 
+          alt="IIT DH" 
+          onClick={()=> window.open('https://www.iitdh.ac.in/', '_blank')}
+          className="block sm:hidden cursor-pointer h-[40px] w-auto transition-transform duration-200 hover:scale-[1.02]" 
         />
       </div>
       
       {/* Department name - centered on laptop+ screens */}
       <div className="flex-1 hidden sm:flex justify-center items-center">
-        <h1 className="text-[0.9rem] md:text-[1.1rem] lg:text-[1.2rem] font-semibold text-[#1a1a1a] tracking-wide text-center">
+        <h1 onClick={()=> navigate('/')} className="cursor-pointer text-[0.9rem] md:text-[1.1rem] lg:text-[1.2rem] font-semibold text-[#1a1a1a] tracking-wide text-center">
           DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
         </h1>
       </div>
       
       {/* Department name - mobile only - abbreviated */}
-      <div className="flex sm:hidden max-w-[190px]">
-        <h1 className="text-[0.65rem] font-semibold text-[#1a1a1a] tracking-wide text-center">
-         Dept of Computer Science & Engineering
+      <div className="flex sm:hidden max-w-[300px]">
+        <h1
+          onClick={()=> navigate('/')}
+          className="cursor-pointer text-[0.65rem] font-semibold text-[#1a1a1a] tracking-wide text-center">
+         Department of Computer Science & Engineering
         </h1>
       </div>
 
