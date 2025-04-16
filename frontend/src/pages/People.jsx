@@ -349,41 +349,22 @@ const People = () => {
   // Sample former members data
   const formerMembers = [
     {
-      name: "Dr. Ravi Verma",
-      title: "Former Associate Professor",
-      period: "2016-2021",
-      currentAffiliation: "Google Research, Bangalore"
-    },
-    {
-      name: "Dr. Aisha Khan",
+      name: "Dr. Prabuchandran K J",
       title: "Former Assistant Professor",
-      period: "2017-2022",
-      currentAffiliation: "Massachusetts Institute of Technology, USA"
+      // period: "2016-2021",
     },
     {
-      name: "Dr. Vikram Singh",
-      title: "Former Professor",
-      period: "2016-2020",
-      currentAffiliation: "Indian Institute of Science, Bangalore"
-    },
-    {
-      name: "Dr. Sarita Mishra",
+      name: "Dr. Anantha Padmanabha",
       title: "Former Assistant Professor",
-      period: "2018-2022",
-      currentAffiliation: "Microsoft Research, Hyderabad"
+      // period: "2017-2022",
     },
-    {
-      name: "Dr. Thomas Kurian",
-      title: "Former Visiting Professor",
-      period: "2019-2021",
-      currentAffiliation: "ETH Zurich, Switzerland"
-    },
-    {
-      name: "Dr. Leela Nair",
-      title: "Former Associate Professor",
-      period: "2017-2023",
-      currentAffiliation: "Facebook AI Research, London"
-    }
+    // {
+    //   name: "Dr. Vikram Singh",
+    //   title: "Former Professor",
+    //   period: "2016-2020",
+    //   currentAffiliation: "Indian Institute of Science, Bangalore"
+    // },
+    
   ];
 
   return (
