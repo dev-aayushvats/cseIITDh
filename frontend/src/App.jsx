@@ -5,9 +5,9 @@ import Navbar from './components/Navbar/Navbar';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import PageSkeleton from './components/LoadingSkeleton/PageSkeleton';
+import Home from './pages/Home';  // Import Home eagerly
 
-// Lazy load all page components
-const Home = lazy(() => import('./pages/Home'));
+// Lazy load all other page components
 const Academics = lazy(() => import('./pages/Academics'));
 const Admissions = lazy(() => import('./pages/Admissions'));
 const JoinAsFaculty = lazy(() => import('./pages/JoinAsFaculty'));
@@ -50,19 +50,52 @@ function App() {
         {/* Main content - explicit margin to avoid sidebar overlap */}
         <div className="w-full sm:pl-[220px] lg:pl-[250px] flex flex-col min-h-full">
           <div className="max-w-full overflow-x-hidden flex-grow">
-            <Suspense fallback={<PageSkeleton />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/academics" element={<Academics />} />
-                <Route path="/admissions" element={<Admissions />} />
-                <Route path="/people" element={<People />} />
-                <Route path="/join-as-faculty" element={<JoinAsFaculty />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/research" element={<Research />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/search" element={<SearchResults />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              {/* Home page loaded eagerly */}
+              <Route path="/" element={<Home />} />
+              
+              {/* Each lazy-loaded page wrapped in its own Suspense */}
+              <Route path="/academics" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <Academics />
+                </Suspense>
+              } />
+              <Route path="/admissions" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <Admissions />
+                </Suspense>
+              } />
+              <Route path="/people" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <People />
+                </Suspense>
+              } />
+              <Route path="/join-as-faculty" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <JoinAsFaculty />
+                </Suspense>
+              } />
+              <Route path="/contact" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <Contact />
+                </Suspense>
+              } />
+              <Route path="/research" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <Research />
+                </Suspense>
+              } />
+              <Route path="/about" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <About />
+                </Suspense>
+              } />
+              <Route path="/search" element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <SearchResults />
+                </Suspense>
+              } />
+            </Routes>
           </div>
           <Footer />
         </div>
