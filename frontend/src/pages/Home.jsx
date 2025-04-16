@@ -128,7 +128,7 @@ const Home = () => {
                     </div>
                     {/* Talks_events Section */}
                     <div>
-                        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Talks</h2>
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Talks and Events</h2>
                         <div className="space-y-4">
                             {talks_events.map((item, idx) => (
                                 <TalkCard key={idx} {...item} />
