@@ -321,39 +321,28 @@ const People = () => {
     }
   ];
 
-  // Sample staff data
+  // Staff data from staff.html
   const staffMembers = [
     {
-      name: "Rakesh Sharma",
-      title: "Administrative Officer",
-      email: "rakesh.sharma@iitdh.ac.in",
-      phone: "+91-836-2212-101",
-      office: "Admin Block, Room 101",
-      image: null
+      name: "Abhishek Kumar",
+      title: "Junior Assistant",
+      email: "abhishekkumar.m@iitdh.ac.in",
+      office: "Computer Science and Engineering, Electrical, Electronics and Communication Engineering",
+      image: "https://iitdh.ac.in/sites/default/files/styles/profile_picture_crop/public/2023-10/abhishek.png?h=c683bfe4&itok=voTsqWPU"
     },
     {
-      name: "Sunita Patil",
-      title: "Technical Assistant",
-      email: "sunita.patil@iitdh.ac.in",
-      phone: "+91-836-2212-102",
-      office: "Lab Complex, Room 202",
-      image: null
+      name: "Arunkumar Dindalakoppa",
+      title: "Executive Assistant",
+      email: "arunkumard@iitdh.ac.in",
+      office: "Computer Science and Engineering, Electrical, Electronics and Communication Engineering",
+      image: "https://iitdh.ac.in/sites/default/files/styles/profile_picture_crop/public/2025-02/arunkumar.jpeg?h=0bc399ec&itok=1s2MxsS9"
     },
     {
-      name: "Mohan Rao",
-      title: "System Administrator",
-      email: "mohan.rao@iitdh.ac.in",
-      phone: "+91-836-2212-103",
-      office: "CS Building, Room 305",
-      image: null
-    },
-    {
-      name: "Lakshmi Devi",
-      title: "Office Assistant",
-      email: "lakshmi.devi@iitdh.ac.in",
-      phone: "+91-836-2212-104",
-      office: "Admin Block, Room 105",
-      image: null
+      name: "Chandrashekar S",
+      title: "Junior Technical Superintendent",
+      email: "chandrashekar.s@iitdh.ac.in",
+      office: "Computer Science and Engineering",
+      image: "https://iitdh.ac.in/sites/default/files/styles/profile_picture_crop/public/2024-01/Chandrashekar_S%20-%20Chandrashekar%20S_0.png?itok=06-F4itV"
     }
   ];
 
