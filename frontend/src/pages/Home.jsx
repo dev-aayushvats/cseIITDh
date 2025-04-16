@@ -30,10 +30,12 @@ const TalkCard = ({ title, speaker, designation, venue, time, date, image, descr
         {/* {image && (
             <img src={image} alt={speaker} className="w-32 h-32 object-cover rounded-md mb-3 mx-auto" />
         )} */}
-        <div className="mb-2">
-            <span className="font-semibold">Speaker:</span> {speaker}<br />
-            {designation && <span className="text-sm text-gray-600">{designation}</span>}
-        </div>
+        {speaker && (
+            <div className="mb-2">
+                <span className="font-semibold">Speaker:</span> {speaker}<br />
+                {designation && <span className="text-sm text-gray-600">{designation}</span>}
+            </div>
+        )}
         {venue && <div className="mb-1"><span className="text-red-600 font-semibold">&#x1F4CD; Venue:</span> {venue}</div>}
         {time && <div className="mb-1"><span className="text-blue-600 font-semibold">&#x23F0; Time:</span> {time}</div>}
         {date && <div className="mb-1"><span className="text-gray-600">{date}</span></div>}
@@ -71,8 +73,8 @@ const Home = () => {
         },
     ];
 
-    // Sample talks data
-    const talks = [
+    // Sample talks_events data
+    const talks_events = [
         {
             title: "Engineering the AI Transformation",
             speaker: "Dr. Dattatraya Kulkarni",
@@ -82,6 +84,10 @@ const Home = () => {
             image: 'https://ci3.googleusercontent.com/mail-img-att/AGAZnRood_EE9IGJ9WWsYmmBFjXGHplSVXtyUWEYKNXVSB-fijWg-HHSXdg9YHX1jj1B0b7aoAbPQ-_ZH52SfozABYzeaUP_ubw0JCMDBqXRzOKkb4olNP4TQV7_XIFmfBI_wtZhOUFd1RRUX9Tel77-mnq1vB0DVU-_aF4AhV_XLzBo5IRLyYw8HoYAb1BNcfcmEWDSNJqeNktIxQicYWDnadJujdOVpSS08xMn34yzakQMQy7I9yNti2B36z4y68-3ys1bXy24GA5tkJi6QQ8eXEzc2OrGHVI_FGk8yVy_tORgoqT-eleIq60DqGOFhiuHcWngba2_62BiDbALQqg1po0zxBGJ1041A1mJlmYXqB__DYjEjdXCxn4RnpCjK3fZBgNAWTChNZrbuyNpQAiNBZ3cgnAvvNTyb-vy1mzX0khStZhPrGyiz19FeJj0iSAeouD_MinzpvneCuxq1kK4_37RKOTiOM074S83Cds1ezZPfsZDjmga74BzmftC-_VoNt4vw-THsbYtYwA1xHbyqlipbbiMo1b012deySYrJyQnGSoUcQYLhcaA_auMKjHtxvh_9DW4exFWd9fQRhpZzJkj12DbvdO11_RMEyuWfLd5puYGADkaAmnKNGZ3LFBpU15K5S_Hz174pmgIWoUPFaoEZ-nyvZEzvTCXccv6R2AC9_oUstlOU6ofcRxvcI4ZJx6_yS8ETXp0jYqsEN0D7-mQj9e1xb53cqSAURJ0skIZsdn63gog6tync2xIqi2r484YKe2ApDE9LFMxEEC5W3aAOHAYwp7IzV3nJUb-n0-zRCwjeJjrdRSJluRujofTGvZ_oY2XGdVrgy_R6gFgoo8h0yVt1hMTK4iBjRXAnJxTFM4c1Wkxy7iaepbP4nuIaurMMb3gyeqldSPPGwGxU5uUZO817b7zaukFU6aWijKwlQUKYOdmARH3Yf8vZuT-3hOUmeitydyENS6GVD0uI5aWB_Lz_FsxX_D-pMeGBeobnGhNj6mnAGPkEg6mp9PyxY-94Fz0RVa0ufKzkHbBVbhZ3A=s0-l75-ft',
             // description: "Engineering the AI Transformation"
         },
+        {
+            title: "Academic review meeting and Departmental Review",
+            time: "16th and 17th April 2025",
+        }
         // {
         //     title: "Recent Advances in Deep Learning",
         //     speaker: "Dr. S. K. Singh (IIT Bombay)",
@@ -108,7 +114,7 @@ const Home = () => {
             <div className="mb-10">
                 <AltCarousel images={images} />
             </div>
-            {/* News & Talks Section */}
+            {/* News & Talks_events Section */}
             <div className="border-t border-gray-200 pt-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* News Section */}
@@ -120,11 +126,11 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
-                    {/* Talks Section */}
+                    {/* Talks_events Section */}
                     <div>
                         <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Talks</h2>
                         <div className="space-y-4">
-                            {talks.map((item, idx) => (
+                            {talks_events.map((item, idx) => (
                                 <TalkCard key={idx} {...item} />
                             ))}
                         </div>
