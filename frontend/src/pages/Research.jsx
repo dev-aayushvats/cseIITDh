@@ -320,6 +320,12 @@ const Research = () => {
           icon={<i className="fas fa-flask"></i>}
           targetId="labs" 
         />
+        <NavCard 
+          title="Research-Projects" 
+          icon={<i className="fas fa-flask"></i>}
+          targetId="research-projects" 
+        />
+       
         {/* <NavCard 
           title="Publications" 
           icon={<i className="fas fa-book"></i>}
@@ -335,7 +341,7 @@ const Research = () => {
           icon={<i className="fas fa-certificate"></i>}
           targetId="patents" 
         /> */}
-      </div>
+        </div>
 
       {/* Labs Section */}
       <Section id="labs" title="Department Facilities">
@@ -368,6 +374,253 @@ const Research = () => {
           </ul>
         </div>
       </Section>
+
+    
+<section id="research-projects" title ="Research-Projects">
+ <div className="mb-8">
+  <h3 className="text-xl font-bold text-gray-800 mb-4">Research-Projects</h3>
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <h2 class="section-title mt-6">R&D Sponsored Projects in the Past Five Years</h2>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th  class="border border-gray-400 px-4 py-2">S. No.</th>
+            <th class="border border-gray-400 px-4 py-2">Project Title</th>
+            <th class="border border-gray-400 px-4 py-2">Project Area</th>
+            <th class="border border-gray-400 px-4 py-2">Duration</th>
+            <th class="border border-gray-400 px-4 py-2">PI</th>
+            <th class="border border-gray-400 px-4 py-2">Co-PI</th>
+            <th class="border border-gray-400 px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="border border-gray-400">1</td>
+            <td class="border border-gray-400">Exponential Ethical Affairs Concerning Autonomous Vehicles and Code of Ethics for Data Acquisition</td>
+            <td class="border border-gray-400">AI Application to Autonomous Vehicles</td>
+            <td class="border border-gray-400">2021–24</td>
+            <td class="border border-gray-400">Jolly Thomas</td>
+            <td class="border border-gray-400">Kedar Khandeparkar</td>
+            <td class="border border-gray-400">Completed</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">2</td>
+            <td class="border border-gray-400">Cyber Physical Modelling and Detection of Cyber Attacks in WADC in Smart Grids</td>
+            <td class="border border-gray-400">AI for Cyber Security in Smart Grids</td>
+            <td class="border border-gray-400">2022–23</td>
+            <td class="border border-gray-400">Pratyasa Bhui</td>
+            <td class="border border-gray-400">Kedar Khandeparkar</td>
+            <td class="border border-gray-400">Completed</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">3</td>
+            <td class="border border-gray-400">Detection of Cyber Attacks in Wide Area Damping Control in Smart Grids</td>
+            <td class="border border-gray-400">AI for Cyber Security in Smart Grids</td>
+            <td class="border border-gray-400">2021–24</td>
+            <td class="border border-gray-400">Pratyasa Bhui</td>
+            <td class="border border-gray-400">Kedar Khandeparkar</td>
+            <td class="border border-gray-400">Completed</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">4</td>
+            <td class="border border-gray-400">Development and Demonstration of AI-enabled FARWM-DS for Sustainable Farm Productivity & Profitability</td>
+            <td class="border border-gray-400">AI in Agriculture</td>
+            <td class="border border-gray-400">2023–26</td>
+            <td class="border border-gray-400">Kedar Khandeparkar</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">Ongoing</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">5</td>
+            <td class="border border-gray-400">Algorithmic study on hereditary graph properties</td>
+            <td class="border border-gray-400">Theoretical computer science</td>
+            <td class="border border-gray-400">2023–26</td>
+            <td class="border border-gray-400">Sandeep R. B.</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">Ongoing</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">6</td>
+            <td class="border border-gray-400">Complexity dichotomies for graph modification problems</td>
+            <td class="border border-gray-400">Theoretical computer science</td>
+            <td class="border border-gray-400">2019–22</td>
+            <td class="border border-gray-400">Sandeep R. B.</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">Completed</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">7</td>
+            <td class="border border-gray-400">AI-Enhanced Non-Invasive Wearable Patch for Early Heart Attack Prediction</td>
+            <td class="border border-gray-400">Biomedical + Artificial Intelligence</td>
+            <td class="border border-gray-400">3 Years</td>
+            <td class="border border-gray-400">Dr. Naveen Singh</td>
+            <td class="border border-gray-400">Dr. Achyut Mani Tripathi</td>
+            <td class="border border-gray-400">–</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">8</td>
+            <td class="border border-gray-400">Digital Preservation and Linguistic Technology Development of Manipuri Language</td>
+            <td class="border border-gray-400">NLP, MT, Digital Preservation</td>
+            <td class="border border-gray-400">3 Years</td>
+            <td class="border border-gray-400">Konjengbam Anand</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">Ongoing</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">9</td>
+            <td class="border border-gray-400">AI Translation Software from English to Meitei Mayek and Roman Script</td>
+            <td class="border border-gray-400">NLP, MT</td>
+            <td class="border border-gray-400">15 months</td>
+            <td class="border border-gray-400">Dr. Khelchandra Thongam</td>
+            <td class="border border-gray-400">Multiple Co-PIs</td>
+            <td class="border border-gray-400">Completed</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">10</td>
+            <td class="border border-gray-400">AxTRADE: Approximation-aware training of DNNs for Edge-AI</td>
+            <td class="border border-gray-400">Edge Computing</td>
+            <td class="border border-gray-400">3 Years</td>
+            <td class="border border-gray-400">Dr. Marcello Triaola</td>
+            <td class="border border-gray-400">Dr. Gayathri</td>
+            <td class="border border-gray-400">–</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">11</td>
+            <td class="border border-gray-400">NeuroOpt4Dev: AI/ML on Heterogeneous Hardware in Developing Regions</td>
+            <td class="border border-gray-400">Heterogeneous Computing</td>
+            <td class="border border-gray-400">3 Years</td>
+            <td class="border border-gray-400">Dr. Gayathri</td>
+            <td class="border border-gray-400">Dr. Rijurekha Sen</td>
+            <td class="border border-gray-400">–</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">12</td>
+            <td class="border border-gray-400">Reliability & Security Analysis of AI Workloads</td>
+            <td class="border border-gray-400">AI + Safety-critical systems</td>
+            <td class="border border-gray-400">2 Years</td>
+            <td class="border border-gray-400">Dr. Gayathri</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">–</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">13</td>
+            <td class="border border-gray-400">Crop classification and disease identification using edge neural networks</td>
+            <td class="border border-gray-400">AgriTech</td>
+            <td class="border border-gray-400">1.5 Years</td>
+            <td class="border border-gray-400">Dr. Gayathri</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">–</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">14</td>
+            <td class="border border-gray-400">Synergy: Openness in 6G Networks</td>
+            <td class="border border-gray-400">6G</td>
+            <td class="border border-gray-400">2025–28</td>
+            <td class="border border-gray-400">Prof Antony Franklin</td>
+            <td class="border border-gray-400">Dr. Koteswararao Kondepu</td>
+            <td class="border border-gray-400">–</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-400">15</td>
+            <td class="border border-gray-400">Real-Time Predictive Modeling for Meteorological and Earthquake Forecasting</td>
+            <td class="border border-gray-400">Deep Learning for Environmental Science</td>
+            <td class="border border-gray-400">3 Years</td>
+            <td class="border border-gray-400">Dr. Gayathri</td>
+            <td class="border border-gray-400">–</td>
+            <td class="border border-gray-400">–</td>
+            </tr>
+            <tr><td class="border border-gray-400">16</td><td class="border border-gray-400">Erasmus+ Extra Europa</td><td class="border border-gray-400">Hardware Acceleration</td><td class="border border-gray-400">2024–27</td><td class="border border-gray-400">Prof. Valcarenghi</td><td class="border border-gray-400">Dr. Koteswararao Kondepu</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">17</td><td class="border border-gray-400">IMPACT: 5G vRAN Functions in Accelerated Edge Cloud</td><td class="border border-gray-400">Hardware Acceleration for RAN</td><td class="border border-gray-400">2021–23</td><td class="border border-gray-400">Dr. Koteswararao Kondepu</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">18</td><td class="border border-gray-400">ReliEVE5G: Reliability Evaluation of Virtualised 5G</td><td class="border border-gray-400">5G RAN Reliability</td><td class="border border-gray-400">2021–23</td><td class="border border-gray-400">Koteswararao Kondepu</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">19</td><td class="border border-gray-400">Fast Eigensolvers for Hierarchical Matrices</td><td class="border border-gray-400">Scientific Computing</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Nikhil D Hegde</td><td class="border border-gray-400">Multiple Co-PIs</td><td class="border border-gray-400">Completed</td></tr>
+<tr><td class="border border-gray-400">20</td><td class="border border-gray-400">Autoprogramming Framework for Recursive Irregular Algorithms</td><td class="border border-gray-400">Programming Languages</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Nikhil D Hegde</td><td class="border border-gray-400">–</td><td class="border border-gray-400">Completed</td></tr>
+<tr><td class="border border-gray-400">21</td><td class="border border-gray-400">Place Reduction in Petri Nets</td><td class="border border-gray-400">Theoretical Computer Science</td><td class="border border-gray-400">3 Years</td><td class="border border-gray-400">Ramchandra Phawade</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">22</td><td class="border border-gray-400">Center for Trusted Systems</td><td class="border border-gray-400">System Design</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Rajshekar K</td><td class="border border-gray-400">–</td><td class="border border-gray-400">Completed</td></tr>
+<tr><td class="border border-gray-400">23</td><td class="border border-gray-400">Harnessing Evolutionary Computation for Image Segmentation</td><td class="border border-gray-400">Computer Vision, AI</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Vandana Bharti</td><td class="border border-gray-400">–</td><td class="border border-gray-400">Ongoing</td></tr>
+<tr><td class="border border-gray-400">24</td><td class="border border-gray-400">Criticality-aware Hybrid Cache Hierarchy</td><td class="border border-gray-400">Computer Architecture</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Rajshekar K</td><td class="border border-gray-400">–</td><td class="border border-gray-400">Completed</td></tr>
+<tr><td class="border border-gray-400">25</td><td class="border border-gray-400">Improve Math Competency Through Digital Tools</td><td class="border border-gray-400">Education</td><td class="border border-gray-400">1 Year</td><td class="border border-gray-400">Prof. Mahadev Prasanna</td><td class="border border-gray-400">Vijeth J Kotagi</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">26</td><td class="border border-gray-400">InDyslexiCare: Assistive Tech for Dyslexic Children</td><td class="border border-gray-400">Medical Speech</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Dileep A D</td><td class="border border-gray-400">Konjengbam Anand</td><td class="border border-gray-400">Ongoing</td></tr>
+<tr><td class="border border-gray-400">27</td><td class="border border-gray-400">Automated Covid-19 Pre-Vaccination Process</td><td class="border border-gray-400">Healthcare Software Systems</td><td class="border border-gray-400">1 Year</td><td class="border border-gray-400">Siba Narayan Swain</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">28</td><td class="border border-gray-400">Investigate Privacy Issues in 6G</td><td class="border border-gray-400">Network Security</td><td class="border border-gray-400">2 Months</td><td class="border border-gray-400">Siba Narayan Swain</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">29</td><td class="border border-gray-400">AI and Blockchain for Privacy in 5G+</td><td class="border border-gray-400">Network Security</td><td class="border border-gray-400">2 Years</td><td class="border border-gray-400">Siba Narayan Swain</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">30</td><td class="border border-gray-400">Secure, Intelligent RACH/Resource Allocation in 6G</td><td class="border border-gray-400">6G and Beyond</td><td class="border border-gray-400">6 Months</td><td class="border border-gray-400">Siba Narayan Swain</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">31</td><td class="border border-gray-400">SAFE DNS: Securing Domain Name System</td><td class="border border-gray-400">Network Security</td><td class="border border-gray-400">2024–27</td><td class="border border-gray-400">Tamal Das</td><td class="border border-gray-400">–</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">32</td><td class="border border-gray-400">IP Address Analyser</td><td class="border border-gray-400">Network Security</td><td class="border border-gray-400">2024–25</td><td class="border border-gray-400">Manjesh Hanawal</td><td class="border border-gray-400">Tamal Das, Sameer Kulkarni</td><td class="border border-gray-400">–</td></tr>
+<tr><td class="border border-gray-400">33</td><td class="border border-gray-400">RELEVANCE: Predictive Analytics for Zero-touch Networks</td><td class="border border-gray-400">Edge & Cloud Computing</td><td class="border border-gray-400">2021–23</td><td class="border border-gray-400">Tamal Das</td><td class="border border-gray-400">Multiple Co-PIs</td><td class="border border-gray-400">–</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <h2 class="section-title mt-14 ">Consultancy/Testing Projects in the past five years</h2>
+      </div>
+    </div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th class="border border-gray-400 px-4 py-2">Title</th>
+        <th class="border border-gray-400 px-4 py-2">Area</th>
+        <th class="border border-gray-400 px-4 py-2">Duration</th>
+        <th class="border border-gray-400 px-4 py-2">PI</th>
+        <th class="border border-gray-400 px-4 py-2">Co-PI</th>
+        <th class="border border-gray-400 px-4 py-2">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-gray-400 px-4 py-2">Automatic Diarization of Multiple Speakers in Audio Recordings Using AI/ML Algorithms for Mandarin Language</td>
+        <td class="border border-gray-400 px-4 py-2">Deep Learning</td>
+        <td class="border border-gray-400 px-4 py-2">6 Months</td>
+        <td class="border border-gray-400 px-4 py-2">Dr. Achyut Mani Tripathi</td>
+        <td class="border border-gray-400 px-4 py-2">Dr. K. Anand</td>
+        <td class="border border-gray-400 px-4 py-2">Ongoing</td>
+      </tr>
+      <tr class="border border-gray-400 px-4 py-2">
+        <td class="border border-gray-400 px-4 py-2">AI for Financial Inclusion</td>
+        <td class="border border-gray-400 px-4 py-2">Multi-modal AI applications</td>
+        <td class="border border-gray-400 px-4 py-2">2023-2025</td>
+\        <td class="border border-gray-400 px-4 py-2">Konjengbam Anand</td>
+        <td class="border border-gray-400 px-4 py-2">Ongoing</td>
+      </tr>
+      <tr class="border border-gray-400 px-4 py-2">
+        <td class="border border-gray-400 px-4 py-2">Development of Domain-Specific Language (DSL) for Radio Access Network (RAN) Software</td>
+        <td class="border border-gray-400 px-4 py-2">Compilers</td>
+        <td class="border border-gray-400 px-4 py-2">5 months (Sep 2024 - Apr 2025)</td>
+        <td class="border border-gray-400 px-4 py-2">Dr. Nikhil D Hegde</td>
+        <td class="border border-gray-400 px-4 py-2">-</td>
+        <td class="border border-gray-400 px-4 py-2">Ongoing</td>
+      </tr>
+      <tr class="border border-gray-400 px-4 py-2">
+        <td class="border border-gray-400 px-4 py-2">Compiler Optimizations in LLVM-Context</td>
+        <td class="border border-gray-400 px-4 py-2">Compilers</td>
+        <td class="border border-gray-400 px-4 py-2">5 months (Apr 2025 - July 2025)</td>
+        <td class="border border-gray-400 px-4 py-2">Dr. Nikhil D Hegde</td>
+        <td class="border border-gray-400 px-4 py-2">-</td>
+        <td class="border border-gray-400 px-4 py-2">Ongoing</td>
+      </tr>
+      <tr class="border border-gray-400 px-4 py-2">
+        <td class="border border-gray-400 px-4 py-2">Executive Training</td>
+        <td class="border border-gray-400 px-4 py-2">Cloud Computing</td>
+        <td class="border border-gray-400 px-4 py-2">Aug - Oct 2020</td>
+        <td class="border border-gray-400 px-4 py-2">Tamal Das</td>
+        <td class="border border-gray-400 px-4 py-2">Rajshekhar Bhatt</td>
+        <td class="border border-gray-400 px-4 py-2">Completed</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+</section>
+
 
       {/* Publications Section */}
       {/* <Section id="publications" title="Publications">
