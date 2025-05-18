@@ -1,5 +1,5 @@
 // App.jsx 
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense, useEffect } from 'react';
 import Topbar from './components/Topbar/Topbar';
 import Navbar from './components/Navbar/Navbar';
 import { Routes, Route } from 'react-router-dom';
@@ -19,6 +19,30 @@ const SearchResults = lazy(() => import('./pages/SearchResults'));
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [news, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const newsData = await fetch("https://cse.iitdh.ac.in/strapi/api/newss");
+        if (!newsData.ok) {
+          throw new Error('Failed to fetch news data');
+        }
+        const newsJson = await newsData.json();
+        setNews(newsJson.data);
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching news:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchNews();
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -52,7 +76,7 @@ function App() {
           <div className="max-w-full overflow-x-hidden flex-grow">
             <Routes>
               {/* Home page loaded eagerly */}
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home props={news} isLoading={isLoading} error={error} />} />
               
               {/* Each lazy-loaded page wrapped in its own Suspense */}
               <Route path="/academics" element={

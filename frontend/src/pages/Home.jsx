@@ -17,7 +17,7 @@ const EventCard = ({ title, date, description }) => (
 );
 
 const NewsCard = ({ title, date, description, link }) => (
-    <div onClick={() => window.open(link, '_blank')} className="cursor-pointer bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
+    <div onClick={() => { if(link) window.open(link, '_blank')}} className="cursor-pointer bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
         <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
         <p className="text-sm text-indigo-600 font-medium mt-1">{date}</p>
         <p className="text-gray-600 text-sm mt-2 flex-grow">{description}</p>
@@ -43,35 +43,31 @@ const TalkCard = ({ title, speaker, designation, venue, time, date, image, descr
     </div>
 );
 
-const Home = () => {
+const Home = ({ props, isLoading, error }) => {
     const images = [img1, img2, img3];
     
-    // Sample news data
-    const news = [
-        {
-            title: "Admissions open for M.Tech. program",
-            date: "Present",
-            description: "The department is currently accepting applications for the M.Tech. program in Computer Science and Engineering from the academic year 2024-25.",
-            link: "https://www.iitdh.ac.in/mtech"
-        },
-        {
-            title: "Admissions open for PhD program",
-            date: "Present",
-            description: "The department is currently accepting applications for the PhD program in Computer Science and Engineering from the academic year 2024-25.",
-            link: "https://www.iitdh.ac.in/phd"
-        },
-        {
-            title: "Admissions open for M.Tech. by Research program",
-            date: "Present",
-            description: "The department is currently accepting applications for the M.Tech. by Research program in Computer Science and Engineering from the academic year 2024-25.",
-            link: "https://www.iitdh.ac.in/mtech-research"
-        },
-        {
-            title: "Faculty awarded prestigious research grant",
-            date: "May 2024",
-            description: "Prof. Vandana Bharti received a national research grant for her work in AI and Machine Learning."
-        },
-    ];
+    // console.log('Home Component Props:', props);
+    
+    // Format date from API response
+    const formatDate = (dateString) => {
+        if (!dateString || dateString.toLowerCase() === 'present') return 'Present';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+    };
+
+    // Transform API news data to match our NewsCard component
+    const transformedNews = props?.map(item => ({
+        title: item.Title || '',
+        date: formatDate(item.date),
+        description: item.description || '',
+        link: item.link || null
+    })) || [];
+
+    // console.log('Final transformed news:', transformedNews);
 
     // Sample talks_events data
     const talks_events = [
@@ -82,30 +78,11 @@ const Home = () => {
             venue: "F300, CLT",
             time: "2:00 - 3:00 PM, 17th April 2025",
             image: 'https://ci3.googleusercontent.com/mail-img-att/AGAZnRood_EE9IGJ9WWsYmmBFjXGHplSVXtyUWEYKNXVSB-fijWg-HHSXdg9YHX1jj1B0b7aoAbPQ-_ZH52SfozABYzeaUP_ubw0JCMDBqXRzOKkb4olNP4TQV7_XIFmfBI_wtZhOUFd1RRUX9Tel77-mnq1vB0DVU-_aF4AhV_XLzBo5IRLyYw8HoYAb1BNcfcmEWDSNJqeNktIxQicYWDnadJujdOVpSS08xMn34yzakQMQy7I9yNti2B36z4y68-3ys1bXy24GA5tkJi6QQ8eXEzc2OrGHVI_FGk8yVy_tORgoqT-eleIq60DqGOFhiuHcWngba2_62BiDbALQqg1po0zxBGJ1041A1mJlmYXqB__DYjEjdXCxn4RnpCjK3fZBgNAWTChNZrbuyNpQAiNBZ3cgnAvvNTyb-vy1mzX0khStZhPrGyiz19FeJj0iSAeouD_MinzpvneCuxq1kK4_37RKOTiOM074S83Cds1ezZPfsZDjmga74BzmftC-_VoNt4vw-THsbYtYwA1xHbyqlipbbiMo1b012deySYrJyQnGSoUcQYLhcaA_auMKjHtxvh_9DW4exFWd9fQRhpZzJkj12DbvdO11_RMEyuWfLd5puYGADkaAmnKNGZ3LFBpU15K5S_Hz174pmgIWoUPFaoEZ-nyvZEzvTCXccv6R2AC9_oUstlOU6ofcRxvcI4ZJx6_yS8ETXp0jYqsEN0D7-mQj9e1xb53cqSAURJ0skIZsdn63gog6tync2xIqi2r484YKe2ApDE9LFMxEEC5W3aAOHAYwp7IzV3nJUb-n0-zRCwjeJjrdRSJluRujofTGvZ_oY2XGdVrgy_R6gFgoo8h0yVt1hMTK4iBjRXAnJxTFM4c1Wkxy7iaepbP4nuIaurMMb3gyeqldSPPGwGxU5uUZO817b7zaukFU6aWijKwlQUKYOdmARH3Yf8vZuT-3hOUmeitydyENS6GVD0uI5aWB_Lz_FsxX_D-pMeGBeobnGhNj6mnAGPkEg6mp9PyxY-94Fz0RVa0ufKzkHbBVbhZ3A=s0-l75-ft',
-            // description: "Engineering the AI Transformation"
         },
         {
             title: "Academic review meeting and Departmental Review",
             time: "16th and 17th April 2025",
         }
-        // {
-        //     title: "Recent Advances in Deep Learning",
-        //     speaker: "Dr. S. K. Singh (IIT Bombay)",
-        //     date: "10 May 2024",
-        //     description: "A technical talk on the latest trends and breakthroughs in deep learning."
-        // },
-        // {
-        //     title: "Quantum Computing: Opportunities and Challenges",
-        //     speaker: "Dr. Priya Sharma (IISc Bangalore)",
-        //     date: "2 May 2024",
-        //     description: "An invited lecture on quantum computing and its future impact."
-        // },
-        // {
-        //     title: "Secure Systems Design",
-        //     speaker: "Dr. Rajesh Venkat (IIT Dharwad)",
-        //     date: "25 April 2024",
-        //     description: "A seminar on best practices and research in secure system architectures."
-        // }
     ];
 
     return (
@@ -121,9 +98,24 @@ const Home = () => {
                     <div>
                         <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">News</h2>
                         <div className="space-y-4">
-                            {news.map((item, idx) => (
-                                <NewsCard key={idx} {...item} />
-                            ))}
+                            {isLoading ? (
+                                <div className="animate-pulse space-y-4">
+                                    {[1, 2, 3].map((i) => (
+                                        <div key={i} className="bg-gray-200 rounded-lg p-4 h-32"></div>
+                                    ))}
+                                </div>
+                            ) : error ? (
+                                <div className="text-red-500 p-4 bg-red-50 rounded-lg">
+                                    <p>Error loading news: {error}</p>
+                                    <p className="text-sm mt-2">Please try refreshing the page.</p>
+                                </div>
+                            ) : transformedNews.length > 0 ? (
+                                transformedNews.map((item, idx) => (
+                                    <NewsCard key={idx} {...item} />
+                                ))
+                            ) : (
+                                <p className="text-gray-500">No news available at the moment.</p>
+                            )}
                         </div>
                     </div>
                     {/* Talks_events Section */}
