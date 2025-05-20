@@ -43,10 +43,8 @@ const TalkCard = ({ title, speaker, designation, venue, time, date, image, descr
     </div>
 );
 
-const Home = ({ props, isLoading, error }) => {
+const Home = ({ props, talksAndEvents, isLoading, error }) => {
     const images = [img1, img2, img3];
-    
-    // console.log('Home Component Props:', props);
     
     // Format date from API response
     const formatDate = (dateString) => {
@@ -67,23 +65,16 @@ const Home = ({ props, isLoading, error }) => {
         link: item.link || null
     })) || [];
 
-    // console.log('Final transformed news:', transformedNews);
-
-    // Sample talks_events data
-    const talks_events = [
-        {
-            title: "Engineering the AI Transformation",
-            speaker: "Dr. Dattatraya Kulkarni",
-            designation: "Vice President, McAfee Fellow",
-            venue: "F300, CLT",
-            time: "2:00 - 3:00 PM, 17th April 2025",
-            image: 'https://ci3.googleusercontent.com/mail-img-att/AGAZnRood_EE9IGJ9WWsYmmBFjXGHplSVXtyUWEYKNXVSB-fijWg-HHSXdg9YHX1jj1B0b7aoAbPQ-_ZH52SfozABYzeaUP_ubw0JCMDBqXRzOKkb4olNP4TQV7_XIFmfBI_wtZhOUFd1RRUX9Tel77-mnq1vB0DVU-_aF4AhV_XLzBo5IRLyYw8HoYAb1BNcfcmEWDSNJqeNktIxQicYWDnadJujdOVpSS08xMn34yzakQMQy7I9yNti2B36z4y68-3ys1bXy24GA5tkJi6QQ8eXEzc2OrGHVI_FGk8yVy_tORgoqT-eleIq60DqGOFhiuHcWngba2_62BiDbALQqg1po0zxBGJ1041A1mJlmYXqB__DYjEjdXCxn4RnpCjK3fZBgNAWTChNZrbuyNpQAiNBZ3cgnAvvNTyb-vy1mzX0khStZhPrGyiz19FeJj0iSAeouD_MinzpvneCuxq1kK4_37RKOTiOM074S83Cds1ezZPfsZDjmga74BzmftC-_VoNt4vw-THsbYtYwA1xHbyqlipbbiMo1b012deySYrJyQnGSoUcQYLhcaA_auMKjHtxvh_9DW4exFWd9fQRhpZzJkj12DbvdO11_RMEyuWfLd5puYGADkaAmnKNGZ3LFBpU15K5S_Hz174pmgIWoUPFaoEZ-nyvZEzvTCXccv6R2AC9_oUstlOU6ofcRxvcI4ZJx6_yS8ETXp0jYqsEN0D7-mQj9e1xb53cqSAURJ0skIZsdn63gog6tync2xIqi2r484YKe2ApDE9LFMxEEC5W3aAOHAYwp7IzV3nJUb-n0-zRCwjeJjrdRSJluRujofTGvZ_oY2XGdVrgy_R6gFgoo8h0yVt1hMTK4iBjRXAnJxTFM4c1Wkxy7iaepbP4nuIaurMMb3gyeqldSPPGwGxU5uUZO817b7zaukFU6aWijKwlQUKYOdmARH3Yf8vZuT-3hOUmeitydyENS6GVD0uI5aWB_Lz_FsxX_D-pMeGBeobnGhNj6mnAGPkEg6mp9PyxY-94Fz0RVa0ufKzkHbBVbhZ3A=s0-l75-ft',
-        },
-        {
-            title: "Academic review meeting and Departmental Review",
-            time: "16th and 17th April 2025",
-        }
-    ];
+    // Transform API talks and events data to match our TalkCard component
+    const transformedTalksAndEvents = talksAndEvents?.map(item => ({
+        title: item.Title || '',
+        speaker: item.Speaker || null,
+        designation: item.designation || null,
+        venue: item.venue || null,
+        time: item.date || null,
+        date: null, // We'll use the time field for both time and date
+        description: null // Add if needed in the future
+    })) || [];
 
     return (
         <div className="py-6 px-4 md:px-8">
@@ -122,9 +113,24 @@ const Home = ({ props, isLoading, error }) => {
                     <div>
                         <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Talks and Events</h2>
                         <div className="space-y-4">
-                            {talks_events.map((item, idx) => (
-                                <TalkCard key={idx} {...item} />
-                            ))}
+                            {isLoading ? (
+                                <div className="animate-pulse space-y-4">
+                                    {[1, 2, 3].map((i) => (
+                                        <div key={i} className="bg-gray-200 rounded-lg p-4 h-32"></div>
+                                    ))}
+                                </div>
+                            ) : error ? (
+                                <div className="text-red-500 p-4 bg-red-50 rounded-lg">
+                                    <p>Error loading talks and events: {error}</p>
+                                    <p className="text-sm mt-2">Please try refreshing the page.</p>
+                                </div>
+                            ) : transformedTalksAndEvents.length > 0 ? (
+                                transformedTalksAndEvents.map((item, idx) => (
+                                    <TalkCard key={idx} {...item} />
+                                ))
+                            ) : (
+                                <p className="text-gray-500">No talks or events available at the moment.</p>
+                            )}
                         </div>
                     </div>
                 </div>
