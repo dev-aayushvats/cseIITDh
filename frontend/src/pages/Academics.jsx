@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import PDFViewer from '../components/PDFViewer/PDFViewer';
 
@@ -34,8 +34,184 @@ const Section = ({ id, title, children }) => {
   );
 };
 
+// Helper function to render description content
+const renderDescription = (description) => {
+  if (!description) return null;
+  
+  return description.map((item, index) => {
+    if (item.type === 'paragraph') {
+      return (
+        <p key={index} className="text-gray-700 mb-2">
+          {item.children[0].text}
+        </p>
+      );
+    } else if (item.type === 'list') {
+      return (
+        <ul key={index} className="list-disc list-inside text-gray-700 mb-2">
+          {item.children.map((listItem, listIndex) => (
+            <li key={listIndex}>{listItem.children[0].text}</li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  });
+};
+
+// Helper function to render grading table
+const renderGradingTable = (grading) => {
+  if (!grading) return null;
+
+  // Split the markdown table into rows
+  const rows = grading.trim().split('\n').filter(row => row.includes('|'));
+  
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            {rows[0].split('|').filter(cell => cell.trim()).map((header, index) => (
+              <th
+                key={index}
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                {header.trim()}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {rows.slice(2).map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.split('|').filter(cell => cell.trim()).map((cell, cellIndex) => (
+                <td
+                  key={cellIndex}
+                  className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                >
+                  {cell.trim()}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+// Helper function to render course content
+const renderCourseContent = (about) => {
+  if (!about) return null;
+
+  const courses = [];
+  let currentCourse = null;
+
+  about.forEach((item) => {
+    if (item.type === 'paragraph' && item.children) {
+      const text = item.children.map(child => child.text).join('');
+      if (text.trim()) {
+        // Check if this is a course title (contains a course code pattern like CS3XX or CS4XX)
+        if (text.match(/CS[34]\d{2}/)) {
+          if (currentCourse) {
+            courses.push(currentCourse);
+          }
+          const [title, ...descParts] = text.split('\n').filter(line => line.trim());
+          currentCourse = {
+            title: title.trim(),
+            description: descParts.join(' ').trim()
+          };
+        } else if (currentCourse) {
+          // This is additional description
+          currentCourse.description += ' ' + text.trim();
+        }
+      }
+    } else if (item.type === 'heading' && item.children) {
+      const title = item.children[0].text;
+      if (title.match(/CS[34]\d{2}/)) {
+        if (currentCourse) {
+          courses.push(currentCourse);
+        }
+        currentCourse = {
+          title: title.trim(),
+          description: ''
+        };
+      }
+    }
+  });
+
+  if (currentCourse) {
+    courses.push(currentCourse);
+  }
+
+  return courses.map((course, index) => (
+    <div key={index} className="pb-2 border-b border-gray-100 last:border-b-0">
+      <div className="font-medium">{course.title}</div>
+      <div className="text-sm text-gray-600">{course.description}</div>
+    </div>
+  ));
+};
+
 // Academics Page
 const Academics = () => {
+  const [academicRules, setAcademicRules] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        // Fetch academic rules
+        const rulesResponse = await fetch("https://cse.iitdh.ac.in/strapi/api/academicrules");
+        if (!rulesResponse.ok) {
+          throw new Error('Failed to fetch academic rules');
+        }
+        const rulesJson = await rulesResponse.json();
+
+        // Fetch courses
+        const coursesResponse = await fetch("https://cse.iitdh.ac.in/strapi/api/courses");
+        if (!coursesResponse.ok) {
+          throw new Error('Failed to fetch courses');
+        }
+        const coursesJson = await coursesResponse.json();
+        
+        console.log('Courses data:', coursesJson.data);
+        console.log('Core courses:', coursesJson.data.filter(course => course.coursetype === 'core course'));
+        console.log('Elective courses:', coursesJson.data.filter(course => course.coursetype === 'elective courses'));
+
+        // Cache the data
+        localStorage.setItem('cachedAcademicRules', JSON.stringify(rulesJson.data));
+        localStorage.setItem('cachedCourses', JSON.stringify(coursesJson.data));
+        localStorage.setItem('academicDataCacheTimestamp', Date.now().toString());
+
+        setAcademicRules(rulesJson.data);
+        setCourses(coursesJson.data);
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching data:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // Check cache first
+    const cachedRules = localStorage.getItem('cachedAcademicRules');
+    const cachedCourses = localStorage.getItem('cachedCourses');
+    const cacheTimestamp = localStorage.getItem('academicDataCacheTimestamp');
+    const now = Date.now();
+
+    if (cachedRules && cachedCourses && cacheTimestamp && (now - parseInt(cacheTimestamp)) < 300000) {
+      setAcademicRules(JSON.parse(cachedRules));
+      setCourses(JSON.parse(cachedCourses));
+      setIsLoading(false);
+    } else {
+      fetchData();
+    }
+  }, []);
+
   return (
     <div className="py-6 px-4 md:px-8">
       {/* Page Title */}
@@ -118,54 +294,60 @@ const Academics = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h3 className="text-xl font-semibold mb-4">Core Courses</h3>
-            <ul className="space-y-3">
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS301: Algorithms</div>
-                <div className="text-sm text-gray-600">Covers design and analysis of algorithms, complexity theory.</div>
-              </li>
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS302: Computer Networks</div>
-                <div className="text-sm text-gray-600">Network architecture, protocols, and applications.</div>
-              </li>
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS303: Operating Systems</div>
-                <div className="text-sm text-gray-600">OS principles, processes, memory management, and file systems.</div>
-              </li>
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS304: Computer Architecture</div>
-                <div className="text-sm text-gray-600">Processor design, memory hierarchy, and I/O systems.</div>
-              </li>
-              <li>
-                <div className="font-medium">CS305: Database Systems</div>
-                <div className="text-sm text-gray-600">Database design, SQL, transaction processing, and recovery.</div>
-              </li>
-            </ul>
+            {isLoading ? (
+              <div className="animate-pulse space-y-4">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="pb-2 border-b border-gray-100">
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                  </div>
+                ))}
+              </div>
+            ) : error ? (
+              <div className="text-red-500 p-4 bg-red-50 rounded-lg">
+                <p>Error loading courses: {error}</p>
+                <p className="text-sm mt-2">Please try refreshing the page.</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {courses
+                  .filter(course => course.coursetype === 'core course')
+                  .map(course => (
+                    <div key={course.id}>
+                      {renderCourseContent(course.about)}
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
           
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h3 className="text-xl font-semibold mb-4">Elective Courses</h3>
-            <ul className="space-y-3">
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS401: Machine Learning</div>
-                <div className="text-sm text-gray-600">Supervised and unsupervised learning, neural networks.</div>
-              </li>
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS402: Computer Graphics</div>
-                <div className="text-sm text-gray-600">2D/3D graphics, rendering, and visualization techniques.</div>
-              </li>
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS403: Artificial Intelligence</div>
-                <div className="text-sm text-gray-600">Search, knowledge representation, planning, and reasoning.</div>
-              </li>
-              <li className="pb-2 border-b border-gray-100">
-                <div className="font-medium">CS404: Cryptography</div>
-                <div className="text-sm text-gray-600">Encryption, authentication, and security protocols.</div>
-              </li>
-              <li>
-                <div className="font-medium">CS405: Cloud Computing</div>
-                <div className="text-sm text-gray-600">Cloud architectures, virtualization, and distributed systems.</div>
-              </li>
-            </ul>
+            {isLoading ? (
+              <div className="animate-pulse space-y-4">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="pb-2 border-b border-gray-100">
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                  </div>
+                ))}
+              </div>
+            ) : error ? (
+              <div className="text-red-500 p-4 bg-red-50 rounded-lg">
+                <p>Error loading courses: {error}</p>
+                <p className="text-sm mt-2">Please try refreshing the page.</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {courses
+                  .filter(course => course.coursetype === 'elective courses')
+                  .map(course => (
+                    <div key={course.id}>
+                      {renderCourseContent(course.about)}
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </Section>
@@ -242,89 +424,35 @@ const Academics = () => {
       {/* Rules Section */}
       <Section id="rules" title="Academic Rules">
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Attendance Requirements</h3>
-              <p className="text-gray-700 mb-2">
-                Students are required to maintain a minimum of 75% attendance in all courses. Failure to meet this requirement may result in a grade penalty or being barred from the final examination.
-              </p>
-              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-3">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm text-yellow-700">
-                      Medical absences require proper documentation and must be submitted within 3 days of returning to classes.
-                    </p>
+          {isLoading ? (
+            <div className="animate-pulse space-y-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i}>
+                  <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+                  <div className="space-y-3">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                    <div className="h-4 bg-gray-200 rounded w-4/6"></div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Grading Policy</h3>
-              <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border-collapse">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-200 px-4 py-2">Grade</th>
-                      <th className="border border-gray-200 px-4 py-2">Percentage Range</th>
-                      <th className="border border-gray-200 px-4 py-2">Grade Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-200 px-4 py-2 text-center">A+</td>
-                      <td className="border border-gray-200 px-4 py-2">90-100%</td>
-                      <td className="border border-gray-200 px-4 py-2 text-center">10</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-4 py-2 text-center">A</td>
-                      <td className="border border-gray-200 px-4 py-2">80-89%</td>
-                      <td className="border border-gray-200 px-4 py-2 text-center">9</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-4 py-2 text-center">B</td>
-                      <td className="border border-gray-200 px-4 py-2">70-79%</td>
-                      <td className="border border-gray-200 px-4 py-2 text-center">8</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-4 py-2 text-center">C</td>
-                      <td className="border border-gray-200 px-4 py-2">60-69%</td>
-                      <td className="border border-gray-200 px-4 py-2 text-center">7</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-4 py-2 text-center">D</td>
-                      <td className="border border-gray-200 px-4 py-2">50-59%</td>
-                      <td className="border border-gray-200 px-4 py-2 text-center">6</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-4 py-2 text-center">F</td>
-                      <td className="border border-gray-200 px-4 py-2">Below 50%</td>
-                      <td className="border border-gray-200 px-4 py-2 text-center">0</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          ) : error ? (
+            <div className="text-red-500 p-4 bg-red-50 rounded-lg">
+              <p>Error loading academic rules: {error}</p>
+              <p className="text-sm mt-2">Please try refreshing the page.</p>
             </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Academic Integrity</h3>
-              <p className="text-gray-700">
-                The Department maintains a strict policy against academic dishonesty, including plagiarism, cheating, and falsification of data. Violations may result in:
-              </p>
-              <ul className="list-disc list-inside text-gray-700 mt-2 space-y-1">
-                <li>Zero marks for the assignment or examination</li>
-                <li>Grade reduction in the course</li>
-                <li>Course failure</li>
-                <li>Academic probation</li>
-                <li>Suspension or expulsion in severe cases</li>
-              </ul>
+          ) : (
+            <div className="space-y-8">
+              {academicRules.map((rule) => (
+                <div key={rule.id} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
+                  <h3 className="text-xl font-semibold mb-4">{rule.Title}</h3>
+                  {renderDescription(rule.description)}
+                  {renderGradingTable(rule.grading)}
+                </div>
+              ))}
             </div>
-          </div>
+          )}
         </div>
       </Section>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AltCarousel from '../components/Carousel/AltCarousel';
 
 import img1 from '../assets/carousel-images/image1.jpg';
@@ -43,8 +43,63 @@ const TalkCard = ({ title, speaker, designation, venue, time, date, image, descr
     </div>
 );
 
-const Home = ({ props, talksAndEvents, isLoading, error }) => {
+const Home = () => {
+    const [news, setNews] = useState([]);
+    const [talksAndEvents, setTalksAndEvents] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     const images = [img1, img2, img3];
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                setError(null);
+                
+                // Make API calls in parallel without custom headers
+                const [newsResponse, talksAndEventsResponse] = await Promise.all([
+                    fetch("https://cse.iitdh.ac.in/strapi/api/newss"),
+                    fetch("https://cse.iitdh.ac.in/strapi/api/talk-and-events")
+                ]);
+
+                if (!newsResponse.ok || !talksAndEventsResponse.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+
+                const [newsJson, talksAndEventsJson] = await Promise.all([
+                    newsResponse.json(),
+                    talksAndEventsResponse.json()
+                ]);
+
+                // Cache the data
+                localStorage.setItem('cachedNews', JSON.stringify(newsJson.data));
+                localStorage.setItem('cachedTalksAndEvents', JSON.stringify(talksAndEventsJson.data));
+                localStorage.setItem('cacheTimestamp', Date.now().toString());
+
+                setNews(newsJson.data);
+                setTalksAndEvents(talksAndEventsJson.data);
+            } catch (err) {
+                setError(err.message);
+                console.error('Error fetching data:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        // Check cache first
+        const cachedNews = localStorage.getItem('cachedNews');
+        const cachedTalksAndEvents = localStorage.getItem('cachedTalksAndEvents');
+        const cacheTimestamp = localStorage.getItem('cacheTimestamp');
+        const now = Date.now();
+
+        if (cachedNews && cachedTalksAndEvents && cacheTimestamp && (now - parseInt(cacheTimestamp)) < 300000) {
+            setNews(JSON.parse(cachedNews));
+            setTalksAndEvents(JSON.parse(cachedTalksAndEvents));
+            setIsLoading(false);
+        } else {
+            fetchData();
+        }
+    }, []);
     
     // Format date from API response
     const formatDate = (dateString) => {
@@ -58,7 +113,7 @@ const Home = ({ props, talksAndEvents, isLoading, error }) => {
     };
 
     // Transform API news data to match our NewsCard component
-    const transformedNews = props?.map(item => ({
+    const transformedNews = news?.map(item => ({
         title: item.Title || '',
         date: formatDate(item.date),
         description: item.description || '',

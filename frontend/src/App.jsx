@@ -1,5 +1,5 @@
 // App.jsx 
-import React, { useState, lazy, Suspense, useEffect } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import Topbar from './components/Topbar/Topbar';
 import Navbar from './components/Navbar/Navbar';
 import { Routes, Route } from 'react-router-dom';
@@ -19,41 +19,6 @@ const SearchResults = lazy(() => import('./pages/SearchResults'));
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [news, setNews] = useState([]);
-  const [talksAndEvents, setTalksAndEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        
-        // Fetch news data
-        const newsData = await fetch("https://cse.iitdh.ac.in/strapi/api/newss");
-        if (!newsData.ok) {
-          throw new Error('Failed to fetch news data');
-        }
-        const newsJson = await newsData.json();
-        setNews(newsJson.data);
-
-        // Fetch talks and events data
-        const talksAndEventsData = await fetch("https://cse.iitdh.ac.in/strapi/api/talk-and-events");
-        if (!talksAndEventsData.ok) {
-          throw new Error('Failed to fetch talks and events data');
-        }
-        const talksAndEventsJson = await talksAndEventsData.json();
-        setTalksAndEvents(talksAndEventsJson.data);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching data:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -87,7 +52,7 @@ function App() {
           <div className="max-w-full overflow-x-hidden flex-grow">
             <Routes>
               {/* Home page loaded eagerly */}
-              <Route path="/" element={<Home props={news} talksAndEvents={talksAndEvents} isLoading={isLoading} error={error} />} />
+              <Route path="/" element={<Home />} />
               
               {/* Each lazy-loaded page wrapped in its own Suspense */}
               <Route path="/academics" element={
