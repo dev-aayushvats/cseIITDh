@@ -2,6 +2,19 @@
 
 const searchData = [
   // Home Page Content
+ {
+    page: 'Home',
+    title: 'news',
+    content: ' ',
+    link: '/#news'
+  },
+
+   {
+    page: 'Home',
+    title: 'event and talks',
+    content: ' ',
+    link: '/#event and talks'
+  },
   {
     page: 'Home',
     title: 'Annual Technical Symposium',
@@ -47,44 +60,44 @@ const searchData = [
   { page: 'Academics',
     title: 'Academics',
     content: "The academic programs at our department include undergraduate, postgraduate, and doctoral programs, focusing on various areas of computer science.",
-    link: "/academics"
+    link: "/Academics#academics"
   },
   { page: 'Academics',
     title: 'timetable',
     content: " ",
-    link: "/timetable"
+    link: "/Academics#timetable"
   },
   { page: 'Academics',
     title: 'Curriculum',
     content: " ",
-    link: "/Curriculum"
+    link: "/Academics#Curriculum"
   },
   { page: 'Academics',
     title: 'courses',
     content: " ",
-    link: "/courses"
+    link: "/Academics#courses"
   },
   { page: 'Academics',
     title: 'rules',
     content: " ",
-    link: "/rules"
+    link: "/Academics#rules"
   },
   { page: 'Academics',
     title: 'faq',
     content: "Academics faq ",
-    link: "/faq"
+    link: "/Academics#"
   },
   {
     title: "Admissions",
     content: "The admissions process for our undergraduate and postgraduate programs is highly competitive. Learn more about eligibility criteria and deadlines.",
-    link: "/admissions"
+    link: "/admissions#"
   },
 
     {
       page: 'Admissions',
-      title: 'faq',
+      title: 'faqs',
       content: "Admissions FAQ",
-      link: "/faq"
+      link: "/admissions#faqs"
     },
     {
       page: 'Admissions',
@@ -125,39 +138,40 @@ const searchData = [
     
   
   { page: 'JoinAsFaculty',
-    title: "Join as Faculty",
-    content: "Join as Faculty at IIT Dharwad’s Department of Computer Science and Engineering. Build your academic career and make contributions to cutting-edge research and education.",
-    section: "header",
+    title: 'Join as Faculty',
+    content: "Join as Faculty at IIT Dharwad Department of Computer Science and Engineering. Build your academic career and make contributions to cutting-edge research and education.",
+   link: "/Join-As-Faculty#header",
   },
   {page: 'JoinAsFaculty',
     title: "About the Department",
     content: "The Department of Computer Science and Engineering at IIT Dharwad was established in 2016, and it offers undergraduate, postgraduate, and doctoral programs.",
-    section: "section",
+   link: "/Join-As-Faculty#section",
   },
+  
   {page: 'JoinAsFaculty',
     title: "About IIT Dharwad",
     content: "IIT Dharwad is one of the new IITs established in 2016 in Karnataka. It aims to contribute to the technological advancement of the nation.",
-    section: "section",
+    link: "/Join-As-Faculty#section",
   },
   {page: 'JoinAsFaculty',
     title: "Research Facilities",
     content: "We offer state-of-the-art facilities, including labs dedicated to AI, ML, Systems, Security, and more.",
-    section: "section",
+   link:"/Join-As-Faculty#section",
   },
   {page: 'JoinAsFaculty',
     title: "Salary and Benefits",
     content: "Competitive salary packages with numerous benefits like relocation allowance, professional development allowance, and more.",
-    section: "section",
+    link:"/Join-As-Faculty#section",
   },
   {page: 'JoinAsFaculty',
     title: "How to Apply",
     content: "Follow the online application process by submitting the required documents, including your CV, publications, and teaching statement.",
-    section: "section",
+   link: "/Join-As-Faculty#section",
   },
   {page: 'Research',
     title: "Research",
     content: "Our department conducts cutting-edge research in various domains including artificial intelligence, machine learning, and data science.",
-    link: "/research"
+    link: "/research#"
   },
    {
       page: 'Research',
