@@ -11,7 +11,7 @@ const About = () => {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch("https://cse.iitdh.ac.in/strapi/api/department-background-and-visions");
+        const response = await fetch("https://cse.iitdh.ac.in/strapi/api/about-pages");
 
         if (!response.ok) {
           throw new Error('Failed to fetch data');
@@ -51,6 +51,9 @@ const About = () => {
 
   // Helper function to render description content
   const renderDescription = (description) => {
+    if (!Array.isArray(description)) {
+      return null; // Or some fallback UI
+    }
     return description.map((item, index) => {
       if (item.type === 'paragraph') {
         return (
@@ -108,7 +111,7 @@ const About = () => {
           <section key={section.id} className="bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-2xl font-semibold text-gray-700 mb-4">{section.Title}</h2>
             <div className="space-y-4">
-              {renderDescription(section.description)}
+              {renderDescription(section.Description)}
             </div>
           </section>
         ))}
