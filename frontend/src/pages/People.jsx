@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
 
 // Navigation Card Component
@@ -178,194 +178,72 @@ const FormerMemberCard = ({ name, title, period, currentAffiliation }) => {
 
 // People Page Component
 const People = () => {
-  // HOD and Associate Head data
-  const leadership = [
-    {
-      name: "Dr. Ramchandra Phawade",
-      title: "Assistant Professor and Head of Department",
-      expertise: "Computer Science and Engineering",
-      email: "prb@iitdh.ac.in",
-      phone: "+91-836-2212-001",
-      website: "https://iitdh.ac.in/prb/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/phawade.jpg"
-    },
-    {
-      name: "Dr. Vandana Bharti",
-      title: "Assistant Professor and Associate Head",
-      expertise: "Computer Science and Engineering",
-      email: "vandana@iitdh.ac.in",
-      phone: "+91-836-2212-002",
-      website: "https://sites.google.com/iitdh.ac.in/vandana",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/VB_iitdh%20-%20Vandana%20Bharti.png"
-    }
-  ];
+  const [leadership, setLeadership] = useState([]);
+  const [facultyMembers, setFacultyMembers] = useState([]);
+  const [staffMembers, useStateStaffMembers] = useState([]);
+  const [formerMembers, setFormerMembers] = useState([]);
 
-  // Faculty data
-  const facultyMembers = [
-    {
-      name: "Dr. Dileep A D",
-      title: "Professor and Dean Administration",
-      expertise: "Computer Science and Engineering",
-      email: "addileep@iitdh.ac.in",
-      phone: "+91-836-2212-003",
-      website: "https://faculty.iitmandi.ac.in/~addileep/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/Dileep%20-%20Dileep%20A%20D.jpg"
-    },
-    {
-      name: "Dr. Achyut Mani Tripathi",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "t.achyut@iitdh.ac.in",
-      phone: "+91-836-2212-004",
-      website: "https://achyutmani.github.io/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/Achyut%20-%20Achyut%20Mani%20Tripathi%20-%20Achyut%20Mani%20Tripathi.jpeg"
-    },
-    {
-      name: "Dr. Gayathri Ananthanarayanan",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "gayathri@iitdh.ac.in",
-      phone: "+91-836-2212-005",
-      website: "https://homepages.iitdh.ac.in/~gayathri/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/recent-photo%20-%20Gayathri%20Ananthanarayanan.jpg"
-    },
-    {
-      name: "Dr. Jivnesh Balasaheb Sandhan",
-      title: "Visiting Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "jivnesh@iitdh.ac.in",
-      phone: "+91-836-2212-006",
-      website: "https://jivnesh.github.io/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/Jivnesh_500%20-%20Jivnesh%20Balasaheb%20Sandhan_0.png"
-    },
-    {
-      name: "Dr. Kedar Vithal Khandeparkar",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "kedark@iitdh.ac.in",
-      phone: "+91-836-2212-007",
-      website: "https://iitdh.ac.in/~kedark/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/kedar2%20-%20Kedar%20Vithal%20Khandeparkar.jpeg"
-    },
-    {
-      name: "Dr. Konjengbam Anand",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "konjengbam.anand@iitdh.ac.in",
-      phone: "+91-836-2212-008",
-      website: "https://sites.google.com/view/drkonjengbamanand?pli=1",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/anand%20profile23c%20-%20Konjengbam%20Anand_0.jpg"
-    },
-    {
-      name: "Dr. Koteswararao Kondepu",
-      title: "Associate Professor and Associate Dean IPS Network",
-      expertise: "Computer Science and Engineering",
-      email: "k.kondepu@iitdh.ac.in",
-      phone: "+91-836-2212-009",
-      website: "https://scholar.google.com/citations?user=X-yZFQkAAAAJ&hl=en",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/kondepu.jpeg"
-    },
-    {
-      name: "Dr. Nikhil D Hegde",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "nikhilh@iitdh.ac.in",
-      phone: "+91-836-2212-010",
-      website: "https://hegden.github.io/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/IMG_0847%20-%20Copy%20-%20Nikhil%20Hegde.jpg"
-    },
-    {
-      name: "Dr. Rajshekar K",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "rajshekar.k@iitdh.ac.in",
-      phone: "+91-836-2212-011",
-      website: "https://www.iitdh.ac.in/rajshekar.k/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/self%20-%20Rajshekar%20K.jpg"
-    },
-    {
-      name: "Dr. Sandeep R B",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "sandeeprb@iitdh.ac.in",
-      phone: "+91-836-2212-012",
-      website: "https://sites.google.com/site/homepagesandeeprb/",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/IMG_0599_2%20-%20Sandeep%20Ramani%20Balakrishnan.jpg"
-    },
-    {
-      name: "Dr. Siba Narayan Swain",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "sibaswain@iitdh.ac.in",
-      phone: "+91-836-2212-013",
-      website: "https://shivanarayan06.wixsite.com/website",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/siba-.png"
-    },
-    {
-      name: "Dr. Tamal Das",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "tamal@iitdh.ac.in",
-      phone: "+91-836-2212-014",
-      website: "https://sites.google.com/view/dtamal",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/Dec%2016%2C%202018%20%282%29%20-%20Tamal%20Das.jpg"
-    },
-    {
-      name: "Dr. Vijeth J Kotagi",
-      title: "Assistant Professor",
-      expertise: "Computer Science and Engineering",
-      email: "vijethjk@iitdh.ac.in",
-      phone: "+91-836-2212-015",
-      website: "https://scholar.google.com/citations?user=2d8W5cYAAAAJ",
-      image: "https://iitdh.ac.in/sites/default/files/2024-02/Photo%20-%20Vijeth%20Jinachandra%20Kotagi%20-%20Vijeth%20Jinachandra%20Kotagi.jpg"
-    }
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://cse.iitdh.ac.in/strapi/api/peoples');
+        const result = await response.json();
+        const data = result.data;
 
-  // Staff data from staff.html
-  const staffMembers = [
-    {
-      name: "Abhishek Kumar",
-      title: "Junior Assistant",
-      email: "abhishekkumar.m@iitdh.ac.in",
-      office: "Computer Science and Engineering, Electrical, Electronics and Communication Engineering",
-      image: "https://iitdh.ac.in/sites/default/files/styles/profile_picture_crop/public/2023-10/abhishek.png?h=c683bfe4&itok=voTsqWPU"
-    },
-    {
-      name: "Arunkumar Dindalakoppa",
-      title: "Executive Assistant",
-      email: "arunkumard@iitdh.ac.in",
-      office: "Computer Science and Engineering, Electrical, Electronics and Communication Engineering",
-      image: "https://iitdh.ac.in/sites/default/files/styles/profile_picture_crop/public/2025-02/arunkumar.jpeg?h=0bc399ec&itok=1s2MxsS9"
-    },
-    {
-      name: "Chandrashekar S",
-      title: "Junior Technical Superintendent",
-      email: "chandrashekar.s@iitdh.ac.in",
-      office: "Computer Science and Engineering",
-      image: "https://iitdh.ac.in/sites/default/files/styles/profile_picture_crop/public/2024-01/Chandrashekar_S%20-%20Chandrashekar%20S_0.png?itok=06-F4itV"
-    }
-  ];
+        const leadershipData = [];
+        const facultyData = [];
+        const staffData = [];
+        const formerData = [];
 
-  // Sample former members data
-  const formerMembers = [
-    {
-      name: "Dr. Prabuchandran K J",
-      title: "Former Assistant Professor",
-      // period: "2016-2021",
-    },
-    {
-      name: "Dr. Anantha Padmanabha",
-      title: "Former Assistant Professor",
-      // period: "2017-2022",
-    },
-    // {
-    //   name: "Dr. Vikram Singh",
-    //   title: "Former Professor",
-    //   period: "2016-2020",
-    //   currentAffiliation: "Indian Institute of Science, Bangalore"
-    // },
-    
-  ];
+        data.forEach(person => {
+          const mappedPerson = {
+            name: person.Name,
+            title: person.Designation,
+            email: person.Email,
+            phone: person.Contact,
+            website: person.Website,
+            image: person.Image,
+          };
+
+          if (person.Role === "Faculty Members" || person.Role === "Department Leadership") {
+            mappedPerson.expertise = person.Domain;
+          } else if (person.Role === "Staff Members") {
+            mappedPerson.office = person.Domain;
+          } else if (person.Role === "Former Members") {
+            mappedPerson.period = person.Period;
+            mappedPerson.currentAffiliation = person.CurrentAffiliation;
+          }
+
+          switch (person.Role) {
+            case "Department Leadership":
+              leadershipData.push(mappedPerson);
+              break;
+            case "Faculty Members":
+              facultyData.push(mappedPerson);
+              break;
+            case "Staff Members":
+              staffData.push(mappedPerson);
+              break;
+            case "Former Members":
+              formerData.push(mappedPerson);
+              break;
+            default:
+              break;
+          }
+        });
+
+        setLeadership(leadershipData);
+        setFacultyMembers(facultyData);
+        useStateStaffMembers(staffData);
+        setFormerMembers(formerData);
+
+      } catch (error) {
+        console.error("Error fetching people data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">

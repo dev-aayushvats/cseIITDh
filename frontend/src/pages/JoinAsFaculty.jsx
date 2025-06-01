@@ -1,228 +1,325 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+import React from 'react';
 
-// Helper function to render content
-const renderContent = (content) => {
-  if (!content) return null;
-
-  return content.map((item, index) => {
-    if (item.type === 'paragraph') {
-      // Check if this paragraph contains tabular data
-      const text = item.children[0].text;
-      if (text.includes('\t')) {
-        const rows = text.split('\n').filter(row => row.trim());
-        if (rows.length > 0 && rows[0].includes('\t')) {
-          return (
-            <div key={index} className="overflow-x-auto mb-4">
-              <table className="min-w-full text-sm border-collapse">
-                <tbody>
-                  {rows.map((row, rowIndex) => {
-                    const cells = row.split('\t');
-                    return (
-                      <tr key={rowIndex} className={rowIndex === 0 ? 'bg-gray-100 font-medium' : 'border-b hover:bg-gray-50'}>
-                        {cells.map((cell, cellIndex) => (
-                          <td 
-                            key={cellIndex} 
-                            className={`px-6 py-3 text-left ${
-                              cellIndex === 0 ? 'w-1/3' : 
-                              cellIndex === 1 ? 'w-1/4' : 'w-1/3'
-                            }`}
-                          >
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          );
-        }
-      }
-
-      return (
-        <p key={index} className="text-gray-700 mb-4">
-          {item.children.map((child, childIndex) => (
-            <span
-              key={childIndex}
-              className={child.bold ? 'font-bold' : child.italic ? 'italic' : ''}
-            >
-              {child.text}
-            </span>
-          ))}
-        </p>
-      );
-    } else if (item.type === 'heading') {
-      return (
-        <h3 key={index} className="text-xl font-semibold text-gray-800 mb-4 mt-6">
-          {item.children[0].text}
-        </h3>
-      );
-    } else if (item.type === 'list') {
-      return (
-        <ul key={index} className={`list-${item.format === 'ordered' ? 'decimal' : 'disc'} list-inside mb-4 space-y-2`}>
-          {item.children.map((listItem, listIndex) => (
-            <li key={listIndex} className="text-gray-700">
-              {listItem.children.map((child, childIndex) => {
-                if (child.type === 'link') {
-                  return (
-                    <a
-                      key={childIndex}
-                      href={child.url}
-                      className="text-indigo-600 hover:text-indigo-800"
-                    >
-                      {child.children[0].text}
-                    </a>
-                  );
-                }
-                return (
-                  <span
-                    key={childIndex}
-                    className={child.bold ? 'font-bold' : child.italic ? 'italic' : ''}
-                  >
-                    {child.text}
-                  </span>
-                );
-              })}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    return null;
-  });
-};
-
-// JoinAsFaculty Page
 const JoinAsFaculty = () => {
-  const [facultyInfo, setFacultyInfo] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const response = await fetch("https://cse.iitdh.ac.in/strapi/api/joinasfaculties");
-        if (!response.ok) {
-          throw new Error('Failed to fetch faculty recruitment data');
-        }
-
-        const json = await response.json();
-
-        // Cache the data
-        localStorage.setItem('cachedFacultyInfo', JSON.stringify(json.data));
-        localStorage.setItem('facultyInfoCacheTimestamp', Date.now().toString());
-
-        setFacultyInfo(json.data);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching data:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    // Check cache first
-    const cachedData = localStorage.getItem('cachedFacultyInfo');
-    const cacheTimestamp = localStorage.getItem('facultyInfoCacheTimestamp');
-    const now = Date.now();
-
-    if (cachedData && cacheTimestamp && (now - parseInt(cacheTimestamp)) < 300000) {
-      setFacultyInfo(JSON.parse(cachedData));
-      setIsLoading(false);
-    } else {
-      fetchData();
-    }
-  }, []);
-
   return (
     <div className="py-6 px-4 md:px-8">
       {/* Page Title */}
-      <div id="join-top" className="mb-10">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Join as Faculty</h1>
-        <p className="text-gray-600">
-          Join our dynamic team of educators and researchers at IIT Dharwad's Computer Science Department.
-        </p>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-800">Join as Faculty</h1>
+        <p className="text-gray-600 mt-2">Build your academic career at IIT Dharwad's Department of Computer Science and Engineering</p>
       </div>
 
-      {/* Navigation Cards */}
-      <div className="mb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {facultyInfo.map((section) => (
-            <Link
-              key={section.id}
-              to={`section-${section.id}`}
-              spy={true}
-              smooth={true}
-              offset={-100}
-              duration={500}
-              className="cursor-pointer"
-            >
-              <div className="bg-white rounded-lg shadow-md p-5 text-center hover:shadow-lg transition-shadow duration-300 hover:bg-indigo-50 h-full flex flex-col items-center justify-center">
-                <div className="text-indigo-600 mb-3 text-3xl">
-                  <i className="fas fa-user-tie"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800">{section.Title}</h3>
-                <p className="text-sm text-gray-600 mt-2">View Details</p>
-              </div>
-            </Link>
-          ))}
+      {/* About the Department Section */}
+      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">About the Department</h2>
+        <div className="space-y-4">
+          <p className="text-gray-700">
+            The Department of Computer Science and Engineering at IIT Dharwad was established in 2016 and has quickly grown into a center for excellence in computer science education and research in India. Our department offers undergraduate, postgraduate, and doctoral programs in Computer Science and Engineering.
+          </p>
+          <p className="text-gray-700">
+            We have a dynamic team of faculty members specializing in various domains of computer science including Artificial Intelligence, Machine Learning, Computer Vision, Theoretical Computer Science, Systems and Networking, Security and Privacy, and Human-Computer Interaction.
+          </p>
+          <div className="mt-4 bg-indigo-50 p-4 rounded-md">
+            <h3 className="font-semibold text-gray-800 mb-2">Key Department Highlights</h3>
+            <ul className="list-disc list-inside space-y-1 text-gray-700">
+              <li>Vibrant research environment with regular seminars and workshops</li>
+              <li>Collaborative projects with industry and academic partners</li>
+              <li>Well-equipped computing facilities and laboratories</li>
+              <li>Growing undergraduate and graduate programs</li>
+              <li>Opportunities for interdisciplinary research</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Content Sections */}
-      {isLoading ? (
-        <div className="animate-pulse space-y-8">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-white rounded-lg shadow-sm p-6">
-              <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
-              <div className="space-y-3">
-                <div className="h-4 bg-gray-200 rounded"></div>
-                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+      {/* About IIT Dharwad Section */}
+      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">About IIT Dharwad</h2>
+        <div className="space-y-4">
+          <p className="text-gray-700">
+            IIT Dharwad is one of the new IITs established by the Government of India in 2016. Located in the state of Karnataka, our institute is committed to excellence in teaching, research, and innovation while contributing to the technological advancement of the nation.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-2">Campus</h3>
+              <p className="text-gray-700">
+                Our sprawling campus is situated on 470 acres of land in Dharwad, Karnataka. The campus features modern academic buildings, residential facilities, and recreational spaces, creating an ideal environment for academic and personal growth.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-2">Location</h3>
+              <p className="text-gray-700">
+                Dharwad is a culturally rich city with a pleasant climate year-round. It is well connected to major cities like Bangalore, Mumbai, and Pune. The region is known for its contributions to literature, music, and education.
+              </p>
+            </div>
+          </div>
+          <div className="mt-4">
+            <h3 className="font-semibold text-gray-800 mb-2">Institute Vision</h3>
+            <p className="text-gray-700">
+              IIT Dharwad aims to be a globally recognized institution for excellence in technical education and research, contributing to the development of technology and science for the betterment of society.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Facilities Section */}
+      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Research Facilities</h2>
+        <div className="space-y-4">
+          <p className="text-gray-700">
+            IIT Dharwad provides state-of-the-art research facilities to support faculty in their research endeavors. The CSE department has dedicated laboratories equipped with high-performance computing resources.
+          </p>
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Instructional Labs</h3>
+            <ul className="list-disc list-inside ml-6 text-gray-700">
+              {["Programming Laboratory","Data Structures and Algorithms Laboratory","Software Systems Laboratory","Artificial Intelligence Laboratory","Computer Architecture Laboratory","Database Systems Laboratory","Operating Systems Laboratory","Computer Networks Laboratory","Compilers Laboratory"].map((lab, idx) => (
+                <li key={idx}>{lab}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Research & Development Labs</h3>
+            <ul className="list-disc list-inside ml-6 text-gray-700">
+              {[{ name: "AIML Lab" },{ name: "FutureG Networks Lab", link: "https://futuregnetworks.iitdh.ac.in/" },{ name: "Emerging Multimedia and AI (EMA) Lab", link: "http://ema.iitdh.ac.in/", img: "/sites/default/files/inline-images/EEMAA.jpg", imgWidth: 26, imgHeight: 17, hiring: true }].map((lab, idx) => (
+                <li key={idx} className="mb-2">
+                  {lab.link ? (
+                    <a href={lab.link} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                      {lab.name}
+                      {lab.img && (
+                        <img src={lab.img} alt="EMA" width={lab.imgWidth} height={lab.imgHeight} className="inline ml-2 align-middle" />
+                      )}
+                    </a>
+                  ) : lab.name}
+                  {lab.hiring && (
+                    <span className="ml-2 text-xs text-green-700 font-semibold">(EMA Lab is hiring now! <a href="/emerging-multimedia-and-ai-lab-ema-lab-hiring-were-looking-passionate-researchers-join-us-ms-phd" target="_blank" className="underline">Click Here to know more</a>)</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Salary and Benefits Section */}
+      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Salary and Benefits</h2>
+        <div className="space-y-4">
+          <p className="text-gray-700">
+            IIT Dharwad offers competitive compensation packages to faculty members in line with other IITs and government norms. Our comprehensive benefits package is designed to support both professional development and personal wellbeing.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-2">Salary Structure</h3>
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="px-4 py-2 text-left">Position</th>
+                      <th className="px-4 py-2 text-left">Pay Level</th>
+                      <th className="px-4 py-2 text-left">Starting Salary Range</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b">
+                      <td className="px-4 py-2">Assistant Professor</td>
+                      <td className="px-4 py-2">Level 12</td>
+                      <td className="px-4 py-2">₹1,01,500 - ₹1,67,400</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="px-4 py-2">Associate Professor</td>
+                      <td className="px-4 py-2">Level 13A2</td>
+                      <td className="px-4 py-2">₹1,39,600 - ₹2,11,300</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2">Professor</td>
+                      <td className="px-4 py-2">Level 14A</td>
+                      <td className="px-4 py-2">₹1,59,100 - ₹2,20,200</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                * Salary includes basic pay plus allowances as per Government of India norms.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-2">Benefits and Allowances</h3>
+              <ul className="list-disc list-inside space-y-1 text-gray-700">
+                <li>Dearness Allowance (DA) as per government rates</li>
+                <li>House Rent Allowance (HRA) or campus housing</li>
+                <li>Transport Allowance</li>
+                <li>Professional Development Allowance (₹3 lakhs for 3 years)</li>
+                <li>Relocation allowance for joining</li>
+                <li>Medical benefits for faculty and dependents</li>
+                <li>Leave Travel Concession (LTC)</li>
+                <li>Children's Education Allowance</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-6">
+            <h3 className="font-semibold text-gray-800 mb-2">Additional Benefits</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-3 rounded-md">
+                <h4 className="font-medium text-gray-800">Retirement Benefits</h4>
+                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
+                  <li>National Pension System (NPS)</li>
+                  <li>Gratuity as per norms</li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-md">
+                <h4 className="font-medium text-gray-800">Campus Facilities</h4>
+                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
+                  <li>Faculty club and recreational facilities</li>
+                  <li>On-campus school for children</li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-md">
+                <h4 className="font-medium text-gray-800">Leave Benefits</h4>
+                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
+                  <li>Earned Leave, Half Pay Leave</li>
+                  <li>Sabbatical leave for research</li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-md">
+                <h4 className="font-medium text-gray-800">Support for Research</h4>
+                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
+                  <li>Startup research grant</li>
+                  <li>Support for patent filing</li>
+                </ul>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-      ) : error ? (
-        <div className="text-red-500 p-4 bg-red-50 rounded-lg">
-          <p>Error loading faculty recruitment data: {error}</p>
-          <p className="text-sm mt-2">Please try refreshing the page.</p>
-        </div>
-      ) : (
-        <div className="space-y-8">
-          {facultyInfo.map((section) => (
-            <div
-              key={section.id}
-              id={`section-${section.id}`}
-              className="bg-white rounded-lg shadow-sm p-6 scroll-mt-[100px]"
-            >
-              <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">
-                {section.Title}
-              </h2>
-              {renderContent(section.description)}
-            </div>
-          ))}
-        </div>
-      )}
+      </section>
 
-      {/* Back to Top Button */}
-      <div className="text-center mt-10">
-        <Link
-          to="join-top"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={500}
-          className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300"
-        >
-          Back to Top
-        </Link>
-      </div>
+      {/* Qualifications Section */}
+      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Minimum Required Qualifications</h2>
+        <div className="space-y-4">
+          <p className="text-gray-700">
+            We seek highly qualified candidates with a strong academic background and research experience in Computer Science and Engineering or related fields.
+          </p>
+          
+          <div className="mt-4">
+            <h3 className="font-semibold text-gray-800 mb-3">Educational Qualifications</h3>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="px-4 py-2 text-left">Position</th>
+                    <th className="px-4 py-2 text-left">Minimum Qualification</th>
+                    <th className="px-4 py-2 text-left">Experience</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="px-4 py-2">Assistant Professor</td>
+                    <td className="px-4 py-2">Ph.D. in Computer Science, Engineering or related field</td>
+                    <td className="px-4 py-2">Minimum 3 years of post-Ph.D. research/teaching experience</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="px-4 py-2">Associate Professor</td>
+                    <td className="px-4 py-2">Ph.D. with first class in preceding degree</td>
+                    <td className="px-4 py-2">Minimum 6 years of experience, with 3 years as Assistant Professor</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2">Professor</td>
+                    <td className="px-4 py-2">Ph.D. with first class in preceding degree</td>
+                    <td className="px-4 py-2">Minimum 10 years of experience, with 4 years as Associate Professor</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div className="mt-6">
+            <h3 className="font-semibold text-gray-800 mb-3">Areas of Expertise</h3>
+            <p className="text-gray-700 mb-3">
+              We are particularly interested in candidates specializing in the following areas, but exceptional candidates from all areas of Computer Science will be considered:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Artificial Intelligence</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Machine Learning</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Computer Vision</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Data Science</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Cybersecurity</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Cloud Computing</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">IoT and Edge Computing</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Theoretical Computer Science</div>
+              <div className="bg-indigo-50 p-3 rounded-md text-center">Human-Computer Interaction</div>
+            </div>
+          </div>
+          
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+            <div className="flex">
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-yellow-800">Note on Exceptional Candidates</h3>
+                <p className="text-sm text-yellow-700 mt-1">
+                  For exceptionally brilliant candidates with an outstanding record of research publications and contributions to the field, some of the experience requirements may be relaxed.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How to Apply Section */}
+      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">How to Apply</h2>
+        <div className="space-y-4">
+          <p className="text-gray-700">
+            Interested candidates are invited to apply for faculty positions through our online portal. Applications are accepted throughout the year, with reviews conducted periodically.
+          </p>
+          
+          <div className="mt-4">
+            <h3 className="font-semibold text-gray-800 mb-3">Application Process</h3>
+            <ol className="list-decimal list-inside space-y-2 text-gray-700">
+              <li>Register on the IIT Dharwad faculty recruitment portal.</li>
+              <li>Fill out the online application form with personal, educational, and professional details.</li>
+              <li>Upload the following documents:
+                <ul className="list-disc list-inside ml-5 mt-1 text-gray-600">
+                  <li>Detailed CV with list of publications</li>
+                  <li>Research statement (2-3 pages)</li>
+                  <li>Teaching statement (1-2 pages)</li>
+                  <li>Copies of three best publications</li>
+                  <li>Educational certificates and transcripts</li>
+                  <li>Contact information of three referees</li>
+                </ul>
+              </li>
+              <li>Submit the completed application.</li>
+              <li>Shortlisted candidates will be invited for a seminar presentation and interview.</li>
+            </ol>
+          </div>
+          
+          <div className="mt-6 bg-indigo-50 p-4 rounded-md">
+            <h3 className="font-semibold text-gray-800 mb-2">Selection Process</h3>
+            <ol className="list-decimal list-inside space-y-1 text-gray-700">
+              <li>Screening of applications based on academic credentials, research contributions, and alignment with department needs.</li>
+              <li>Seminar presentation by shortlisted candidates to showcase research work and future plans.</li>
+              <li>Technical interview with faculty selection committee.</li>
+              <li>Final selection based on overall performance, research potential, and teaching abilities.</li>
+            </ol>
+          </div>
+          
+          <div className="mt-6">
+            <h3 className="font-semibold text-gray-800 mb-3">Important Information</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-700">
+              <li>Candidates are encouraged to review the department's research areas before applying.</li>
+              <li>For any queries related to the application process, please contact <span className="text-indigo-600">faculty.recruitment@iitdh.ac.in</span></li>
+              <li>The institute reserves the right to shortlist candidates based on the needs of the departments/institute.</li>
+            </ul>
+          </div>
+          
+          <div className="text-center mt-8">
+            <a href="#" className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition duration-300 font-medium">
+              Apply Now
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
