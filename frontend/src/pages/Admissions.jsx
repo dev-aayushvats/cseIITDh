@@ -104,7 +104,7 @@ const Admissions = () => {
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Admissions</h1>
         <p className="text-gray-600">
           Learn about admission requirements, application procedures, and opportunities for prospective students.<br></br>
-          To redirect to IIT dharwad webpage Admission section,click on the button below.
+          Redirect to IIT dharwad webpage Admission section,by clicking on the button below.
         </p>
       </div>
 <div className="text-center mt-10">
