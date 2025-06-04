@@ -155,7 +155,7 @@ const Admissions = () => {
               </div>
             )}
 
-            {btech_admission.important_dates && (
+            {/*btech_admission.important_dates && (
               <div className="bg-indigo-50 p-4 rounded-md">
                 <h3 className="text-lg font-semibold mb-2">{btech_admission.important_dates.heading}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -167,7 +167,7 @@ const Admissions = () => {
                   ))}
                 </div>
               </div>
-            )}
+            )*/}
 
             {btech_admission.links && (
               <div className="text-center">
@@ -319,7 +319,7 @@ const Admissions = () => {
       </Section>
 
       {/* MS Research Section */}
-      <Section id="ms" title="MS (Research) Admission">
+      <Section id="ms" title="Mtech by Research Admission">
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="space-y-6">
             {ms_admission.department && (
@@ -545,7 +545,7 @@ const Admissions = () => {
               </div>
             )}
 
-            {phd_admission.research_areas && (
+            {/*phd_admission.research_areas && (
               <div>
                 <h3 className="text-xl font-semibold mb-3">{phd_admission.research_areas.heading}</h3>
                 <p className="text-gray-700 mb-3">{phd_admission.research_areas.description}</p>
@@ -563,7 +563,7 @@ const Admissions = () => {
                   ))}
                 </div>
               </div>
-            )}
+            )*/}
 
             {phd_admission.financial_assistance && (
               <div>
