@@ -115,7 +115,7 @@ const Admissions = () => {
   rel="noopener noreferrer"
   className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300"
 >
-  Redirect to official website
+  Redirect to main website
 </a>
 
  </div>
@@ -655,3 +655,4 @@ const Admissions = () => {
 };
 
 export default Admissions; 
+
