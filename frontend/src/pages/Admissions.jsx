@@ -103,10 +103,22 @@ const Admissions = () => {
       <div id="admissions-top" className="mb-10">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Admissions</h1>
         <p className="text-gray-600">
-          Learn about admission requirements, application procedures, and opportunities for prospective students.
+          Learn about admission requirements, application procedures, and opportunities for prospective students.<br></br>
+          To redirect to IIT dharwad webpage Admission section,click on the button below.
         </p>
       </div>
+<div className="text-center mt-10">
+      
+         <a
+  href="https://www.iitdh.ac.in/admissions"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300"
+>
+  Redirect to official website
+</a>
 
+ </div>
 
       {/* B.Tech Section */}
       <Section id="btech" title="B.Tech Admission">
