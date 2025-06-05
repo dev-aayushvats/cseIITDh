@@ -4,6 +4,21 @@ import { useNavigate, Link } from 'react-router-dom'
 import logo from '../../assets/institute-logo.png'
 import { useRef } from 'react'
 
+export const slugMap = {
+  'peoples': 'people',
+  'research': 'research',
+  'publications': 'publications',
+  'events': 'events',
+  'news': 'news',
+  'aobut-pages': 'about',
+  'admission': 'admission',
+  'faculty': 'faculty',
+  'students': 'students',
+  'alumni': 'alumni',
+  'contact': 'contact',
+  'join-as-faculty': 'join-as-faculty',
+}
+
 function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState(null)
@@ -167,7 +182,10 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
                       {items.slice(0, 4).map((item, index) => (
                         <button
                           key={index}
-                          onClick={() => category === 'peoples' ? handleResultClick('people') : handleResultClick(item.slug)}
+                          onClick={() => {
+                            const targetSlug = slugMap[category] || item.slug;
+                            handleResultClick(targetSlug);
+                          }}
                           className="w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150 group"
                         >
                           <div className="text-sm text-gray-800 group-hover:text-gray-900 truncate">
@@ -177,6 +195,8 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
                                 {item.Designation && <span className="text-gray-600"> - {item.Designation}</span>}
                                 {item.Role && <span className="text-gray-500 text-xs"> ({item.Role})</span>}
                               </>
+                              : category === 'about-pages' ?
+                              item.title
                               : 
                               item.title
                             }
