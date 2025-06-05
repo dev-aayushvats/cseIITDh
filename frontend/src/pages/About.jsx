@@ -74,7 +74,7 @@ const About = () => {
 
   if (isLoading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="py-6 px-4 md:px-8">
         <div className="animate-pulse space-y-6">
           {[1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="bg-white p-6 rounded-lg shadow-sm">
@@ -93,7 +93,7 @@ const About = () => {
 
   if (error) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="py-6 px-4 md:px-8">
         <div className="text-red-500 p-4 bg-red-50 rounded-lg">
           <p>Error loading content: {error}</p>
           <p className="text-sm mt-2">Please try refreshing the page.</p>
@@ -103,7 +103,7 @@ const About = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="py-6 px-4 md:px-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">About Us</h1>
       
       <div className="space-y-6">

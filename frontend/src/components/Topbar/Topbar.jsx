@@ -10,7 +10,7 @@ export const slugMap = {
   'publications': 'publications',
   'events': 'events',
   'news': 'news',
-  'aobut-pages': 'about',
+  'about-pages': 'about',
   'admission': 'admission',
   'faculty': 'faculty',
   'students': 'students',

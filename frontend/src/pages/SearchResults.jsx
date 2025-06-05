@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { slugMap } from '../components/Topbar/Topbar';
 
 function SearchResults() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [searchResults, setSearchResults] = useState(null); // Changed to null to match Topbar's initial state
   const query = new URLSearchParams(location.search).get('q');
+  const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (!query) {
-        setSearchResults(null); // Changed to null
+        setResults(null);
+        setLoading(false);
         return;
       }
 
+      setLoading(true);
+      setError(null);
       try {
         const endpoint = `https://cse.iitdh.ac.in/strapi/api/fuzzy-search/search?query=${encodeURIComponent(query)}`;
         const response = await fetch(endpoint);
@@ -24,56 +29,72 @@ function SearchResults() {
         }
 
         const data = await response.json();
-        setSearchResults(data); // Store data as received, grouped by category
-      } catch (error) {
-        console.error('Error fetching search results:', error);
-        setSearchResults(null);
+        setResults(data);
+      } catch (err) {
+        console.error('Error fetching search results:', err);
+        setError('Failed to fetch search results. Please try again.');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSearchResults();
   }, [query]);
 
-  const handleResultClick = (category, itemSlug) => {
-    const targetSlug = slugMap[category] || itemSlug;
-    navigate(`/${targetSlug}`);
+  const handleResultClick = (category) => {
+    const targetSlug = slugMap[category];
+    if (targetSlug) {
+      navigate(`/${targetSlug}`);
+    } else {
+      console.warn(`No slug mapping found for category: ${category}`);
+    }
   };
 
   return (
-    <div className="p-4 pt-20 px-8">
-      <h1 className="text-2xl font-semibold mb-4">Search Results for: "{query}"</h1>
+    <div className="p-4">
+      <h1 className="text-2xl font-semibold mb-6">Search Results for: "{query}"</h1>
       
-      {searchResults && Object.keys(searchResults).length > 0 ? (
-        <div className="space-y-6">
-          {Object.entries(searchResults).map(([category, items]) => (
-            <div key={category}>
-              <h2 className="text-xl font-semibold mb-3 capitalize">{category.replace(/_/g, ' ')}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {loading && <p>Loading search results...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+
+      {!loading && !error && (!results || Object.keys(results).length === 0) && (
+        <p>No results found for "{query}".</p>
+      )}
+
+      {!loading && !error && results && Object.keys(results).length > 0 && (
+        <div>
+          {Object.entries(results).map(([category, items]) => (
+            <div key={category} className="mb-8">
+              <h2 className="text-xl font-semibold mb-4 capitalize">
+                {category.replace(/_/g, ' ')}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {items.map((item, index) => (
-                  <div key={index} className="bg-white rounded-lg shadow-sm p-4 border border-gray-100">
-                    <button
-                      onClick={() => handleResultClick(category, item.slug)}
-                      className="w-full text-left text-blue-600 hover:underline focus:outline-none"
+                  <div key={index} className="bg-white p-4 rounded-lg shadow-md border border-gray-100">
+                    <h3 className="font-semibold text-lg mb-1">
+                      {category === 'peoples' ? 
+                        (item.Name || item.title) : 
+                        (item.Title || item.Name)
+                      }
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-2">
+                      {category === 'peoples' ? 
+                        (item.Designation || item.Role) : 
+                        ''
+                      }
+                    </p>
+                    <button 
+                      onClick={() => handleResultClick(category)}
+                      className="text-blue-500 hover:underline text-sm focus:outline-none"
                     >
-                      <h3 className="font-medium text-lg truncate mb-1">
-                        {category === 'peoples' ? 
-                          <>{item.Name} {item.Designation && `- ${item.Designation}`}</>
-                          : category === 'about-pages' ?
-                          item.Title
-                          : 
-                          item.Title
-                        }
-                      </h3>
+                      Read more
                     </button>
-                    {item.content && <p className="text-gray-700 text-sm line-clamp-2">{item.content}</p>}
                   </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      ) : (
-        <p>No results found for "{query}".</p>
       )}
     </div>
   );
