@@ -143,7 +143,8 @@ const JoinAsFaculty = () => {
                 * Salary includes basic pay plus allowances as per Government of India norms.
               </p>
             </div>
-            
+                 </div>
+                {/*
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Benefits and Allowances</h3>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
@@ -157,8 +158,8 @@ const JoinAsFaculty = () => {
                 <li>Children's Education Allowance</li>
               </ul>
             </div>
-          </div>
-          
+     
+      
           <div className="mt-6">
             <h3 className="font-semibold text-gray-800 mb-2">Additional Benefits</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -191,7 +192,7 @@ const JoinAsFaculty = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </section>
 
@@ -234,7 +235,7 @@ const JoinAsFaculty = () => {
               </table>
             </div>
           </div>
-          
+          {/*
           <div className="mt-6">
             <h3 className="font-semibold text-gray-800 mb-3">Areas of Expertise</h3>
             <p className="text-gray-700 mb-3">
@@ -262,8 +263,8 @@ const JoinAsFaculty = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
+          </div>*/}
+        </div> 
       </section>
 
       {/* How to Apply Section */}
