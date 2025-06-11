@@ -188,13 +188,13 @@ const Research = () => {
               <tbody>
                 {sponsoredProjects.map((project, idx) => (
                   <tr key={project.id}>
-                    <td class="border border-gray-400">{idx + 1}</td>
-                    <td class="border border-gray-400">{project.Title}</td>
-                    <td class="border border-gray-400">{project.Area}</td>
-                    <td class="border border-gray-400">{project.Duration}</td>
-                    <td class="border border-gray-400">{project.PI || '-'}</td>
-                    <td class="border border-gray-400">{project.CoPI || '-'}</td>
-                    <td class="border border-gray-400">{project.CurrentStatus || '-'}</td>
+                    <td class="border border-gray-400 px-4 py-2">{idx + 1}</td>
+                    <td class="border border-gray-400 px-4 py-2">{project.Title}</td>
+                    <td class="border border-gray-400 px-4 py-2">{project.Area}</td>
+                    <td class="border border-gray-400 px-4 py-2">{project.Duration}</td>
+                    <td class="border border-gray-400 px-4 py-2">{project.PI || '-'}</td>
+                    <td class="border border-gray-400 px-4 py-2">{project.CoPI || '-'}</td>
+                    <td class="border border-gray-400 px-4 py-2">{project.CurrentStatus || '-'}</td>
                   </tr>
                 ))}
               </tbody>
