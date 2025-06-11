@@ -77,7 +77,7 @@ const Research = () => {
         }
         const projectsData = await projectsResponse.json();
 
-        const fetchedSponsoredProjects = projectsData.data.filter(project => project.Type === 'RnD');
+        const fetchedSponsoredProjects = projectsData.data.filter(project => project.Type === 'RnD' || 'Rnd');
         const fetchedConsultancyProjects = projectsData.data.filter(project => project.Type === 'Consultancy/Testing'); // Assuming a 'Consultancy' type exists
 
         setSponsoredProjects(fetchedSponsoredProjects);
