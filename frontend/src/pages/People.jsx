@@ -182,6 +182,7 @@ const People = () => {
   const [facultyMembers, setFacultyMembers] = useState([]);
   const [staffMembers, useStateStaffMembers] = useState([]);
   const [formerMembers, setFormerMembers] = useState([]);
+  const [phdScholars, setPhdScholars] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -194,6 +195,7 @@ const People = () => {
         const facultyData = [];
         const staffData = [];
         const formerData = [];
+        const phdData = [];
 
         data.forEach(person => {
           const mappedPerson = {
@@ -205,7 +207,7 @@ const People = () => {
             image: person.Image,
           };
 
-          if (person.Role === "Faculty Members" || person.Role === "Department Leadership") {
+          if (person.Role === "Faculty Members" || person.Role === "Department Leadership" || person.Role === "PHD Scholars") {
             mappedPerson.expertise = person.Domain;
           } else if (person.Role === "Staff Members") {
             mappedPerson.office = person.Domain;
@@ -227,6 +229,9 @@ const People = () => {
             case "Former Members":
               formerData.push(mappedPerson);
               break;
+            case "PHD":
+              phdData.push(mappedPerson);
+              break;
             default:
               break;
           }
@@ -236,6 +241,7 @@ const People = () => {
         setFacultyMembers(facultyData);
         useStateStaffMembers(staffData);
         setFormerMembers(formerData);
+        setPhdScholars(phdData);
 
       } catch (error) {
         console.error("Error fetching people data:", error);
@@ -277,6 +283,11 @@ const People = () => {
           icon={<i className="fas fa-user-graduate"></i>}
           targetId="former-members" 
         />
+        <NavCard 
+          title="PHD Scholars" 
+          icon={<i className="fas fa-user-graduate"></i>}
+          targetId="phd-scholars" 
+        />
       </div>
       
       {/* Leadership Section */}
@@ -311,6 +322,15 @@ const People = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {formerMembers.map((member, index) => (
             <FormerMemberCard key={index} {...member} />
+          ))}
+        </div>
+      </Section>
+
+      {/* PHD Scholars Section */}
+      <Section id="phd-scholars" title="PHD Scholars">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {phdScholars.map((member, index) => (
+            <FacultyCard key={index} {...member} />
           ))}
         </div>
       </Section>
