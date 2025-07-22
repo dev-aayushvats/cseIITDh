@@ -48,7 +48,7 @@ const Home = () => {
     const [talksAndEvents, setTalksAndEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const images = [img1, img2, img3];
+    const images = Object.values(import.meta.glob('../assets/carousel-images/*.{png,jpg,jpeg,gif,svg}', { eager: true, query: 'url', import: 'default' }));
 
     useEffect(() => {
         const fetchData = async () => {

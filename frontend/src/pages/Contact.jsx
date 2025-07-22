@@ -87,11 +87,20 @@ const Contact = () => {
           <div className="bg-white rounded-lg shadow-sm p-6 h-full">
             <h2 className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Location & Directions</h2>
             <div className="space-y-4">
-              <div className="bg-gray-100 rounded-md h-56 flex items-center justify-center">
-                <p className="text-gray-500 text-center p-4">
-                  {/* This is a placeholder for the map - in production, you would integrate Google Maps or similar */}
-                  Interactive map would be displayed here
-                </p>
+              <div className="bg-gray-100 rounded-md h-56" style={{ overflow: 'hidden' }}>
+                
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.890632363024!2d74.9350277!3d15.4876111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbd2a4c1b9b9c03%3A0xf6d9a2a7a4f1d4b6!2sIndian%20Institute%20of%20Technology%20Dharwad!5e0!3m2!1sen!2sin!4v1678888888888!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0, pointerEvents: 'auto' }} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="IIT Dharwad Location Map"
+                    className='rounded-md'
+                  ></iframe>
+                
               </div>
               
               <div>

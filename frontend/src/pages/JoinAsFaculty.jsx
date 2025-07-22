@@ -62,44 +62,6 @@ const JoinAsFaculty = () => {
         </div>
       </section>
 
-      {/* Research Facilities Section */}
-      <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Research Facilities</h2>
-        <div className="space-y-4">
-          <p className="text-gray-700">
-            IIT Dharwad provides state-of-the-art research facilities to support faculty in their research endeavors. The CSE department has dedicated laboratories equipped with high-performance computing resources.
-          </p>
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Instructional Labs</h3>
-            <ul className="list-disc list-inside ml-6 text-gray-700">
-              {["Programming Laboratory","Data Structures and Algorithms Laboratory","Software Systems Laboratory","Artificial Intelligence Laboratory","Computer Architecture Laboratory","Database Systems Laboratory","Operating Systems Laboratory","Computer Networks Laboratory","Compilers Laboratory"].map((lab, idx) => (
-                <li key={idx}>{lab}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Research & Development Labs</h3>
-            <ul className="list-disc list-inside ml-6 text-gray-700">
-              {[{ name: "AIML Lab" },{ name: "FutureG Networks Lab", link: "https://futuregnetworks.iitdh.ac.in/" },{ name: "Emerging Multimedia and AI (EMA) Lab", link: "http://ema.iitdh.ac.in/", img: "/sites/default/files/inline-images/EEMAA.jpg", imgWidth: 26, imgHeight: 17, hiring: true }].map((lab, idx) => (
-                <li key={idx} className="mb-2">
-                  {lab.link ? (
-                    <a href={lab.link} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
-                      {lab.name}
-                      {lab.img && (
-                        <img src={lab.img} alt="EMA" width={lab.imgWidth} height={lab.imgHeight} className="inline ml-2 align-middle" />
-                      )}
-                    </a>
-                  ) : lab.name}
-                  {lab.hiring && (
-                    <span className="ml-2 text-xs text-green-700 font-semibold">(EMA Lab is hiring now! <a href="/emerging-multimedia-and-ai-lab-ema-lab-hiring-were-looking-passionate-researchers-join-us-ms-phd" target="_blank" className="underline">Click Here to know more</a>)</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
       {/* Salary and Benefits Section */}
       <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Salary and Benefits</h2>
@@ -107,7 +69,7 @@ const JoinAsFaculty = () => {
           <p className="text-gray-700">
             IIT Dharwad offers competitive compensation packages to faculty members in line with other IITs and government norms. Our comprehensive benefits package is designed to support both professional development and personal wellbeing.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Salary Structure</h3>
@@ -143,56 +105,7 @@ const JoinAsFaculty = () => {
                 * Salary includes basic pay plus allowances as per Government of India norms.
               </p>
             </div>
-                 </div>
-                {/*
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Benefits and Allowances</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Dearness Allowance (DA) as per government rates</li>
-                <li>House Rent Allowance (HRA) or campus housing</li>
-                <li>Transport Allowance</li>
-                <li>Professional Development Allowance (₹3 lakhs for 3 years)</li>
-                <li>Relocation allowance for joining</li>
-                <li>Medical benefits for faculty and dependents</li>
-                <li>Leave Travel Concession (LTC)</li>
-                <li>Children's Education Allowance</li>
-              </ul>
-            </div>
-     
-      
-          <div className="mt-6">
-            <h3 className="font-semibold text-gray-800 mb-2">Additional Benefits</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-gray-50 p-3 rounded-md">
-                <h4 className="font-medium text-gray-800">Retirement Benefits</h4>
-                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
-                  <li>National Pension System (NPS)</li>
-                  <li>Gratuity as per norms</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 p-3 rounded-md">
-                <h4 className="font-medium text-gray-800">Campus Facilities</h4>
-                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
-                  <li>Faculty club and recreational facilities</li>
-                  <li>On-campus school for children</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 p-3 rounded-md">
-                <h4 className="font-medium text-gray-800">Leave Benefits</h4>
-                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
-                  <li>Earned Leave, Half Pay Leave</li>
-                  <li>Sabbatical leave for research</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 p-3 rounded-md">
-                <h4 className="font-medium text-gray-800">Support for Research</h4>
-                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
-                  <li>Startup research grant</li>
-                  <li>Support for patent filing</li>
-                </ul>
-              </div>
-            </div>
-          </div>*/}
+          </div>
         </div>
       </section>
 
@@ -203,7 +116,7 @@ const JoinAsFaculty = () => {
           <p className="text-gray-700">
             We seek highly qualified candidates with a strong academic background and research experience in Computer Science and Engineering or related fields.
           </p>
-          
+
           <div className="mt-4">
             <h3 className="font-semibold text-gray-800 mb-3">Educational Qualifications</h3>
             <div className="overflow-x-auto">
@@ -235,36 +148,7 @@ const JoinAsFaculty = () => {
               </table>
             </div>
           </div>
-          {/*
-          <div className="mt-6">
-            <h3 className="font-semibold text-gray-800 mb-3">Areas of Expertise</h3>
-            <p className="text-gray-700 mb-3">
-              We are particularly interested in candidates specializing in the following areas, but exceptional candidates from all areas of Computer Science will be considered:
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Artificial Intelligence</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Machine Learning</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Computer Vision</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Data Science</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Cybersecurity</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Cloud Computing</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">IoT and Edge Computing</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Theoretical Computer Science</div>
-              <div className="bg-indigo-50 p-3 rounded-md text-center">Human-Computer Interaction</div>
-            </div>
-          </div>
-          
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
-            <div className="flex">
-              <div className="ml-3">
-                <h3 className="text-sm font-medium text-yellow-800">Note on Exceptional Candidates</h3>
-                <p className="text-sm text-yellow-700 mt-1">
-                  For exceptionally brilliant candidates with an outstanding record of research publications and contributions to the field, some of the experience requirements may be relaxed.
-                </p>
-              </div>
-            </div>
-          </div>*/}
-        </div> 
+        </div>
       </section>
 
       {/* How to Apply Section */}
@@ -274,7 +158,7 @@ const JoinAsFaculty = () => {
           <p className="text-gray-700">
             Interested candidates are invited to apply for faculty positions through our online portal. Applications are accepted throughout the year, with reviews conducted periodically.
           </p>
-          
+
           <div className="mt-4">
             <h3 className="font-semibold text-gray-800 mb-3">Application Process</h3>
             <ol className="list-decimal list-inside space-y-2 text-gray-700">
@@ -294,7 +178,7 @@ const JoinAsFaculty = () => {
               <li>Shortlisted candidates will be invited for a seminar presentation and interview.</li>
             </ol>
           </div>
-          
+
           <div className="mt-6 bg-indigo-50 p-4 rounded-md">
             <h3 className="font-semibold text-gray-800 mb-2">Selection Process</h3>
             <ol className="list-decimal list-inside space-y-1 text-gray-700">
@@ -304,7 +188,7 @@ const JoinAsFaculty = () => {
               <li>Final selection based on overall performance, research potential, and teaching abilities.</li>
             </ol>
           </div>
-          
+
           <div className="mt-6">
             <h3 className="font-semibold text-gray-800 mb-3">Important Information</h3>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
@@ -313,7 +197,7 @@ const JoinAsFaculty = () => {
               <li>The institute reserves the right to shortlist candidates based on the needs of the departments/institute.</li>
             </ul>
           </div>
-          
+
           <div className="text-center mt-8">
             <a href="#" className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition duration-300 font-medium">
               Apply Now
