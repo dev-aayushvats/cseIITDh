@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AltCarousel from '../components/Carousel/AltCarousel';
 
 import img1 from '../assets/carousel-images/image1.jpg';
-import img2 from '../assets/carousel-images/image2.jpg';
+//import img2 from '../assets/carousel-images/image2.jpg';
 import img3 from '../assets/carousel-images/image3.jpg';
 
 const EventCard = ({ title, date, description }) => (
