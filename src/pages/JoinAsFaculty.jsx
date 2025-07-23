@@ -6,7 +6,7 @@ const JoinAsFaculty = () => {
       {/* Page Title */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Join as Faculty</h1>
-        <p className="text-gray-600 mt-2">Build your academic career at IIT Dharwad's Department of Computer Science and Engineering</p>
+        <p className="text-gray-600 mt-2">Build your academic career at IIT DHARWAD's Department of Computer Science and Engineering</p>
       </div>
 
       {/* About the Department Section */}
@@ -14,7 +14,7 @@ const JoinAsFaculty = () => {
         <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">About the Department</h2>
         <div className="space-y-4">
           <p className="text-gray-700">
-            The Department of Computer Science and Engineering at IIT Dharwad was established in 2016 and has quickly grown into a center for excellence in computer science education and research in India. Our department offers undergraduate, postgraduate, and doctoral programs in Computer Science and Engineering.
+            The Department of Computer Science and Engineering at IIT DHARWAD was established in 2016 and has quickly grown into a center for excellence in computer science education and research in India. Our department offers undergraduate, postgraduate, and doctoral programs in Computer Science and Engineering.
           </p>
           <p className="text-gray-700">
             We have a dynamic team of faculty members specializing in various domains of computer science including Artificial Intelligence, Machine Learning, Computer Vision, Theoretical Computer Science, Systems and Networking, Security and Privacy, and Human-Computer Interaction.
@@ -32,31 +32,31 @@ const JoinAsFaculty = () => {
         </div>
       </section>
 
-      {/* About IIT Dharwad Section */}
+      {/* About IIT DHARWAD Section */}
       <section className="mb-10 bg-white rounded-lg shadow-sm p-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">About IIT Dharwad</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">About IIT DHARWAD</h2>
         <div className="space-y-4">
           <p className="text-gray-700">
-            IIT Dharwad is one of the new IITs established by the Government of India in 2016. Located in the state of Karnataka, our institute is committed to excellence in teaching, research, and innovation while contributing to the technological advancement of the nation.
+            IIT DHARWAD is one of the new IITs established by the Government of India in 2016. Located in the state of Karnataka, our institute is committed to excellence in teaching, research, and innovation while contributing to the technological advancement of the nation.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Campus</h3>
               <p className="text-gray-700">
-                Our sprawling campus is situated on 470 acres of land in Dharwad, Karnataka. The campus features modern academic buildings, residential facilities, and recreational spaces, creating an ideal environment for academic and personal growth.
+                Our sprawling campus is situated on 470 acres of land in DHARWAD, Karnataka. The campus features modern academic buildings, residential facilities, and recreational spaces, creating an ideal environment for academic and personal growth.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Location</h3>
               <p className="text-gray-700">
-                Dharwad is a culturally rich city with a pleasant climate year-round. It is well connected to major cities like Bangalore, Mumbai, and Pune. The region is known for its contributions to literature, music, and education.
+                DHARWAD is a culturally rich city with a pleasant climate year-round. It is well connected to major cities like Bangalore, Mumbai, and Pune. The region is known for its contributions to literature, music, and education.
               </p>
             </div>
           </div>
           <div className="mt-4">
             <h3 className="font-semibold text-gray-800 mb-2">Institute Vision</h3>
             <p className="text-gray-700">
-              IIT Dharwad aims to be a globally recognized institution for excellence in technical education and research, contributing to the development of technology and science for the betterment of society.
+              IIT DHARWAD aims to be a globally recognized institution for excellence in technical education and research, contributing to the development of technology and science for the betterment of society.
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ const JoinAsFaculty = () => {
         <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Salary and Benefits</h2>
         <div className="space-y-4">
           <p className="text-gray-700">
-            IIT Dharwad offers competitive compensation packages to faculty members in line with other IITs and government norms. Our comprehensive benefits package is designed to support both professional development and personal wellbeing.
+            IIT DHARWAD offers competitive compensation packages to faculty members in line with other IITs and government norms. Our comprehensive benefits package is designed to support both professional development and personal wellbeing.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
@@ -162,7 +162,7 @@ const JoinAsFaculty = () => {
           <div className="mt-4">
             <h3 className="font-semibold text-gray-800 mb-3">Application Process</h3>
             <ol className="list-decimal list-inside space-y-2 text-gray-700">
-              <li>Register on the IIT Dharwad faculty recruitment portal.</li>
+              <li>Register on the IIT DHARWAD faculty recruitment portal.</li>
               <li>Fill out the online application form with personal, educational, and professional details.</li>
               <li>Upload the following documents:
                 <ul className="list-disc list-inside ml-5 mt-1 text-gray-600">
