@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-gray-600 text-sm">
-              &copy; {currentYear} Department of Computer Science and Engineering, IIT Dharwad
+              &copy; {currentYear} Department of Computer Science and Engineering, IIT DHARWAD
             </p>
           </div>
           <div className="text-gray-500 text-sm">
@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
         <div className="mt-4 pt-4 border-t border-gray-200">
           <p className="text-gray-500 text-xs text-center">
-            All rights reserved. The content on this website is the intellectual property of IIT Dharwad.
+            All rights reserved. The content on this website is the intellectual property of IIT DHARWAD.
           </p>
         </div>
       </div>
