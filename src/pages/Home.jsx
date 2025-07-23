@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AltCarousel from '../components/Carousel/AltCarousel';
 
-import img1 from '../assets/carousel-images/image1.jpg';
-import img2 from '../assets/carousel-images/image2.jpg';
-import img3 from '../assets/carousel-images/image3.jpg';
-
 const EventCard = ({ title, date, description }) => (
     <div className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
         <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
@@ -24,7 +20,7 @@ const NewsCard = ({ title, date, description, link }) => (
     </div>
 );
 
-const TalkCard = ({ title, speaker, designation, venue, time, date, image, description }) => (
+const TalkCard = ({ title, speaker, designation, venue, time, date, description }) => (
     <div className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
         <h3 className="text-lg font-semibold text-gray-800 mb-2"><span className="italic">{title}</span></h3>
         {/* {image && (

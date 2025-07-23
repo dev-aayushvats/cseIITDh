@@ -180,7 +180,7 @@ const FormerMemberCard = ({ name, title, period, currentAffiliation }) => {
 const People = () => {
   const [leadership, setLeadership] = useState([]);
   const [facultyMembers, setFacultyMembers] = useState([]);
-  const [staffMembers, useStateStaffMembers] = useState([]);
+  const [staffMembers, setStateStaffMembers] = useState([]);
   const [formerMembers, setFormerMembers] = useState([]);
   const [phdScholars, setPhdScholars] = useState([]);
 
@@ -239,7 +239,7 @@ const People = () => {
 
         setLeadership(leadershipData);
         setFacultyMembers(facultyData);
-        useStateStaffMembers(staffData);
+        setStateStaffMembers(staffData);
         setFormerMembers(formerData);
         setPhdScholars(phdData);
 

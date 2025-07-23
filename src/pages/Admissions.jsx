@@ -95,7 +95,7 @@ const Admissions = () => {
     return <div className="text-center py-10">No admissions data available.</div>;
   }
 
-  const { btech_admission, mtech_admission, ms_admission, phd_admission, bsms_dual_degree_admission, international_student_admissions } = admissionsData;
+  const { btech_admission, mtech_admission, ms_admission, phd_admission } = admissionsData;
 
   return (
     <div className="py-6 px-4 md:px-8">
