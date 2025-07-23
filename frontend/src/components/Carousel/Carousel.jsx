@@ -18,7 +18,7 @@ const Carousel = () => {
   return (
     <div
       id="carouselExample"
-      className="relative mx-auto max-w-3xl h-40" // Limited width and height
+      className="relative mx-auto max-w-3xl h-64" // Limited width and height
       data-carousel="slide"
     >
       {/* Carousel indicators */}
