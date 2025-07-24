@@ -187,7 +187,7 @@ const People = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://cse.iitdh.ac.in/strapi/api/peoples');
+        const response = await fetch('https://cse.iitdh.ac.in/strapi/api/peoples?pagination[pageSize]=50');
         const result = await response.json();
         const data = result.data;
 

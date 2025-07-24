@@ -67,13 +67,21 @@ const Home = () => {
                     talksAndEventsResponse.json()
                 ]);
 
+                // Sort data by 'updatedAt' in descending order
+                const sortData = (data) => {
+                    return data.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+                };
+
+                const sortedNews = sortData(newsJson.data);
+                const sortedTalksAndEvents = sortData(talksAndEventsJson.data);
+
                 // Cache the data
-                localStorage.setItem('cachedNews', JSON.stringify(newsJson.data));
-                localStorage.setItem('cachedTalksAndEvents', JSON.stringify(talksAndEventsJson.data));
+                localStorage.setItem('cachedNews', JSON.stringify(sortedNews));
+                localStorage.setItem('cachedTalksAndEvents', JSON.stringify(sortedTalksAndEvents));
                 localStorage.setItem('cacheTimestamp', Date.now().toString());
 
-                setNews(newsJson.data);
-                setTalksAndEvents(talksAndEventsJson.data);
+                setNews(sortedNews);
+                setTalksAndEvents(sortedTalksAndEvents);
             } catch (err) {
                 setError(err.message);
                 console.error('Error fetching data:', err);
