@@ -183,6 +183,7 @@ const People = () => {
   const [staffMembers, setStateStaffMembers] = useState([]);
   const [formerMembers, setFormerMembers] = useState([]);
   const [phdScholars, setPhdScholars] = useState([]);
+  const [pastScholars, setpastScholars] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -196,6 +197,7 @@ const People = () => {
         const staffData = [];
         const formerData = [];
         const phdData = [];
+        const pastData = [];
 
         data.forEach(person => {
           const mappedPerson = {
@@ -207,7 +209,7 @@ const People = () => {
             image: person.Image,
           };
 
-          if (person.Role === "Faculty Members" || person.Role === "Department Leadership" || person.Role === "PHD Scholars") {
+          if (person.Role === "Faculty Members" || person.Role === "Department Leadership" || person.Role === "PHD Scholars" || person.Role === "PAST Scholars") {
             mappedPerson.expertise = person.Domain;
           } else if (person.Role === "Staff Members") {
             mappedPerson.office = person.Domain;
@@ -232,6 +234,9 @@ const People = () => {
             case "PHD":
               phdData.push(mappedPerson);
               break;
+            case "Past Scholars":
+              pastData.push(mappedPerson);
+              break;
             default:
               break;
           }
@@ -242,7 +247,7 @@ const People = () => {
         setStateStaffMembers(staffData);
         setFormerMembers(formerData);
         setPhdScholars(phdData);
-
+        setpastScholars(pastData);
       } catch (error) {
         console.error("Error fetching people data:", error);
       }
@@ -288,6 +293,11 @@ const People = () => {
           icon={<i className="fas fa-user-graduate"></i>}
           targetId="phd-scholars" 
         />
+          <NavCard 
+          title="PAST Scholars" 
+          icon={<i className="fas fa-user-graduate"></i>}
+          targetId="past-scholars" 
+        />
       </div>
       
       {/* Leadership Section */}
@@ -330,6 +340,13 @@ const People = () => {
       <Section id="phd-scholars" title="PHD Scholars">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {phdScholars.map((member, index) => (
+            <FacultyCard key={index} {...member} />
+          ))}
+        </div>
+      </Section>
+      <Section id="past-scholars" title="PAST Scholars">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pastScholars.map((member, index) => (
             <FacultyCard key={index} {...member} />
           ))}
         </div>
