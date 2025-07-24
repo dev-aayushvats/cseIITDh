@@ -209,7 +209,7 @@ const People = () => {
             image: person.Image,
           };
 
-          if (person.Role === "Faculty Members" || person.Role === "Department Leadership" || person.Role === "PHD Scholars") {
+          if (person.Role === "Faculty Members" || person.Role === "Department Leadership" || person.Role === "PHD Scholars" || person.Role === "PAST Scholars") {
             mappedPerson.expertise = person.Domain;
           } else if (person.Role === "Staff Members") {
             mappedPerson.office = person.Domain;
@@ -345,16 +345,14 @@ const People = () => {
           ))}
         </div>
       </Section>
-      
-      {/* Past Scholars Section */}
-      <Section id="past-scholars" title="Past Scholars">
+      <Section id="past-scholars" title="PAST Scholars">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pastScholars.map((member, index) => (
-            <FormerMemberCard key={index} {...member} />
+            <FacultyCard key={index} {...member} />
           ))}
         </div>
       </Section>
-
+      
       {/* Back to Top Button */}
       <div className="text-center mt-10">
         <Link
