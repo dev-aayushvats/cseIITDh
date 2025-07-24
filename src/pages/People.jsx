@@ -183,6 +183,7 @@ const People = () => {
   const [staffMembers, setStateStaffMembers] = useState([]);
   const [formerMembers, setFormerMembers] = useState([]);
   const [phdScholars, setPhdScholars] = useState([]);
+  const [pastScholars, setPastScholars] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -196,6 +197,7 @@ const People = () => {
         const staffData = [];
         const formerData = [];
         const phdData = [];
+        const pastScholarsData = [];
 
         data.forEach(person => {
           const mappedPerson = {
@@ -232,6 +234,9 @@ const People = () => {
             case "PHD":
               phdData.push(mappedPerson);
               break;
+            case "Past Scholars":
+              pastScholarsData.push(mappedPerson);
+              break;
             default:
               break;
           }
@@ -242,6 +247,7 @@ const People = () => {
         setStateStaffMembers(staffData);
         setFormerMembers(formerData);
         setPhdScholars(phdData);
+        setPastScholars(pastScholarsData);
 
       } catch (error) {
         console.error("Error fetching people data:", error);
@@ -287,6 +293,11 @@ const People = () => {
           title="PHD Scholars" 
           icon={<i className="fas fa-user-graduate"></i>}
           targetId="phd-scholars" 
+        />
+        <NavCard 
+          title="Past Scholars" 
+          icon={<i className="fas fa-history"></i>}
+          targetId="past-scholars" 
         />
       </div>
       
@@ -335,6 +346,15 @@ const People = () => {
         </div>
       </Section>
       
+      {/* Past Scholars Section */}
+      <Section id="past-scholars" title="Past Scholars">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pastScholars.map((member, index) => (
+            <FormerMemberCard key={index} {...member} />
+          ))}
+        </div>
+      </Section>
+
       {/* Back to Top Button */}
       <div className="text-center mt-10">
         <Link
