@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AltCarousel from '../components/Carousel/AltCarousel';
+import Gallery from '../components/Gallery/Gallery';
 
 const EventCard = ({ title, date, description }) => (
     <div className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
@@ -193,6 +194,9 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="border-t border-gray-200 mt-8">
+                <Gallery />
             </div>
         </div>
     );
