@@ -1,99 +1,123 @@
-import React, { useState } from 'react';
-import logo1 from '../../assets/carousel-images/Academic-About.e6a203bff9b9d7dd0d81.jpg';
-import logo2 from '../../assets/carousel-images/banner-01.jpg';
-import logo3 from '../../assets/carousel-images/campus.jpg';
+import React, { useState, useEffect } from 'react';
 
-const Carousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const images = [logo1, logo2, logo3]; // Store the images in an array
+const CustomCarousel = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const length = images.length;
 
-  const handleNext = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+  // Auto-advance slides every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goToNext();
+    }, 5000);
+    
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
   };
 
-  const handlePrev = () => {
-    setCurrentSlide((prevSlide) => (prevSlide - 1 + images.length) % images.length);
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % length);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + length) % length);
+  };
+
+  // Handle touch events for swipe functionality
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) {
+      // Swipe left
+      goToNext();
+    }
+    
+    if (touchStart - touchEnd < -50) {
+      // Swipe right
+      goToPrev();
+    }
   };
 
   return (
-    <div
-      id="carouselExample"
-      className="relative mx-auto max-w-3xl h-64" // Limited width and height
-      data-carousel="slide"
+    <div 
+      className="relative rounded-lg overflow-hidden shadow-md max-w-full"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* Carousel indicators */}
-      <div className="absolute top-0 left-0 z-30 flex space-x-3 justify-center p-4">
+      {/* Carousel wrapper */}
+      <div className="relative h-48 sm:h-64 md:h-96 overflow-hidden">
+        {images.map((src, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === currentIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img
+              src={src}
+              alt={`Slide ${index + 1}`}
+              className="absolute w-full h-full object-cover"
+              style={{ transform: 'translate(-50%, -50%)', top: '50%', left: '50%' }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Slider indicators */}
+      <div className="absolute z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
         {images.map((_, index) => (
           <button
             key={index}
             type="button"
-            className={`w-3 h-3 bg-white rounded-full dark:bg-gray-800 ${currentSlide === index ? 'bg-blue-500' : ''}`}
-            onClick={() => setCurrentSlide(index)}
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-300'}`}
             aria-label={`Slide ${index + 1}`}
-          ></button>
+            onClick={() => goToSlide(index)}
+          />
         ))}
       </div>
 
-      {/* Carousel items */}
-      <div className="relative overflow-hidden rounded-lg">
-        <div className="duration-700 ease-in-out">
-          <img
-            src={images[currentSlide]}
-            className="block w-full h-full object-cover" // Make images fill the container
-            alt={`Image ${currentSlide + 1}`}
-          />
-        </div>
-      </div>
-
-      {/* Carousel controls */}
+      {/* Slider controls - hidden on very small screens */}
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-        onClick={handlePrev}
+        className="hidden sm:flex absolute top-0 left-0 z-30 items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none"
+        onClick={goToPrev}
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-black/30 group-hover:bg-black/50 group-focus:ring-4 group-focus:ring-black/50">
+        <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-white">
           <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
+            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
             fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            x="0"
-            y="0"
+            viewBox="0 0 6 10"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7"
-            ></path>
+            <path d="M5 1L1 5l4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
           </svg>
           <span className="sr-only">Previous</span>
         </span>
       </button>
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-        onClick={handleNext}
+        className="hidden sm:flex absolute top-0 right-0 z-30 items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none"
+        onClick={goToNext}
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-black/30 group-hover:bg-black/50 group-focus:ring-4 group-focus:ring-black/50">
+        <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-white">
           <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
+            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
             fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            x="0"
-            y="0"
+            viewBox="0 0 6 10"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 5l7 7-7 7"
-            ></path>
+            <path d="M1 9l4-4-4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
           </svg>
           <span className="sr-only">Next</span>
         </span>
@@ -102,4 +126,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default CustomCarousel;

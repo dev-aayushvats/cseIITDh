@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AltCarousel from '../components/Carousel/AltCarousel';
+import Carousel from '../components/Carousel/Carousel';
 import Gallery from '../components/Gallery/Gallery';
-
-const EventCard = ({ title, date, description }) => (
-    <div className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
-        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
-        <p className="text-sm text-indigo-600 font-medium mt-1">{date}</p>
-        <p className="text-gray-600 text-sm mt-2 flex-grow">{description}</p>
-        <button className="mt-3 text-xs font-medium text-indigo-600 hover:text-indigo-800 transition-colors">
-            Learn more →
-        </button>
-    </div>
-);
 
 const NewsCard = ({ title, date, description, link }) => (
     <div onClick={() => { if(link) window.open(link, '_blank')}} className="cursor-pointer bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
@@ -140,7 +129,7 @@ const Home = () => {
         <div className="py-6 px-4 md:px-8">
             {/* Carousel Section */}
             <div className="mb-10">
-                <AltCarousel images={images} />
+                <Carousel images={images} />
             </div>
             {/* News & Talks_events Section */}
             <div className="border-t border-gray-200 pt-8">
