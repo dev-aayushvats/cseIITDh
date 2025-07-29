@@ -5,7 +5,7 @@ const Gallery = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     // Import images from the specified folder
-    const galleryImages = Object.values(import.meta.glob('../../assets/gallery-images/**/*.{png,jpg,jpeg,gif,svg}', { eager: true, import: 'default' }));
+    const galleryImages = Object.values(import.meta.glob('../../assets/gallery-images/**/*.{avif, png,jpg,jpeg,gif,svg}', { eager: true, import: 'default' }));
 
     // Effect to prevent background scrolling when the modal is open
     useEffect(() => {
