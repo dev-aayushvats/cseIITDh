@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import PDFErrorFallback from './PDFErrorFallback';
-import './PDFViewer.css';
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+// import "./PDFViewer.css";
+import { pdfjs } from "react-pdf";
 
-// Set up the worker source for PDF.js
-// Use HTTPS for the worker to ensure it works in all environments
+// Lazy load react-pdf for performance and bundle size
+const Document = lazy(() =>
+  import("react-pdf").then((mod) => ({ default: mod.Document }))
+);
+const Page = lazy(() =>
+  import("react-pdf").then((mod) => ({ default: mod.Page }))
+);
+
+import PDFErrorFallback from "./PDFErrorFallback";
+
+// Set up the worker source for PDF.js (only once)
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const PDFViewer = ({ pdfFile }) => {
@@ -18,83 +31,79 @@ const PDFViewer = ({ pdfFile }) => {
   const [useFallback, setUseFallback] = useState(false);
 
   // Get the absolute URL for the PDF file
-  const absolutePdfUrl = pdfFile.startsWith('http') 
-    ? pdfFile 
+  const absolutePdfUrl = pdfFile.startsWith("http")
+    ? pdfFile
     : `${window.location.origin}${pdfFile}`;
 
-  // Function to run after successful PDF load
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-    setLoading(false);
-  }
-
-  // Function to handle document error
-  function onDocumentLoadError(error) {
-    console.error('Error loading PDF:', error);
-    setLoading(false);
-    setError(true);
-    // Switch to fallback on error
-    setUseFallback(true);
-  }
-
-  // Go to previous page
-  function goToPreviousPage() {
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  }
-
-  // Go to next page
-  function goToNextPage() {
-    if (pageNumber < numPages) {
-      setPageNumber(pageNumber + 1);
-    }
-  }
-
-  // Switch to fallback iframe view
-  function switchToFallback() {
-    setUseFallback(true);
-  }
-
-  // Calculate container ref for responsive sizing
-  const containerRef = React.useRef(null);
-
-  useEffect(() => {
+  // Responsive width calculation
+  const containerRef = useRef(null);
+  useLayoutEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
         setWidth(containerRef.current.getBoundingClientRect().width);
       }
     };
-
-    // Initial width calculation
     updateWidth();
-
-    // Update width on resize
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // Iframe Fallback View - Use object instead of iframe to prevent recursive loading
+  // PDF load success
+  const onDocumentLoadSuccess = useCallback(({ numPages }) => {
+    setNumPages(numPages);
+    setLoading(false);
+  }, []);
+
+  // PDF load error
+  const onDocumentLoadError = useCallback((err) => {
+    setLoading(false);
+    setError(true);
+    setUseFallback(true);
+    // Optionally log error in production
+    if (process.env.NODE_ENV !== "production") {
+      // eslint-disable-next-line no-console
+      console.error("Error loading PDF:", err);
+    }
+  }, []);
+
+  // Navigation handlers
+  const goToPreviousPage = useCallback(() => {
+    setPageNumber((prev) => (prev > 1 ? prev - 1 : prev));
+  }, []);
+  const goToNextPage = useCallback(() => {
+    setPageNumber((prev) => (prev < numPages ? prev + 1 : prev));
+  }, [numPages]);
+  const switchToFallback = useCallback(() => setUseFallback(true), []);
+
+  // Fallback: object tag for best compatibility and minimal bundle
   if (useFallback) {
     return (
       <div className="pdf-viewer" ref={containerRef}>
         <div className="mb-4">
           <div className="text-sm text-gray-500 mb-2">
-            Using simplified PDF viewer. For best experience, make sure you have a PDF viewer installed.
+            Using simplified PDF viewer. For best experience, make sure you have
+            a PDF viewer installed.
           </div>
         </div>
-        <div className="object-container" style={{ width: '100%', height: '600px' }}>
-          <object 
-            data={absolutePdfUrl} 
+        <div
+          className="object-container"
+          style={{ width: "100%", height: "600px" }}
+        >
+          <object
+            data={absolutePdfUrl}
             type="application/pdf"
-            width="100%" 
-            height="100%" 
-            style={{ border: 'none', borderRadius: '4px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}
+            width="100%"
+            height="100%"
+            style={{
+              border: "none",
+              borderRadius: "4px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
           >
             <p>
               Your browser does not support embedded PDFs.
-              <a 
-                href={absolutePdfUrl} 
+              <a
+                href={absolutePdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-indigo-600 hover:text-indigo-800 ml-1"
@@ -105,14 +114,27 @@ const PDFViewer = ({ pdfFile }) => {
           </object>
         </div>
         <div className="mt-4 text-center">
-          <a 
-            href={absolutePdfUrl} 
+          <a
+            href={absolutePdfUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-label="Open PDF in New Tab"
+            >
+              <title>Open PDF in New Tab</title>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
             </svg>
             Open PDF in New Tab
           </a>
@@ -121,11 +143,12 @@ const PDFViewer = ({ pdfFile }) => {
     );
   }
 
-  // Standard view with React-PDF
+  // Error fallback
   if (error) {
     return <PDFErrorFallback pdfFile={absolutePdfUrl} />;
   }
 
+  // Main PDF viewer with lazy loading for best performance
   return (
     <div className="pdf-viewer" ref={containerRef}>
       {loading && (
@@ -133,32 +156,38 @@ const PDFViewer = ({ pdfFile }) => {
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
         </div>
       )}
-
       <div className="pdf-container">
-        <Document
-          file={absolutePdfUrl}
-          onLoadSuccess={onDocumentLoadSuccess}
-          onLoadError={onDocumentLoadError}
-          loading={
+        <Suspense
+          fallback={
             <div className="flex justify-center items-center h-64">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
             </div>
           }
-          className="flex flex-col items-center"
-          error={<PDFErrorFallback pdfFile={absolutePdfUrl} />}
-          noData={<PDFErrorFallback pdfFile={absolutePdfUrl} />}
         >
-          <Page 
-            pageNumber={pageNumber} 
-            width={width ? Math.min(width, 800) : 600}
-            className="shadow-md"
-            renderTextLayer={false} // Turn off text layer to improve performance
-            renderAnnotationLayer={false} // Turn off annotations to improve performance
+          <Document
+            file={absolutePdfUrl}
+            onLoadSuccess={onDocumentLoadSuccess}
+            onLoadError={onDocumentLoadError}
+            className="flex flex-col items-center"
             error={<PDFErrorFallback pdfFile={absolutePdfUrl} />}
-          />
-        </Document>
+            noData={<PDFErrorFallback pdfFile={absolutePdfUrl} />}
+            loading={
+              <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+              </div>
+            }
+          >
+            <Page
+              pageNumber={pageNumber}
+              width={width ? Math.min(width, 800) : 600}
+              className="shadow-md"
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+              error={<PDFErrorFallback pdfFile={absolutePdfUrl} />}
+            />
+          </Document>
+        </Suspense>
       </div>
-
       {!loading && !error && (
         <div className="flex flex-col items-center mt-4">
           <div className="text-sm text-gray-600 mb-2">
@@ -166,6 +195,7 @@ const PDFViewer = ({ pdfFile }) => {
           </div>
           <div className="flex gap-2">
             <button
+              type="button"
               onClick={goToPreviousPage}
               disabled={pageNumber <= 1}
               className="px-3 py-1 bg-indigo-600 text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
@@ -173,6 +203,7 @@ const PDFViewer = ({ pdfFile }) => {
               Previous
             </button>
             <button
+              type="button"
               onClick={goToNextPage}
               disabled={pageNumber >= numPages}
               className="px-3 py-1 bg-indigo-600 text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
@@ -181,23 +212,50 @@ const PDFViewer = ({ pdfFile }) => {
             </button>
           </div>
           <div className="mt-4 flex space-x-4">
-            <a 
-              href={absolutePdfUrl} 
+            <a
+              href={absolutePdfUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-label="Open PDF"
+              >
+                <title>Open PDF</title>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
               </svg>
               Open PDF
             </a>
             <button
+              type="button"
               onClick={switchToFallback}
               className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8v4m0 4h.01M8.438 4.952l-.707.707M15.569 4.952l.707.707M9 12a3 3 0 11 6 0 3 3 0 01-6 0z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-label="Switch to Simple Viewer"
+              >
+                <title>Switch to Simple Viewer</title>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 8v4m0 4h.01M8.438 4.952l-.707.707M15.569 4.952l.707.707M9 12a3 3 0 11 6 0 3 3 0 01-6 0z"
+                />
               </svg>
               Switch to Simple Viewer
             </button>
@@ -208,4 +266,4 @@ const PDFViewer = ({ pdfFile }) => {
   );
 };
 
-export default PDFViewer; 
+export default PDFViewer;

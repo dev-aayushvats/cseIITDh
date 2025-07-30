@@ -1,10 +1,24 @@
-import AcademicRules from "../components/Academics/AcademicRules";
-import CoursesSection from "../components/Academics/CoursesSection";
-import CurriculumSection from "../components/Academics/CurriculumSection";
-import FAQs from "../components/Academics/FAQs";
-import NavCard from "../components/Academics/NavCard";
-import TimeTableSection from "../components/Academics/TimeTableSection";
-import BackToTopButton from "../components/BackToTopButton";
+import { lazy, Suspense } from "react";
+
+const AcademicRules = lazy(() =>
+  import("../components/Academics/AcademicRules")
+);
+const CoursesSection = lazy(() =>
+  import("../components/Academics/CoursesSection")
+);
+const CurriculumSection = lazy(() =>
+  import("../components/Academics/CurriculumSection")
+);
+const FAQs = lazy(() => import("../components/Academics/FAQs"));
+const NavCard = lazy(() => import("../components/Academics/NavCard"));
+const TimeTableSection = lazy(() =>
+  import("../components/Academics/TimeTableSection")
+);
+const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
+
+const fallback = (
+  <div className="text-center py-8 text-gray-400">Loading...</div>
+);
 
 // Academics Page
 const Academics = () => {
@@ -21,57 +35,71 @@ const Academics = () => {
 
       {/* Navigation Cards */}
       <div className="mb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
-          <NavCard
-            title="Time Table"
-            icon={<i className="far fa-clock"></i>}
-            targetId="timetable"
-            viewText={"View Details"}
-          />
-          <NavCard
-            title="Courses"
-            icon={<i className="fas fa-book"></i>}
-            targetId="courses"
-            viewText={"View Details"}
-          />
-          <NavCard
-            title="Curriculum"
-            icon={<i className="fas fa-graduation-cap"></i>}
-            targetId="curriculum"
-            viewText={"View Details"}
-          />
-          <NavCard
-            title="Rules"
-            icon={<i className="fas fa-gavel"></i>}
-            targetId="rules"
-            viewText={"View Details"}
-          />
-          <NavCard
-            title="FAQs"
-            icon={<i className="fas fa-question-circle"></i>}
-            targetId="faq"
-            viewText={"View Details"}
-          />
-        </div>
+        <Suspense fallback={fallback}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+            <NavCard
+              title="Time Table"
+              icon={<i className="far fa-clock"></i>}
+              targetId="timetable"
+              viewText={"View Details"}
+            />
+            <NavCard
+              title="Courses"
+              icon={<i className="fas fa-book"></i>}
+              targetId="courses"
+              viewText={"View Details"}
+            />
+            <NavCard
+              title="Curriculum"
+              icon={<i className="fas fa-graduation-cap"></i>}
+              targetId="curriculum"
+              viewText={"View Details"}
+            />
+            <NavCard
+              title="Rules"
+              icon={<i className="fas fa-gavel"></i>}
+              targetId="rules"
+              viewText={"View Details"}
+            />
+            <NavCard
+              title="FAQs"
+              icon={<i className="fas fa-question-circle"></i>}
+              targetId="faq"
+              viewText={"View Details"}
+            />
+          </div>
+        </Suspense>
       </div>
 
       {/* Time Table Section */}
-      <TimeTableSection />
+      <Suspense fallback={fallback}>
+        <TimeTableSection />
+      </Suspense>
 
       {/* Courses Section */}
-      <CoursesSection />
+      <Suspense fallback={fallback}>
+        <CoursesSection />
+      </Suspense>
 
       {/* Curriculum Section */}
-      <CurriculumSection />
+      <Suspense fallback={fallback}>
+        <CurriculumSection />
+      </Suspense>
 
       {/* Rules Section */}
-      <AcademicRules />
+      <Suspense fallback={fallback}>
+        <AcademicRules />
+      </Suspense>
 
       {/* FAQs Section */}
-      <FAQs />
+      <Suspense fallback={fallback}>
+        <FAQs />
+      </Suspense>
 
       {/* Back to Top Button */}
-      <BackToTopButton to={"academics-top"} />
+      <Suspense fallback={null}>
+        <BackToTopButton to={"academics-top"} />
+      </Suspense>
     </div>
   );
 };

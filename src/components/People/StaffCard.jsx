@@ -13,6 +13,7 @@ export default function StaffCard({
           <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
             {image ? (
               <img
+                loading="lazy"
                 src={image}
                 alt={name}
                 className="w-full h-full object-cover"

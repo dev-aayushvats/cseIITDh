@@ -1,11 +1,20 @@
-import BTechSection from "../components/Admissions/BTechSection";
-import MSResearchSection from "../components/Admissions/MSResearchSection";
-import MTechSection from "../components/Admissions/MTechSection";
-import PhDSection from "../components/Admissions/PhDSection";
-import BackToTopButton from "../components/BackToTopButton";
+import { lazy, Suspense } from "react";
 import GlobalError from "../components/GlobalError";
 import Loading from "../components/Loading";
 import useAdmissionsInfo from "../hooks/useAdmissionsInfo";
+
+// Lazy load components
+const BTechSection = lazy(() =>
+  import("../components/Admissions/BTechSection")
+);
+const MSResearchSection = lazy(() =>
+  import("../components/Admissions/MSResearchSection")
+);
+const MTechSection = lazy(() =>
+  import("../components/Admissions/MTechSection")
+);
+const PhDSection = lazy(() => import("../components/Admissions/PhDSection"));
+const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
 
 function AdmissionDetails() {
   const {
@@ -21,21 +30,35 @@ function AdmissionDetails() {
   const { btech_admission, mtech_admission, ms_admission, phd_admission } =
     admissionsData;
 
+  const fallback = (
+    <div className="text-center py-8 text-gray-400">Loading...</div>
+  );
+
   return (
     <>
       {/* B.Tech Section */}
-      <BTechSection btech_admission={btech_admission} />
+      <Suspense fallback={fallback}>
+        <BTechSection btech_admission={btech_admission} />
+      </Suspense>
 
       {/* M.Tech Section */}
-      <MTechSection mtech_admission={mtech_admission} />
+      <Suspense fallback={fallback}>
+        <MTechSection mtech_admission={mtech_admission} />
+      </Suspense>
 
       {/* MS Research Section */}
-      <MSResearchSection ms_admission={ms_admission} />
+      <Suspense fallback={fallback}>
+        <MSResearchSection ms_admission={ms_admission} />
+      </Suspense>
 
       {/* PhD Section */}
-      <PhDSection phd_admission={phd_admission} />
+      <Suspense fallback={fallback}>
+        <PhDSection phd_admission={phd_admission} />
+      </Suspense>
       {/* Back to Top Button */}
-      <BackToTopButton to={"admissions-top"} />
+      <Suspense fallback={null}>
+        <BackToTopButton to={"admissions-top"} />
+      </Suspense>
     </>
   );
 }
@@ -49,7 +72,8 @@ const Admissions = () => {
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Admissions</h1>
         <p className="text-gray-600">
           Learn about admission requirements, application procedures, and
-          opportunities for prospective students.<br></br>
+          opportunities for prospective students.
+          <br />
           Redirect to IIT DHARWAD webpage Admission section,by clicking on the
           button below.
         </p>

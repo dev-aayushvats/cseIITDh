@@ -1,5 +1,7 @@
-import PDFViewer from "../PDFViewer/PDFViewer";
+import { lazy, Suspense } from "react";
 import Section from "../Section";
+
+const PDFViewer = lazy(() => import("../PDFViewer/PDFViewer"));
 
 export default function TimeTableSection() {
   return (
@@ -17,7 +19,9 @@ export default function TimeTableSection() {
 
         {/* PDF Viewer Component */}
         <div className="mt-6">
-          <PDFViewer pdfFile="/timetable.pdf" />
+          <Suspense fallback={<div>Loading timetable...</div>}>
+            <PDFViewer pdfFile="/timetable.pdf" />
+          </Suspense>
         </div>
 
         {/* Fallback direct link */}

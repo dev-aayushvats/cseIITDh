@@ -1,9 +1,25 @@
-import ContactPoints from "../components/ContactUs/ContactPoints";
-import ContactUsFaq from "../components/ContactUs/ContactUsFaq";
-import ContactUsForm from "../components/ContactUs/ContactUsForm";
-import ContactUsSocialMediaSection from "../components/ContactUs/ContactUsSocialMediaSection";
-import DepartmentAddress from "../components/ContactUs/DepartmentAddress";
-import LocationAndDirections from "../components/ContactUs/LocationAndDirections";
+import { lazy, Suspense } from "react";
+
+const ContactPoints = lazy(() =>
+  import("../components/ContactUs/ContactPoints")
+);
+const ContactUsFaq = lazy(() => import("../components/ContactUs/ContactUsFaq"));
+const ContactUsForm = lazy(() =>
+  import("../components/ContactUs/ContactUsForm")
+);
+const ContactUsSocialMediaSection = lazy(() =>
+  import("../components/ContactUs/ContactUsSocialMediaSection")
+);
+const DepartmentAddress = lazy(() =>
+  import("../components/ContactUs/DepartmentAddress")
+);
+const LocationAndDirections = lazy(() =>
+  import("../components/ContactUs/LocationAndDirections")
+);
+
+const fallback = (
+  <div className="text-center py-8 text-gray-400">Loading...</div>
+);
 
 const Contact = () => {
   return (
@@ -19,23 +35,35 @@ const Contact = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Left Column - Address and General Contact */}
-        <DepartmentAddress />
+        <Suspense fallback={fallback}>
+          <DepartmentAddress />
+        </Suspense>
 
         {/* Middle Column - Specific Contact Points */}
-        <ContactPoints />
+        <Suspense fallback={fallback}>
+          <ContactPoints />
+        </Suspense>
 
         {/* Right Column - Map and Directions */}
-        <LocationAndDirections />
+        <Suspense fallback={fallback}>
+          <LocationAndDirections />
+        </Suspense>
       </div>
 
       {/* FAQ Section */}
-      <ContactUsFaq />
+      <Suspense fallback={fallback}>
+        <ContactUsFaq />
+      </Suspense>
 
       {/* Contact Form Section */}
-      <ContactUsForm />
+      <Suspense fallback={fallback}>
+        <ContactUsForm />
+      </Suspense>
 
       {/* Social Media Section */}
-      <ContactUsSocialMediaSection />
+      <Suspense fallback={fallback}>
+        <ContactUsSocialMediaSection />
+      </Suspense>
     </div>
   );
 };

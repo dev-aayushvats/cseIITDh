@@ -138,6 +138,7 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
           </button>
           {/* Default Logo (hidden on small screens) */}
           <img
+            loading="lazy"
             src={logo}
             alt="IIT DH"
             onClick={() => window.open("https://www.iitdh.ac.in/", "_blank")}
@@ -145,6 +146,7 @@ function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
           />
           {/* Mobile Logo (visible only on small screens) */}
           <img
+            loading="lazy"
             src="/institute_favicon.png"
             alt="IIT DH"
             onClick={() => window.open("https://www.iitdh.ac.in/", "_blank")}

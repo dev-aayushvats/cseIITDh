@@ -1,15 +1,28 @@
-import { useMemo } from "react";
-import NavCard from "../components/Academics/NavCard";
-import BackToTopButton from "../components/BackToTopButton";
+import { lazy, Suspense, useMemo } from "react";
+
 import GlobalError from "../components/GlobalError";
 import Loading from "../components/Loading";
-import DepartmentLeadership from "../components/People/DepartmentLeadership";
-import FacultySection from "../components/People/FacultySection";
-import FormerMemberSection from "../components/People/FormerMemberSection";
-import PastScholarSection from "../components/People/PastScholarSection";
-import PhDScholarSection from "../components/People/PhDScholarSection";
-import StaffSection from "../components/People/StaffSection";
 import usePeopleInfo from "../hooks/usePeopleInfo";
+
+// Lazy load People section components
+const NavCard = lazy(() => import("../components/Academics/NavCard"));
+const DepartmentLeadership = lazy(() =>
+  import("../components/People/DepartmentLeadership")
+);
+const FacultySection = lazy(() =>
+  import("../components/People/FacultySection")
+);
+const StaffSection = lazy(() => import("../components/People/StaffSection"));
+const FormerMemberSection = lazy(() =>
+  import("../components/People/FormerMemberSection")
+);
+const PhDScholarSection = lazy(() =>
+  import("../components/People/PhDScholarSection")
+);
+const PastScholarSection = lazy(() =>
+  import("../components/People/PastScholarSection")
+);
+const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
 
 function QuickNavigation() {
   return (
@@ -87,6 +100,10 @@ const getPeopleData = (data) => {
   });
 };
 
+const fallback = (
+  <div className="text-center py-8 text-gray-400">Loading...</div>
+);
+
 // People Page Component
 const People = () => {
   const { data, isLoading, isError, error } = usePeopleInfo();
@@ -122,19 +139,33 @@ const People = () => {
       {/* Navigation Cards */}
       <QuickNavigation />
       {/* Leadership Section */}
-      <DepartmentLeadership leadership={leadership} />
+      <Suspense fallback={fallback}>
+        <DepartmentLeadership leadership={leadership} />
+      </Suspense>
       {/* Faculty Section */}
-      <FacultySection facultyMembers={facultyMembers} />
+      <Suspense fallback={fallback}>
+        <FacultySection facultyMembers={facultyMembers} />
+      </Suspense>
       {/* Staff Section */}
-      <StaffSection staffMembers={staffMembers} />
+      <Suspense fallback={fallback}>
+        <StaffSection staffMembers={staffMembers} />
+      </Suspense>
       {/* Former Members Section */}
-      <FormerMemberSection formerMembers={formerMembers} />
+      <Suspense fallback={fallback}>
+        <FormerMemberSection formerMembers={formerMembers} />
+      </Suspense>
       {/* PHD Scholars Section */}
-      <PhDScholarSection phdScholars={phdScholars} />
+      <Suspense fallback={fallback}>
+        <PhDScholarSection phdScholars={phdScholars} />
+      </Suspense>
       {/* Past Scholars */}
-      <PastScholarSection pastScholars={pastScholars} />
+      <Suspense fallback={fallback}>
+        <PastScholarSection pastScholars={pastScholars} />
+      </Suspense>
       {/* Back to Top Button */}
-      <BackToTopButton to={"people-top"} />
+      <Suspense fallback={null}>
+        <BackToTopButton to={"people-top"} />
+      </Suspense>
     </div>
   );
 };
