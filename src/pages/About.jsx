@@ -1,76 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import useAboutData from "../hooks/useAboutData";
 
-const About = () => {
-  const [aboutData, setAboutData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+const AboutDescription = ({ description }) => {
+  if (!Array.isArray(description) || description.length === 0) {
+    return null;
+  }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const response = await fetch("https://cse.iitdh.ac.in/strapi/api/about-pages");
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const json = await response.json();
-
-        // console.log(json.data);
-
-        // Cache the data
-        localStorage.setItem('cachedAboutData', JSON.stringify(json.data));
-        localStorage.setItem('aboutDataCacheTimestamp', Date.now().toString());
-
-        setAboutData(json.data);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching data:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    // Check cache first
-    const cachedData = localStorage.getItem('cachedAboutData');
-    const cacheTimestamp = localStorage.getItem('aboutDataCacheTimestamp');
-    const now = Date.now();
-
-    // console.log(cachedData);
-
-    if (cachedData && cacheTimestamp && (now - parseInt(cacheTimestamp)) < 300000) {
-      setAboutData(JSON.parse(cachedData));
-      setIsLoading(false);
-    } else {
-      fetchData();
-    }
-  }, []);
-
-  // Helper function to render description content
-  const renderDescription = (description) => {
-    if (!Array.isArray(description)) {
-      return null; // Or some fallback UI
-    }
-    return description.map((item, index) => {
-      if (item.type === 'paragraph') {
-        return (
-          <p key={index} className="text-gray-600 leading-relaxed">
-            {item.children[0].text}
-          </p>
-        );
-      } else if (item.type === 'heading') {
-        return (
-          <h3 key={index} className="text-xl font-medium text-gray-700 mb-2">
-            {item.children[0].text}
-          </h3>
-        );
-      }
-      return null;
-    });
+  // Generate a unique key for each item
+  const getItemKey = (item, idx) => {
+    if (item.id) return item.id;
+    const text = item?.children?.[0]?.text || "";
+    return `${item.type}-${text.slice(0, 10)}-${idx}`;
   };
+
+  const elements = [];
+
+  for (const [index, item] of description.entries()) {
+    // Validate item structure
+    const isValid =
+      item &&
+      typeof item.type === "string" &&
+      Array.isArray(item.children) &&
+      item.children[0]?.text;
+
+    if (!isValid) continue;
+
+    const key = getItemKey(item, index);
+    const text = item.children[0].text;
+
+    if (item.type === "paragraph") {
+      elements.push(
+        <p key={key} className="text-gray-600 leading-relaxed">
+          {text}
+        </p>
+      );
+    } else if (item.type === "heading") {
+      elements.push(
+        <h3 key={key} className="text-xl font-medium text-gray-700 mb-2">
+          {text}
+        </h3>
+      );
+    }
+  }
+
+  return <>{elements}</>;
+};
+
+const AboutData = () => {
+  const { data: aboutData, isLoading, isError, error } = useAboutData();
 
   if (isLoading) {
     return (
@@ -91,11 +67,11 @@ const About = () => {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="py-6 px-4 md:px-8">
         <div className="text-red-500 p-4 bg-red-50 rounded-lg">
-          <p>Error loading content: {error}</p>
+          <p>Error loading content: {error?.message}</p>
           <p className="text-sm mt-2">Please try refreshing the page.</p>
         </div>
       </div>
@@ -103,21 +79,28 @@ const About = () => {
   }
 
   return (
-    <div className="py-6 px-4 md:px-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">About Us</h1>
-      
-      <div className="space-y-6">
-        {aboutData.map((section) => (
-          <section key={section.id} className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">{section.Title}</h2>
-            <div className="space-y-4">
-              {renderDescription(section.Description)}
-            </div>
-          </section>
-        ))}
-      </div>
+    <div className="space-y-6">
+      {aboutData.map((section) => (
+        <section key={section.id} className="bg-white p-6 rounded-lg shadow-sm">
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+            {section.Title}
+          </h2>
+          <div className="space-y-4">
+            <AboutDescription description={section?.Description} />
+          </div>
+        </section>
+      ))}
     </div>
   );
 };
 
-export default About; 
+const About = () => {
+  return (
+    <div className="py-6 px-4 md:px-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">About Us</h1>
+      <AboutData />
+    </div>
+  );
+};
+
+export default About;

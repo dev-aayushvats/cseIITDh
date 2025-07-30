@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 const CustomCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,7 +11,7 @@ const CustomCarousel = ({ images }) => {
     const timer = setInterval(() => {
       goToNext();
     }, 5000);
-    
+
     return () => clearInterval(timer);
   }, [currentIndex]);
 
@@ -31,17 +31,17 @@ const CustomCarousel = ({ images }) => {
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchMove = (e) => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchEnd = () => {
     if (touchStart - touchEnd > 50) {
       // Swipe left
       goToNext();
     }
-    
+
     if (touchStart - touchEnd < -50) {
       // Swipe right
       goToPrev();
@@ -49,7 +49,7 @@ const CustomCarousel = ({ images }) => {
   };
 
   return (
-    <div 
+    <div
       className="relative rounded-lg overflow-hidden shadow-md max-w-full"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -59,28 +59,34 @@ const CustomCarousel = ({ images }) => {
       <div className="relative h-48 sm:h-64 md:h-96 overflow-hidden">
         {images.map((src, index) => (
           <div
-            key={index}
+            key={src}
             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
               className="absolute w-full h-full object-cover"
-              style={{ transform: 'translate(-50%, -50%)', top: '50%', left: '50%' }}
+              style={{
+                transform: "translate(-50%, -50%)",
+                top: "50%",
+                left: "50%",
+              }}
             />
           </div>
         ))}
       </div>
 
       {/* Slider indicators */}
-      <div className="absolute z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
-        {images.map((_, index) => (
+      <div className="absolute  z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
+        {images.map((src, index) => (
           <button
-            key={index}
+            key={`slide-${src}`}
             type="button"
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-300'}`}
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+              currentIndex === index ? "bg-white" : "bg-gray-300"
+            }`}
             aria-label={`Slide ${index + 1}`}
             onClick={() => goToSlide(index)}
           />
@@ -99,8 +105,16 @@ const CustomCarousel = ({ images }) => {
             fill="none"
             viewBox="0 0 6 10"
             xmlns="http://www.w3.org/2000/svg"
+            aria-label="Previous slide"
           >
-            <path d="M5 1L1 5l4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+            <title>Previous slide</title>
+            <path
+              d="M5 1L1 5l4 4"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
           </svg>
           <span className="sr-only">Previous</span>
         </span>
@@ -116,8 +130,16 @@ const CustomCarousel = ({ images }) => {
             fill="none"
             viewBox="0 0 6 10"
             xmlns="http://www.w3.org/2000/svg"
+            aria-label="Next slide"
           >
-            <path d="M1 9l4-4-4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+            <title>Next slide</title>
+            <path
+              d="M1 9l4-4-4-4"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
           </svg>
           <span className="sr-only">Next</span>
         </span>
