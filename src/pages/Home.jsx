@@ -13,9 +13,6 @@ const NewsCard = ({ title, date, description, link }) => (
 const TalkCard = ({ title, speaker, designation, venue, time, date, description }) => (
     <div className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
         <h3 className="text-lg font-semibold text-gray-800 mb-2"><span className="italic">{title}</span></h3>
-        {/* {image && (
-            <img src={image} alt={speaker} className="w-32 h-32 object-cover rounded-md mb-3 mx-auto" />
-        )} */}
         {speaker && (
             <div className="mb-2">
                 <span className="font-semibold">Speaker:</span> {speaker}<br />
@@ -34,7 +31,7 @@ const Home = () => {
     const [talksAndEvents, setTalksAndEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const images = Object.values(import.meta.glob('../assets/carousel-images/*.{png,jpg,jpeg,gif,svg,avif}', { eager: true, query: 'url', import: 'default' }));
+    // The local image import has been removed.
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +39,6 @@ const Home = () => {
                 setIsLoading(true);
                 setError(null);
                 
-                // Make API calls in parallel without custom headers
                 const [newsResponse, talksAndEventsResponse] = await Promise.all([
                     fetch("https://cse.iitdh.ac.in/strapi/api/newss"),
                     fetch("https://cse.iitdh.ac.in/strapi/api/talk-and-events")
@@ -57,15 +53,11 @@ const Home = () => {
                     talksAndEventsResponse.json()
                 ]);
 
-                // Sort data by 'updatedAt' in descending order
-                const sortData = (data) => {
-                    return data.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-                };
+                const sortData = (data) => data.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 
                 const sortedNews = sortData(newsJson.data);
                 const sortedTalksAndEvents = sortData(talksAndEventsJson.data);
 
-                // Cache the data
                 localStorage.setItem('cachedNews', JSON.stringify(sortedNews));
                 localStorage.setItem('cachedTalksAndEvents', JSON.stringify(sortedTalksAndEvents));
                 localStorage.setItem('cacheTimestamp', Date.now().toString());
@@ -80,7 +72,6 @@ const Home = () => {
             }
         };
 
-        // Check cache first
         const cachedNews = localStorage.getItem('cachedNews');
         const cachedTalksAndEvents = localStorage.getItem('cachedTalksAndEvents');
         const cacheTimestamp = localStorage.getItem('cacheTimestamp');
@@ -95,7 +86,6 @@ const Home = () => {
         }
     }, []);
     
-    // Format date from API response
     const formatDate = (dateString) => {
         if (!dateString || dateString.toLowerCase() === 'present') return 'Present';
         const date = new Date(dateString);
@@ -106,7 +96,6 @@ const Home = () => {
         });
     };
 
-    // Transform API news data to match our NewsCard component
     const transformedNews = news?.map(item => ({
         title: item.Title || '',
         date: formatDate(item.date),
@@ -114,22 +103,22 @@ const Home = () => {
         link: item.link || null
     })) || [];
 
-    // Transform API talks and events data to match our TalkCard component
     const transformedTalksAndEvents = talksAndEvents?.map(item => ({
         title: item.Title || '',
         speaker: item.Speaker || null,
         designation: item.designation || null,
         venue: item.venue || null,
         time: item.date || null,
-        date: null, // We'll use the time field for both time and date
-        description: null // Add if needed in the future
+        date: null,
+        description: null
     })) || [];
 
     return (
         <div className="py-6 px-4 md:px-8">
             {/* Carousel Section */}
             <div className="mb-10">
-                <Carousel images={images} />
+                {/* The Carousel component no longer needs the images prop */}
+                <Carousel />
             </div>
             {/* News & Talks_events Section */}
             <div className="border-t border-gray-200 pt-8">
