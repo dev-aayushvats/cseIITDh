@@ -53,6 +53,11 @@ export const getResearchProjectsData = async () => {
 	return data?.data;
 };
 
+export const getCarouselImages = async () => {
+	const { data } = await axiosInstance.get("/carousel-imagess?populate=*");
+	return data?.data;
+};
+
 export const getSearchResult = async (query) => {
 	if (!query || typeof query !== "string" || !query.trim()) {
 		throw new Error("A valid search query must be provided.");

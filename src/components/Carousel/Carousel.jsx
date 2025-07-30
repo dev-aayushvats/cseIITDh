@@ -1,19 +1,35 @@
 import { useEffect, useState } from "react";
+import useCarouselImages from "../../hooks/useCarouselImages";
+import GlobalError from "../GlobalError";
 
-const CustomCarousel = ({ images }) => {
+const CustomCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const length = images.length;
+
+  const { data: images, isLoading, isError, error } = useCarouselImages();
 
   // Auto-advance slides every 5 seconds
   useEffect(() => {
+    if (images?.length === 0) return; // Don't start the timer if there are no images
     const timer = setInterval(() => {
-      goToNext();
+      if (goToNext) goToNext();
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [currentIndex, images]);
+
+  if (isLoading) {
+    return (
+      <div className="relative rounded-lg shadow-md max-w-full h-48 sm:h-64 md:h-96 bg-gray-200 animate-pulse flex items-center justify-center">
+        <p className="text-gray-500">Loading Images...</p>
+      </div>
+    );
+  }
+
+  if (isError) return <GlobalError error={error} />;
+
+  const length = images.length;
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
@@ -38,15 +54,17 @@ const CustomCarousel = ({ images }) => {
 
   const handleTouchEnd = () => {
     if (touchStart - touchEnd > 50) {
-      // Swipe left
-      goToNext();
+      goToNext(); // Swipe left
     }
 
     if (touchStart - touchEnd < -50) {
-      // Swipe right
-      goToPrev();
+      goToPrev(); // Swipe right
     }
   };
+
+  if (length === 0) {
+    return null; // Or a placeholder indicating no images
+  }
 
   return (
     <div
@@ -93,7 +111,7 @@ const CustomCarousel = ({ images }) => {
         ))}
       </div>
 
-      {/* Slider controls - hidden on very small screens */}
+      {/* Slider controls */}
       <button
         type="button"
         className="hidden sm:flex absolute top-0 left-0 z-30 items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none"
