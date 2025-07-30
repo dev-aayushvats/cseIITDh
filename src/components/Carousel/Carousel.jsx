@@ -1,46 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import useCarouselImages from "../../hooks/useCarouselImages";
+import GlobalError from "../GlobalError";
 
 const CustomCarousel = () => {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const length = images.length;
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch("https://cse.iitdh.ac.in/strapi/api/carousel-imagess?populate=*");
-        if (!response.ok) {
-          throw new Error('Data fetching failed');
-        }
-        const result = await response.json();
-        // Extract the image URLs from the API response
-        const imageUrls = result.data.map(item => item.Image.url);
-        setImages(imageUrls);
-      } catch (err) {
-        setError(err.message);
-        console.error("Error fetching carousel images:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, []); // Empty dependency array ensures this runs only once on mount
+  const { data: images, isLoading, isError, error } = useCarouselImages();
 
   // Auto-advance slides every 5 seconds
   useEffect(() => {
-    if (length === 0) return; // Don't start the timer if there are no images
+    if (images?.length === 0) return; // Don't start the timer if there are no images
     const timer = setInterval(() => {
-      goToNext();
+      if (goToNext) goToNext();
     }, 5000);
-    
+
     return () => clearInterval(timer);
-  }, [currentIndex, length]);
+  }, [currentIndex, images]);
+
+  if (isLoading) {
+    return (
+      <div className="relative rounded-lg shadow-md max-w-full h-48 sm:h-64 md:h-96 bg-gray-200 animate-pulse flex items-center justify-center">
+        <p className="text-gray-500">Loading Images...</p>
+      </div>
+    );
+  }
+
+  if (isError) return <GlobalError error={error} />;
+
+  const length = images.length;
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
@@ -58,43 +47,27 @@ const CustomCarousel = () => {
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchMove = (e) => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchEnd = () => {
     if (touchStart - touchEnd > 50) {
       goToNext(); // Swipe left
     }
-    
+
     if (touchStart - touchEnd < -50) {
       goToPrev(); // Swipe right
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="relative rounded-lg shadow-md max-w-full h-48 sm:h-64 md:h-96 bg-gray-200 animate-pulse flex items-center justify-center">
-        <p className="text-gray-500">Loading Images...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="relative rounded-lg shadow-md max-w-full h-48 sm:h-64 md:h-96 bg-red-50 flex items-center justify-center">
-        <p className="text-red-500">Error loading images. Please try again later.</p>
-      </div>
-    );
-  }
-
-  if (images.length === 0) {
+  if (length === 0) {
     return null; // Or a placeholder indicating no images
   }
 
   return (
-    <div 
+    <div
       className="relative rounded-lg overflow-hidden shadow-md max-w-full"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -104,28 +77,34 @@ const CustomCarousel = () => {
       <div className="relative h-48 sm:h-64 md:h-96 overflow-hidden">
         {images.map((src, index) => (
           <div
-            key={index}
+            key={src}
             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
               className="absolute w-full h-full object-cover"
-              style={{ transform: 'translate(-50%, -50%)', top: '50%', left: '50%' }}
+              style={{
+                transform: "translate(-50%, -50%)",
+                top: "50%",
+                left: "50%",
+              }}
             />
           </div>
         ))}
       </div>
 
       {/* Slider indicators */}
-      <div className="absolute z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
-        {images.map((_, index) => (
+      <div className="absolute  z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
+        {images.map((src, index) => (
           <button
-            key={index}
+            key={`slide-${src}`}
             type="button"
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-300'}`}
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+              currentIndex === index ? "bg-white" : "bg-gray-300"
+            }`}
             aria-label={`Slide ${index + 1}`}
             onClick={() => goToSlide(index)}
           />
@@ -139,8 +118,21 @@ const CustomCarousel = () => {
         onClick={goToPrev}
       >
         <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-white">
-          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 1L1 5l4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+          <svg
+            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
+            fill="none"
+            viewBox="0 0 6 10"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Previous slide"
+          >
+            <title>Previous slide</title>
+            <path
+              d="M5 1L1 5l4 4"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
           </svg>
           <span className="sr-only">Previous</span>
         </span>
@@ -151,8 +143,21 @@ const CustomCarousel = () => {
         onClick={goToNext}
       >
         <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-white">
-          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 9l4-4-4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+          <svg
+            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
+            fill="none"
+            viewBox="0 0 6 10"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Next slide"
+          >
+            <title>Next slide</title>
+            <path
+              d="M1 9l4-4-4-4"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
           </svg>
           <span className="sr-only">Next</span>
         </span>
