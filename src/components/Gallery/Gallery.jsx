@@ -50,6 +50,7 @@ const Gallery = () => {
               <img
                 src={image}
                 alt={`Gallery thumbnail ${index + 1}`}
+                loading="lazy"
                 className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
               />
             </button>
@@ -76,6 +77,7 @@ const Gallery = () => {
               alt="Enlarged gallery view"
               className="max-w-full max-h-[90vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
+              loading="lazy"
             />
             <button
               type="button"

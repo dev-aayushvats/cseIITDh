@@ -56,6 +56,7 @@ function DepartmentFacilitiesData() {
                   {lab.name}
                   {lab.img && (
                     <img
+                      loading="lazy"
                       src={lab.img}
                       alt="EMA"
                       width={lab.imgWidth}

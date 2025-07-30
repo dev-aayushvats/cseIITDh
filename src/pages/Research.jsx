@@ -1,7 +1,14 @@
-import NavCard from "../components/Academics/NavCard";
-import BackToTopButton from "../components/BackToTopButton";
-import DepartmentFacilities from "../components/Research/DepartmentFacilities";
-import ResearchProjects from "../components/Research/ResearchProjects";
+import { lazy, Suspense } from "react";
+
+const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
+
+const NavCard = lazy(() => import("../components/Academics/NavCard"));
+const DepartmentFacilities = lazy(() =>
+  import("../components/Research/DepartmentFacilities")
+);
+const ResearchProjects = lazy(() =>
+  import("../components/Research/ResearchProjects")
+);
 
 function QuickNavigation() {
   return (
@@ -22,6 +29,10 @@ function QuickNavigation() {
   );
 }
 
+const fallback = (
+  <div className="text-center py-8 text-gray-400">Loading...</div>
+);
+
 // Research Page Component
 const Research = () => {
   return (
@@ -39,12 +50,19 @@ const Research = () => {
       <QuickNavigation />
 
       {/* Labs Section */}
-      <DepartmentFacilities />
+      <Suspense fallback={fallback}>
+        <DepartmentFacilities />
+      </Suspense>
 
-      <ResearchProjects />
+      {/* Research Projects Section */}
+      <Suspense fallback={fallback}>
+        <ResearchProjects />
+      </Suspense>
 
       {/* Back to Top Button */}
-      <BackToTopButton to={"research-top"} />
+      <Suspense fallback={null}>
+        <BackToTopButton to={"research-top"} />
+      </Suspense>
     </div>
   );
 };

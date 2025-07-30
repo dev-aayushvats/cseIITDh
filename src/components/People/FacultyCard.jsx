@@ -16,6 +16,7 @@ export default function FacultyCard({
             src={image}
             alt={name}
             className="w-full h-full object-cover"
+            loading="lazy"
             onError={(e) => {
               e.target.onerror = null; // Prevent infinite fallback loop
               e.target.style.display = "none";

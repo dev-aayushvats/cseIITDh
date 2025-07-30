@@ -1,8 +1,22 @@
-import AboutIITDharwad from "../components/JoinAsFaculty/AboutIITDharwad";
-import DepartmentSection from "../components/JoinAsFaculty/DepartmentSection";
-import HowToApply from "../components/JoinAsFaculty/HowToApply";
-import MinRequiredQualification from "../components/JoinAsFaculty/MinRequiredQualification";
-import SalaryAndBenefits from "../components/JoinAsFaculty/SalaryAndBenefits";
+import { lazy, Suspense } from "react";
+
+const AboutIITDharwad = lazy(() =>
+  import("../components/JoinAsFaculty/AboutIITDharwad")
+);
+const DepartmentSection = lazy(() =>
+  import("../components/JoinAsFaculty/DepartmentSection")
+);
+const HowToApply = lazy(() => import("../components/JoinAsFaculty/HowToApply"));
+const MinRequiredQualification = lazy(() =>
+  import("../components/JoinAsFaculty/MinRequiredQualification")
+);
+const SalaryAndBenefits = lazy(() =>
+  import("../components/JoinAsFaculty/SalaryAndBenefits")
+);
+
+const fallback = (
+  <div className="text-center py-8 text-gray-400">Loading...</div>
+);
 
 const JoinAsFaculty = () => {
   return (
@@ -17,19 +31,29 @@ const JoinAsFaculty = () => {
       </div>
 
       {/* About the Department Section */}
-      <DepartmentSection />
+      <Suspense fallback={fallback}>
+        <DepartmentSection />
+      </Suspense>
 
       {/* About IIT DHARWAD Section */}
-      <AboutIITDharwad />
+      <Suspense fallback={fallback}>
+        <AboutIITDharwad />
+      </Suspense>
 
       {/* Salary and Benefits Section */}
-      <SalaryAndBenefits />
+      <Suspense fallback={fallback}>
+        <SalaryAndBenefits />
+      </Suspense>
 
       {/* Qualifications Section */}
-      <MinRequiredQualification />
+      <Suspense fallback={fallback}>
+        <MinRequiredQualification />
+      </Suspense>
 
       {/* How to Apply Section */}
-      <HowToApply />
+      <Suspense fallback={fallback}>
+        <HowToApply />
+      </Suspense>
     </div>
   );
 };
