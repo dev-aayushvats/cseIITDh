@@ -7,7 +7,7 @@ const NewsCard = ({ title, date, description, link }) => (
     onClick={() => {
       if (link) window.open(link, "_blank");
     }}
-    className="cursor-pointer bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
+    className="cursor-pointer bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full text-left"
   >
     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
     <p className="text-sm text-indigo-600 font-medium mt-1">{date}</p>
