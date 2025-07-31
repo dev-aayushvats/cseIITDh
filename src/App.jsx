@@ -21,6 +21,7 @@ const Research = lazy(() => import("./pages/Research"));
 const About = lazy(() => import("./pages/About"));
 const SearchResults = lazy(() => import("./pages/SearchResults"));
 const Allnews = lazy(() => import("./pages/Allnews"));
+const AllTalksEvents = lazy(() => import("./pages/AllTalksEventsPage"));
 
 const queryClient = new QueryClient();
 
@@ -111,6 +112,10 @@ function App() {
                 <Route
                   path="/allnews"
                   element={<LazyRoute element={Allnews} />}
+                />
+                <Route
+                  path="/allTalksEvents"
+                  element={<LazyRoute element={AllTalksEvents} />}
                 />
               </Routes>
             </div>
