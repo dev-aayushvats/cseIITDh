@@ -6,9 +6,9 @@ import usePeopleInfo from "../hooks/usePeopleInfo";
 
 // Lazy load People section components
 const NavCard = lazy(() => import("../components/Academics/NavCard"));
-const DepartmentLeadership = lazy(() =>
-  import("../components/People/DepartmentLeadership")
-);
+// const DepartmentLeadership = lazy(() =>
+//   import("../components/People/DepartmentLeadership")
+// );
 const FacultySection = lazy(() =>
   import("../components/People/FacultySection")
 );
@@ -120,7 +120,7 @@ const People = () => {
     people.filter((person) => person.role === role);
 
   const leadership = filterByRole("Department Leadership");
-  const facultyMembers = filterByRole("Faculty Members");
+  const facultyMembers = [...leadership, ...filterByRole("Faculty Members")];
   const staffMembers = filterByRole("Staff Members");
   const formerMembers = filterByRole("Former Members");
   const phdScholars = filterByRole("PHD");
