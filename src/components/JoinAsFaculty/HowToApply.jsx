@@ -4,8 +4,8 @@ export default function HowToApply() {
       <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">
         How to Apply
       </h2>
-      <div className="space-y-4">
-        <p className="text-gray-700">
+   <div className="space-y-4">
+      {/*   <p className="text-gray-700">
           Interested candidates are invited to apply for faculty positions
           through our online portal. Applications are accepted throughout the
           year, with reviews conducted periodically.
@@ -60,11 +60,13 @@ export default function HowToApply() {
             </li>
           </ol>
         </div>
-
+    */}
         <div className="text-center mt-8">
+          <p className="text-gray-700">Click on the button below to get updated application instructions and application form</p>
+          <br/>
           <a
             // biome-ignore lint/a11y/useValidAnchor: No link yet
-            href="#"
+            href="https://www.iitdh.ac.in/faculty-recruitment"
             className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition duration-300 font-medium"
           >
             Apply Now

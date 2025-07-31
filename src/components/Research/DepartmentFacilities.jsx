@@ -29,7 +29,7 @@ function DepartmentFacilitiesData() {
 
   return (
     <>
-      <div className="mb-8">
+   {/*   <div className="mb-8">
         <h3 className="text-xl font-bold text-gray-800 mb-4">
           Instructional Labs
         </h3>
@@ -38,7 +38,7 @@ function DepartmentFacilitiesData() {
             <li key={labData.id}>{labData.lab}</li>
           ))}
         </ul>
-      </div>
+      </div>*/}
       <div>
         <h3 className="text-xl font-bold text-gray-800 mb-4">
           Research & Development Labs
