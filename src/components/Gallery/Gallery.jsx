@@ -1,27 +1,39 @@
 import { useEffect, useState } from "react";
-import useGalleryImages from "../../hooks/useGalleryImages"; // Import the new hook
-import GlobalError from "../GlobalError"; // Assuming a global error component exists
+import useGalleryImages from "../../hooks/useGalleryImages";
+import GlobalError from "../GlobalError";
+import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline'; // Import icons
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const { data: galleryImages, isLoading, isError, error } = useGalleryImages();
 
-  // Effect to prevent background scrolling when the modal is open
+  // Prevent background scrolling when modal is open
   useEffect(() => {
-    document.body.style.overflow = selectedImage ? "hidden" : "auto";
+    document.body.style.overflow = selectedImageIndex !== null ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [selectedImage]);
+  }, [selectedImageIndex]);
 
-  // Display a loading state while images are being fetched.
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setSelectedImageIndex((prevIndex) =>
+      (prevIndex - 1 + galleryImages.length) % galleryImages.length
+    );
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setSelectedImageIndex((prevIndex) =>
+      (prevIndex + 1) % galleryImages.length
+    );
+  };
+
   if (isLoading) {
     return (
       <div className="py-8 text-center">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">
-          Gallery
-        </h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Gallery</h2>
         <div className="flex justify-center items-center h-44">
           <p className="text-gray-500">Loading Gallery...</p>
         </div>
@@ -29,13 +41,10 @@ const Gallery = () => {
     );
   }
 
-  // Display an error message if the API call fails.
   if (isError) {
     return (
       <div className="py-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">
-          Gallery
-        </h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Gallery</h2>
         <GlobalError error={error} />
       </div>
     );
@@ -43,23 +52,20 @@ const Gallery = () => {
 
   return (
     <div className="py-8">
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">
-        Gallery
-      </h2>
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Gallery</h2>
 
-      {/* --- Horizontally Scrolling Thumbnails --- */}
       {galleryImages && galleryImages.length > 0 ? (
         <div className="flex overflow-x-auto space-x-4 p-4 scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-gray-200">
-          {galleryImages.map((image, index) => (
+          {galleryImages.map((imageObj, index) => (
             <button
               type="button"
-              key={image} // Use the unique image URL as the key
+              key={imageObj.url}
               className="flex-shrink-0 w-64 h-44 sm:w-80 sm:h-56 cursor-pointer"
-              onClick={() => setSelectedImage(image)}
+              onClick={() => setSelectedImageIndex(index)}
             >
               <img
-                src={image}
-                alt={`Gallery thumbnail ${index + 1}`}
+                src={imageObj.url}
+                alt={imageObj.description || `Gallery image ${index + 1}`}
                 loading="lazy"
                 className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
               />
@@ -67,37 +73,64 @@ const Gallery = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500">
-          No images in the gallery yet.
-        </p>
+        <p className="text-center text-gray-500">No images in the gallery yet.</p>
       )}
 
-      {/* --- Image Modal/Lightbox --- */}
-      {selectedImage && (
-        <button
-          type="button"
+      {/* Modal with navigation */}
+      {selectedImageIndex !== null && (
+        <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedImageIndex(null)}
         >
-          <div className="relative">
+          <div
+            className="relative max-w-full max-h-[90vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Navigation Buttons */}
+            <button
+              onClick={handlePrev}
+              className="cursor-pointer absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white bg-gray-800/50 hover:bg-gray-700/70 p-2 sm:p-3 rounded-full transition duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-white"
+              aria-label="Previous image"
+            >
+              <ChevronLeftIcon className="h-6 w-6" />
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="cursor-pointer absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white bg-gray-800/50 hover:bg-gray-700/70 p-2 sm:p-3 rounded-full transition duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-white"
+              aria-label="Next image"
+            >
+              <ChevronRightIcon className="h-6 w-6" />
+            </button>
+
+            {/* Image */}
             <img
-              src={selectedImage}
-              alt="Enlarged gallery view"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-              onClick={(e) => e.stopPropagation()}
-              onKeyDown={(e) => e.stopPropagation()}
+              src={galleryImages[selectedImageIndex].url}
+              alt={galleryImages[selectedImageIndex].description || "Enlarged gallery view"}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-xl"
               loading="lazy"
             />
+
+            {/* Description */}
+            {galleryImages[selectedImageIndex].description && (
+              <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-4 rounded-b-lg">
+                <p className="text-white text-center text-sm sm:text-base">
+                  {galleryImages[selectedImageIndex].description}
+                </p>
+              </div>
+            )}
+
+            {/* Close Button */}
             <button
               type="button"
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-4 -right-4 bg-white text-black rounded-full h-8 w-8 flex items-center justify-center text-lg font-bold"
+              onClick={() => setSelectedImageIndex(null)}
+              className="absolute top-4 right-4 text-white bg-gray-800/50 hover:bg-gray-700/70 rounded-full h-8 w-8 flex items-center justify-center transition duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-white"
               aria-label="Close image view"
             >
-              &times;
+              <XMarkIcon className="h-5 w-5" />
             </button>
           </div>
-        </button>
+        </div>
       )}
     </div>
   );
