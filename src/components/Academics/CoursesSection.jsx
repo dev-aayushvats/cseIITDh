@@ -3,8 +3,8 @@ import Section from "../Section";
 export default function CoursesSection() {
   return (
     <Section id="courses" title="Courses">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm p-6">
+      {/*   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+     <div className="bg-white rounded-lg shadow-sm p-6">
           <h3 className="text-xl font-semibold mb-4">Core Courses</h3>
           <ul className="space-y-3">
             <li className="pb-2 border-b border-gray-100">
@@ -39,7 +39,7 @@ export default function CoursesSection() {
             </li>
           </ul>
         </div>
-
+    
         <div className="bg-white rounded-lg shadow-sm p-6">
           <h3 className="text-xl font-semibold mb-4">Elective Courses</h3>
           <ul className="space-y-3">
@@ -74,8 +74,26 @@ export default function CoursesSection() {
               </div>
             </li>
           </ul>
-        </div>
-      </div>
+        </div>  
+      </div> */
+       }
+<div className="mt-4 text-center">
+  <p className=" mb-1">
+    The list includes both core and elective Computer Science courses.
+  </p>
+  <p className="text-sm text-gray-500 mb-3">
+    You can access the complete course list here:
+  </p>
+  <a
+    href="https://www.iitdh.ac.in/sites/default/files/2025-07/Computer%20Science%20Engineering.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow hover:bg-indigo-700 transition"
+  >
+    Open Courses List
+  </a>
+</div>
+
     </Section>
   );
 }

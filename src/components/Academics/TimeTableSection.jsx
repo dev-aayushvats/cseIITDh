@@ -31,12 +31,12 @@ export default function TimeTableSection() {
             directly:
           </p>
           <a
-            href="/timetable.pdf"
+            href="https://www.iitdh.ac.in/timetable-autumn-2025-26"
             target="_blank"
             rel="noopener noreferrer"
             className="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center"
           >
-            <svg
+            {/*         <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-1"
               fill="none"
@@ -50,7 +50,7 @@ export default function TimeTableSection() {
                 strokeWidth={2}
                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               />
-            </svg>
+            </svg>*/}
             Open Timetable PDF
           </a>
         </div>

@@ -10,7 +10,7 @@ export default function ContactUsFaq() {
             What are the office hours of the CSE department?
           </h3>
           <p className="text-gray-700 mt-1">
-            The department office is open Monday to Friday from 9:00 AM to 5:30
+            The department office is open Monday to Friday from 9:00 AM to 6:00
             PM. The office remains closed on weekends and public holidays.
           </p>
         </div>
