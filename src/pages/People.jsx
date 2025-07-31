@@ -52,7 +52,7 @@ function QuickNavigation() {
         viewText={"View Members"}
       />
       <NavCard
-        title="PHD Scholars"
+        title="PhD Scholars"
         icon={<i className="fas fa-user-graduate"></i>}
         targetId="phd-scholars"
         viewText={"View Members"}
@@ -83,7 +83,7 @@ const getPeopleData = (data) => {
     switch (person.Role) {
       case "Faculty Members":
       case "Department Leadership":
-      case "PHD Scholars":
+      case "PhD Scholars":
       case "Graduated Scholars":
         return { ...base, expertise: person.Domain };
       case "Staff Members":
