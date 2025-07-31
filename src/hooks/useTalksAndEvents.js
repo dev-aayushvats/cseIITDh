@@ -3,7 +3,8 @@ import { getTalksAndEvents } from "../api/api";
 
 const transformTalksAndEvents = (talks) =>
 	talks
-		?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+		// Sort by the new 'sortingDate' field instead of 'updatedAt'
+		?.sort((a, b) => new Date(b.sortingDate) - new Date(a.sortingDate))
 		.map((item) => ({
 			title: item.Title || "",
 			speaker: item.Speaker || null,
@@ -11,7 +12,6 @@ const transformTalksAndEvents = (talks) =>
 			venue: item.venue || null,
 			time: item.date || null,
 			date: null,
-			// This is the only change needed in this file
 			description: item.description || null,
 		})) || [];
 
