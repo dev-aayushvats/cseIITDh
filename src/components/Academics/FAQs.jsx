@@ -109,9 +109,9 @@ export default function FAQs() {
                 href="mailto:academics@cs.iitdh.ac.in"
                 className="text-indigo-600 hover:underline"
               >
-                academics@cs.iitdh.ac.in
+                academicstaff@iitdh.ac.in
               </a>{" "}
-              or visit during office hours (Monday-Friday, 9:00 AM - 5:00 PM).
+              or visit during office hours (Monday-Friday, 9:00 AM - 6:00 PM).
             </p>
           </div>
         </div>
