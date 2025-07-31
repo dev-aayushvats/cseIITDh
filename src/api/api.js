@@ -66,5 +66,5 @@ export const getSearchResult = async (query) => {
 	const { data } = await axiosInstance.get(
 		`/fuzzy-search/search?query=${encodedQuery}`,
 	);
-	return data?.data;
+	return data;
 };
