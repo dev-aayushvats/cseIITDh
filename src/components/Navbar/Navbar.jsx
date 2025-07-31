@@ -48,22 +48,14 @@ const Navbar = ({ closeMenu }) => {
                     </NavLink>
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink
-                        to="/admissions"
-                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
-                        onClick={handleLinkClick}
+                    <a
+                        href="https://iitdh.ac.in/admissions"
+                        className="py-2 rounded-lg pl-3 font-medium block w-full text-gray-700 hover:text-indigo-600 hover:bg-slate-100"
+                        target="_blank" // optional: opens in new tab
+                        rel="noopener noreferrer" // security best practice
                     >
                         Admissions
-                    </NavLink>
-                </li>
-                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <NavLink
-                        to="/join-as-faculty"
-                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
-                        onClick={handleLinkClick}
-                    >
-                        Join As Faculty
-                    </NavLink>
+                    </a>
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
                     <NavLink
@@ -85,6 +77,15 @@ const Navbar = ({ closeMenu }) => {
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
                     <NavLink
+                        to="/join-as-faculty"
+                        className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
+                        onClick={handleLinkClick}
+                    >
+                        Join As Faculty
+                    </NavLink>
+                </li>
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <NavLink
                         to="/contact"
                         className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
                         onClick={handleLinkClick}
@@ -92,7 +93,7 @@ const Navbar = ({ closeMenu }) => {
                         Contact Us
                     </NavLink>
                 </li>
-                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
                     <NavLink
                         to="https://sites.google.com/iitdh.ac.in/cse/home"
                         className={({ isActive }) => `py-2 rounded-lg pl-3 font-medium block w-full ${isActive ? 'bg-slate-100 text-indigo-600' : 'text-gray-700'}`}
