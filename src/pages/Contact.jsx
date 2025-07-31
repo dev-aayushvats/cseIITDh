@@ -55,10 +55,11 @@ const Contact = () => {
         <ContactUsFaq />
       </Suspense>
 
-      {/* Contact Form Section */}
+      {/* Contact Form Section
       <Suspense fallback={fallback}>
         <ContactUsForm />
-      </Suspense>
+      </Suspense> */}
+      
 
       {/* Social Media Section */}
       <Suspense fallback={fallback}>
