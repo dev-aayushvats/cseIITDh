@@ -19,8 +19,8 @@ const FormerMemberSection = lazy(() =>
 const PhDScholarSection = lazy(() =>
   import("../components/People/PhDScholarSection")
 );
-const PastScholarSection = lazy(() =>
-  import("../components/People/PastScholarSection")
+const GraduatedScholarSection = lazy(() =>
+  import("../components/People/GraduatedScholarSection")
 );
 const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
 
@@ -58,9 +58,9 @@ function QuickNavigation() {
         viewText={"View Members"}
       />
       <NavCard
-        title="Past Scholars"
+        title="Graduated Scholars"
         icon={<i className="fas fa-history"></i>}
-        targetId="past-scholars"
+        targetId="graduated-scholars"
         viewText={"View Members"}
       />
     </div>
@@ -84,7 +84,7 @@ const getPeopleData = (data) => {
       case "Faculty Members":
       case "Department Leadership":
       case "PHD Scholars":
-      case "PAST Scholars":
+      case "Graduated Scholars":
         return { ...base, expertise: person.Domain };
       case "Staff Members":
         return { ...base, office: person.Domain };
@@ -124,7 +124,7 @@ const People = () => {
   const staffMembers = filterByRole("Staff Members");
   const formerMembers = filterByRole("Former Members");
   const phdScholars = filterByRole("PHD");
-  const pastScholars = filterByRole("Past Scholars");
+  const GraduatedScholars = filterByRole("Graduated Scholars");
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -158,9 +158,9 @@ const People = () => {
       <Suspense fallback={fallback}>
         <PhDScholarSection phdScholars={phdScholars} />
       </Suspense>
-      {/* Past Scholars */}
+      {/* Graduated Scholars */}
       <Suspense fallback={fallback}>
-        <PastScholarSection pastScholars={pastScholars} />
+        <GraduatedScholarSection GraduatedScholars={GraduatedScholars} />
       </Suspense>
       {/* Back to Top Button */}
       <Suspense fallback={null}>

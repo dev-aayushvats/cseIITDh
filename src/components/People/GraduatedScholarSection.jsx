@@ -1,11 +1,11 @@
 import Section from "../Section";
 import FacultyCard from "./FacultyCard";
 
-export default function PastScholarSection({ pastScholars }) {
+export default function GraduatedScholarSection({ GraduatedScholars }) {
   return (
-    <Section id="past-scholars" title="PAST Scholars">
+    <Section id="graduated-scholars" title="Graduated Scholars">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {pastScholars.map((member) => (
+        {GraduatedScholars.map((member) => (
           <FacultyCard key={member?.id} {...member} />
         ))}
       </div>

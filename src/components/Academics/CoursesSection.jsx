@@ -76,6 +76,19 @@ export default function CoursesSection() {
           </ul>
         </div>
       </div>
+       <div className="mt-4 text-center">
+          <p className="text-sm text-gray-500 mb-2">
+            You can access Computer Science courses list over here!
+          </p>
+          <a
+            href="https://www.iitdh.ac.in/sites/default/files/2025-07/Computer%20Science%20Engineering.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center"
+          >
+             Open Courses List
+          </a>
+        </div>
     </Section>
   );
 }
