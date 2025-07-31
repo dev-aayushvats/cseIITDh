@@ -179,6 +179,20 @@ export default function AcademicRules() {
             )}
           </div>
         )}
+        <div className="mt-4 text-center">
+
+  <p className="text-sm text-gray-500 mb-3">
+    NOTE - You can access the rulebook here,rules in the rulebook are final in case of any discrepancy.:
+  </p>
+  <a
+    href="https://res.cloudinary.com/dncpxsaxa/image/upload/v1753990375/UG_Rulebook_23Jul24_ibzl9c.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow hover:bg-indigo-700 transition"
+  >
+    Open Rulebook
+  </a>
+</div>
       </div>
     </Section>
   );
