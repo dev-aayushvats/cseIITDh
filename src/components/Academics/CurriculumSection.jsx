@@ -3,6 +3,7 @@ import Section from "../Section";
 export default function CurriculumSection() {
   return (
     <Section id="curriculum" title="Curriculum">
+      {/*}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h3 className="text-xl font-semibold mb-4">B.Tech Program Structure</h3>
 
@@ -65,7 +66,7 @@ export default function CurriculumSection() {
               </div>
             </div>
           </div>
-
+*/}
     <div className="mt-4 text-center">
   <p className="text-sm text-gray-500 mb-3">
     You can access the curriculum list here:
@@ -79,8 +80,6 @@ export default function CurriculumSection() {
     Check Curriculum 
   </a>
 </div>
-        </div>
-      </div>
     </Section>
   );
 }
