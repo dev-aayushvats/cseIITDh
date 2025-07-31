@@ -13,7 +13,8 @@ const formatDate = (dateString) => {
 
 const transformNews = (news) =>
 	news
-		?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+		// Sort by the 'date' field instead of 'updatedAt'
+		?.sort((a, b) => new Date(b.date) - new Date(a.date))
 		.map((item) => ({
 			title: item.Title || "",
 			date: formatDate(item.date),
