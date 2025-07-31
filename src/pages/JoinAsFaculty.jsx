@@ -41,14 +41,14 @@ const JoinAsFaculty = () => {
       </Suspense>
 
       {/* Salary and Benefits Section */}
-      <Suspense fallback={fallback}>
+      {/* <Suspense fallback={fallback}>
         <SalaryAndBenefits />
-      </Suspense>
+      </Suspense> */}
 
       {/* Qualifications Section */}
-      <Suspense fallback={fallback}>
+      {/* <Suspense fallback={fallback}>
         <MinRequiredQualification />
-      </Suspense>
+      </Suspense> */}
 
       {/* How to Apply Section */}
       <Suspense fallback={fallback}>
