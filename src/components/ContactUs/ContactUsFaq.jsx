@@ -29,11 +29,11 @@ export default function ContactUsFaq() {
             with your details and purpose of visit at least one week in advance.
           </p>
         </div>
-        <div>
+        {/* <div>
           <h3 className="font-semibold text-gray-800">
             Is there accommodation available for visitors?
           </h3>
-          <p className="text-gray-700 mt-1">
+         <p className="text-gray-700 mt-1">
             IIT DHARWAD has a guest house facility for official visitors. For
             booking inquiries, please contact{" "}
             <a
@@ -44,7 +44,7 @@ export default function ContactUsFaq() {
             </a>
             .
           </p>
-        </div>
+        </div>*/}
         <div>
           <h3 className="font-semibold text-gray-800">
             How do I contact a specific faculty member?
