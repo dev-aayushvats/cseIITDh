@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import { useNews } from "../../hooks/useNews";
+import { Link } from "react-router-dom"; // ← make sure this is imported
 
 const NewsCard = ({ title, date, description, link }) => (
   <button
@@ -15,22 +16,32 @@ const NewsCard = ({ title, date, description, link }) => (
   </button>
 );
 
-const NewsLoading = () => {
-  return (
-    <div className="animate-pulse space-y-4">
-      {["skeleton-1", "skeleton-2", "skeleton-3"].map((i) => (
-        <div key={i} className="bg-gray-200 rounded-lg p-4 h-32"></div>
-      ))}
-    </div>
-  );
-};
+const NewsLoading = () => (
+  <div className="animate-pulse space-y-4">
+    {["skeleton-1", "skeleton-2", "skeleton-3"].map((i) => (
+      <div key={i} className="bg-gray-200 rounded-lg p-4 h-32"></div>
+    ))}
+  </div>
+);
 
 export default function NewsSection() {
   const { data: news, isLoading: newsLoading, error: newsError } = useNews();
+  const topNews = news?.slice(0, 3); // show only top 3
 
   return (
     <div>
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">News</h2>
+      {/* Header with button */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800">News</h2>
+        <Link
+          to="/allnews"
+          className="text-sm bg-indigo-600 text-white px-3 py-1.5 rounded-md hover:bg-indigo-700 transition font-medium"
+        >
+          View All News
+        </Link>
+      </div>
+
+      {/* News Content */}
       <div className="space-y-4">
         {newsLoading ? (
           <NewsLoading />
@@ -39,8 +50,8 @@ export default function NewsSection() {
             <p>Error loading news: {newsError?.message}</p>
             <p className="text-sm mt-2">Please try refreshing the page.</p>
           </div>
-        ) : news.length > 0 ? (
-          news.map((item) => (
+        ) : topNews?.length > 0 ? (
+          topNews.map((item) => (
             <NewsCard key={`news-${item?.id || v4()}`} {...item} />
           ))
         ) : (
