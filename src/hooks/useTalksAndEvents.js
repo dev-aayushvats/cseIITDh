@@ -11,7 +11,8 @@ const transformTalksAndEvents = (talks) =>
 			venue: item.venue || null,
 			time: item.date || null,
 			date: null,
-			description: null,
+			// This is the only change needed in this file
+			description: item.description || null,
 		})) || [];
 
 export function useTalksAndEvents() {

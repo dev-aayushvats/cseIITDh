@@ -182,7 +182,7 @@ export default function AcademicRules() {
         <div className="mt-4 text-center">
 
   <p className="text-sm text-gray-500 mb-3">
-    NOTE - You can access the rulebook here,rules in the rulebook are final in case of any discrepancy.:
+    NOTE - You can access the rulebook here. Rules in the rulebook are final in case of any discrepancy.
   </p>
   <a
     href="https://res.cloudinary.com/dncpxsaxa/image/upload/v1753990375/UG_Rulebook_23Jul24_ibzl9c.pdf"
