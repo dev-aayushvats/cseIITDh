@@ -61,10 +61,10 @@ const Contact = () => {
       </Suspense> */}
       
 
-      {/* Social Media Section */}
+      {/* Social Media Section 
       <Suspense fallback={fallback}>
         <ContactUsSocialMediaSection />
-      </Suspense>
+      </Suspense>*/}
     </div>
   );
 };

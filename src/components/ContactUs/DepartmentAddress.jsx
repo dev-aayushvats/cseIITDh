@@ -26,8 +26,8 @@ export default function DepartmentAddress() {
               A1 - 501, Head of Computer Science and Engineering
               <br />
               Prof Ramchandra Phawade
-              <br />
-              Phone: +91 8362309624
+         {/*     <br />
+              Phone: +91 8362309624*/}
             </p>
           </div>
         </div>
