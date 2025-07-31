@@ -1,47 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { v4 } from "uuid";
+import Loading from "../components/Loading";
 import { slugMap } from "../components/Topbar/Topbar";
+import useSearchResult from "../hooks/useSearchResult";
 
 function SearchResults() {
-  const location = useLocation();
-  const query = new URLSearchParams(location.search).get("q");
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [searchParams] = useSearchParams();
+
+  const query = searchParams.get("q");
+
+  const { data: results, isLoading, isError, error } = useSearchResult(query);
+
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchSearchResults = async () => {
-      if (!query) {
-        setResults(null);
-        setLoading(false);
-        return;
-      }
-
-      setLoading(true);
-      setError(null);
-      try {
-        const endpoint = `https://cse.iitdh.ac.in/strapi/api/fuzzy-search/search?query=${encodeURIComponent(
-          query
-        )}`;
-        const response = await fetch(endpoint);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setResults(data);
-      } catch (err) {
-        console.error("Error fetching search results:", err);
-        setError("Failed to fetch search results. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSearchResults();
-  }, [query]);
 
   const handleResultClick = (category) => {
     const targetSlug = slugMap[category];
@@ -52,22 +22,59 @@ function SearchResults() {
     }
   };
 
+  if (isLoading) return <Loading />;
+  if (isError) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[40vh]">
+        <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-md flex flex-col items-center">
+          <svg
+            className="w-12 h-12 mb-2 text-red-500"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <title>Error</title>
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 8v4m0 4h.01"
+            />
+          </svg>
+          <h2 className="text-xl font-bold mb-1">
+            Oops! Something went wrong.
+          </h2>
+          <p className="mb-2 text-center">
+            We couldn't fetch your search results. Please try again later.
+          </p>
+          <details className="text-xs text-gray-600">
+            <summary className="cursor-pointer">Show error details</summary>
+            <pre className="whitespace-pre-wrap">
+              {error?.message || String(error)}
+            </pre>
+          </details>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-6">
         Search Results for: "{query}"
       </h1>
 
-      {loading && <p>Loading search results...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-
-      {!loading &&
-        !error &&
-        (!results || Object.keys(results).length === 0) && (
-          <p>No results found for "{query}".</p>
-        )}
-
-      {!loading && !error && results && Object.keys(results).length > 0 && (
+      {!results ? (
+        <NoResultFound query={query} />
+      ) : (
         <div>
           {Object.entries(results).map(([category, items]) => (
             <div key={category} className="mb-8">
@@ -75,9 +82,9 @@ function SearchResults() {
                 {category.replace(/_/g, " ")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {items.map((item, index) => (
+                {items.map((item) => (
                   <div
-                    key={index}
+                    key={v4()}
                     className="bg-white p-4 rounded-lg shadow-md border border-gray-100"
                   >
                     <h3 className="font-semibold text-lg mb-1">
@@ -91,6 +98,7 @@ function SearchResults() {
                         : ""}
                     </p>
                     <button
+                      type="button"
                       onClick={() => handleResultClick(category)}
                       className="text-blue-500 hover:underline text-sm focus:outline-none"
                     >
@@ -103,6 +111,51 @@ function SearchResults() {
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function NoResultFound({ query }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16">
+      <svg
+        className="w-16 h-16 text-gray-300 mb-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        viewBox="0 0 24 24"
+      >
+        <title>No results found</title>
+        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
+        <line
+          x1="21"
+          y1="21"
+          x2="16.65"
+          y2="16.65"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="8.5"
+          y1="10.5"
+          x2="13.5"
+          y2="10.5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+      <span className="text-xl font-semibold text-gray-700 mb-2">
+        No results found
+      </span>
+      <span className="text-md text-gray-500 mb-2">
+        We couldn't find any results for{" "}
+        <span className="font-medium text-gray-800">"{query}"</span>
+      </span>
+      <span className="text-sm text-gray-400 text-center">
+        Please try a different keyword or check your spelling.
+      </span>
     </div>
   );
 }

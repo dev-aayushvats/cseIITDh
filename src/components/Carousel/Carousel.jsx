@@ -13,7 +13,7 @@ const CustomCarousel = () => {
   useEffect(() => {
     if (images?.length === 0) return; // Don't start the timer if there are no images
     const timer = setInterval(() => {
-      if (goToNext) goToNext();
+      if (typeof goToNext === "function") goToNext();
     }, 5000);
 
     return () => clearInterval(timer);
