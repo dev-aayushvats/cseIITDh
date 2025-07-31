@@ -138,11 +138,10 @@ const People = () => {
       </div>
       {/* Navigation Cards */}
       <QuickNavigation />
-      {/* Leadership Section
-      <Suspense fallback={fallback}>
+      {/* Leadership Section */}
+      {/* <Suspense fallback={fallback}>
         <DepartmentLeadership leadership={leadership} />
       </Suspense> */}
-
       {/* Faculty Section */}
       <Suspense fallback={fallback}>
         <FacultySection facultyMembers={facultyMembers} />

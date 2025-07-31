@@ -40,7 +40,31 @@ export const getAdmissionsInfo = async () => {
 
 export const getPeopleInfo = async () => {
 	const { data } = await axiosInstance.get("/peoples?pagination[pageSize]=50");
-	return data?.data;
+
+	if (!data || !Array.isArray(data.data)) {
+		console.error("Fetched data is not in the expected format:", data);
+		return [];
+	}
+
+	const getLastName = (fullName) => {
+		if (!fullName || typeof fullName !== 'string') {
+			return '';
+		}
+		const parts = fullName.trim().split(' ');
+		return parts[parts.length - 1];
+	};
+
+	const sortedData = [...data.data].sort((a, b) => {
+		const fullNameA = a?.Name;
+		const fullNameB = b?.Name;
+
+		const lastNameA = getLastName(fullNameA).toLowerCase();
+		const lastNameB = getLastName(fullNameB).toLowerCase();
+
+		return lastNameA.localeCompare(lastNameB);
+	});
+
+	return sortedData;
 };
 
 export const getResearchData = async () => {
