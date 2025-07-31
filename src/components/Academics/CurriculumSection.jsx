@@ -66,15 +66,19 @@ export default function CurriculumSection() {
             </div>
           </div>
 
-          <div className="text-center mt-8">
-            <a
-              // biome-ignore lint/a11y/useValidAnchor: Not yet implemented
-              href="#"
-              className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300"
-            >
-              Download Complete Curriculum PDF
-            </a>
-          </div>
+    <div className="mt-4 text-center">
+  <p className="text-sm text-gray-500 mb-3">
+    You can access the curriculum list here:
+  </p>
+  <a
+    href="https://www.iitdh.ac.in/btech-curriculum"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow hover:bg-indigo-700 transition"
+  >
+    Check Curriculum 
+  </a>
+</div>
         </div>
       </div>
     </Section>
