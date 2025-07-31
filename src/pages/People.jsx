@@ -6,9 +6,9 @@ import usePeopleInfo from "../hooks/usePeopleInfo";
 
 // Lazy load People section components
 const NavCard = lazy(() => import("../components/Academics/NavCard"));
-const DepartmentLeadership = lazy(() =>
-  import("../components/People/DepartmentLeadership")
-);
+// const DepartmentLeadership = lazy(() =>
+//   import("../components/People/DepartmentLeadership")
+// );
 const FacultySection = lazy(() =>
   import("../components/People/FacultySection")
 );
@@ -27,12 +27,12 @@ const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
 function QuickNavigation() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
-      <NavCard
+      {/* <NavCard
         title="Department Leadership"
         icon={<i className="fas fa-user-tie"></i>}
         targetId="leadership"
         viewText={"View Members"}
-      />
+      /> */}
       <NavCard
         title="Faculty"
         icon={<i className="fas fa-chalkboard-teacher"></i>}
@@ -120,7 +120,7 @@ const People = () => {
     people.filter((person) => person.role === role);
 
   const leadership = filterByRole("Department Leadership");
-  const facultyMembers = filterByRole("Faculty Members");
+  const facultyMembers = [...leadership, ...filterByRole("Faculty Members")];
   const staffMembers = filterByRole("Staff Members");
   const formerMembers = filterByRole("Former Members");
   const phdScholars = filterByRole("PHD");
@@ -138,10 +138,11 @@ const People = () => {
       </div>
       {/* Navigation Cards */}
       <QuickNavigation />
-      {/* Leadership Section */}
+      {/* Leadership Section
       <Suspense fallback={fallback}>
         <DepartmentLeadership leadership={leadership} />
-      </Suspense>
+      </Suspense> */}
+
       {/* Faculty Section */}
       <Suspense fallback={fallback}>
         <FacultySection facultyMembers={facultyMembers} />

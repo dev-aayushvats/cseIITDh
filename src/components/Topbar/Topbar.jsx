@@ -1,21 +1,7 @@
 // src/components/Topbar.jsx
 import SearchInput from "./SearchInput";
-// import logo from "../../assets/institute-logo.png";
 
-export const slugMap = {
-  peoples: "people",
-  research: "research",
-  publications: "publications",
-  events: "events",
-  news: "news",
-  "about-pages": "about",
-  admission: "admission",
-  faculty: "faculty",
-  students: "students",
-  alumni: "alumni",
-  contact: "contact",
-  "join-as-faculty": "join-as-faculty",
-};
+// import logo from "../../assets/institute-logo.png";
 
 function Topbar({ toggleMobileMenu, isMobileMenuOpen }) {
   return (

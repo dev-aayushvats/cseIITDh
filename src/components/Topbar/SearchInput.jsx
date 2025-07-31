@@ -4,6 +4,21 @@ import { v4 } from "uuid";
 import { useDebounce } from "../../hooks/useDebounce";
 import useSearchResult from "../../hooks/useSearchResult";
 
+export const slugMap = {
+  peoples: "people",
+  research: "research",
+  publications: "publications",
+  events: "events",
+  news: "news",
+  "about-pages": "about",
+  admission: "admission",
+  faculty: "faculty",
+  students: "students",
+  alumni: "alumni",
+  contact: "contact",
+  "join-as-faculty": "join-as-faculty",
+};
+
 export default function SearchInput() {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedQuery = useDebounce(searchQuery, 300); // 300ms delay
@@ -45,6 +60,8 @@ export default function SearchInput() {
   };
 
   const handleResultClick = (slug) => {
+    console.log(slug);
+
     navigate(`/${slug}`);
     handleCloseSearch();
   };
@@ -97,7 +114,6 @@ function SearchResultDropdown({
   handleResultClick,
 }) {
   const resultsRef = useRef(null);
-
   if (debouncedQuery?.trim() === "") {
     return null;
   }
@@ -227,7 +243,10 @@ function SearchResultDropdown({
                 <button
                   type="button"
                   key={v4()}
-                  onClick={() => {
+                  onMouseDown={(e) => {
+                    // Use onMouseDown instead of onClick to ensure the handler fires before blur
+                    e.preventDefault(); // Prevents input blur before handler
+                    console.log("hello");
                     const targetSlug = slugMap[category] || item.slug;
                     handleResultClick(targetSlug);
                   }}
