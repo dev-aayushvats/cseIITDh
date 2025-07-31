@@ -46,42 +46,29 @@ export default function ContactPoints() {
               </a>
             </p>
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-2">
-              Faculty Recruitment (CS)
-            </h3>
-            <p className="text-gray-700">
-              Email:{" "}
+
+          <h3 className="font-semibold text-gray-800 mb-2">
+            Training and Placement Officer (TPO)
+          </h3>
+
+          <p className="text-gray-700">
+            Email:{" "}
+            <a
+              href="mailto:tpo@iitdh.ac.in"
+              className="text-indigo-600 hover:underline"
+            >
+              tpo@iitdh.ac.in
+            </a>
+            <br />
+            <span className="ml-[3.2rem]">
               <a
-                href="mailto:facrec.cs@iitdh.ac.in"
+                href="mailto:sameerjoshi@iitdh.ac.in"
                 className="text-indigo-600 hover:underline"
               >
-                facrec.cs@iitdh.ac.in
+                sameerjoshi@iitdh.ac.in
               </a>
-            </p>
-          </div>
- <h3 className="font-semibold text-gray-800 mb-2">
-  Training and Placement Officer (TPO)
-</h3>
-
-<p className="text-gray-700">
-  Email:{" "}
-  <a
-    href="mailto:tpo@iitdh.ac.in"
-    className="text-indigo-600 hover:underline"
-  >
-    tpo@iitdh.ac.in
-  </a>
-  <br />
-  <span className="ml-[3.2rem]">
-    <a
-      href="mailto:sameerjoshi@iitdh.ac.in"
-      className="text-indigo-600 hover:underline"
-    >
-      sameerjoshi@iitdh.ac.in
-    </a>
-  </span>
-</p>
+            </span>
+          </p>
 
 
           <div>

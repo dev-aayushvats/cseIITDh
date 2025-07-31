@@ -61,44 +61,6 @@ export default function HowToApply() {
           </ol>
         </div>
 
-        <div className="mt-6">
-          <h3 className="font-semibold text-gray-800 mb-3">
-            Important Information
-          </h3>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            <li>
-              Candidates are encouraged to review the department's research
-              areas before applying.
-            </li>
-            <li>
-              For any queries related to the application process, please contact{" "}
-              <button
-                type="button"
-                className="text-indigo-600 cursor-pointer"
-                onClick={() =>
-                  window.open("mailto:faculty.recruit@iitdh.ac.in", "_blank")
-                }
-              >
-                faculty.recruit@iitdh.ac.in
-              </button>{" "}
-              or{" "}
-              <button
-                type="button"
-                className="text-indigo-600 cursor-pointer"
-                onClick={() =>
-                  window.open("mailto:facrec.cs@iitdh.ac.in", "_blank")
-                }
-              >
-                facrec.cs@iitdh.ac.in
-              </button>
-            </li>
-            <li>
-              The institute reserves the right to shortlist candidates based on
-              the needs of the departments/institute.
-            </li>
-          </ul>
-        </div>
-
         <div className="text-center mt-8">
           <a
             // biome-ignore lint/a11y/useValidAnchor: No link yet
