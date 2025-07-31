@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { v4 } from "uuid";
 import Loading from "../components/Loading";
-import { slugMap } from "../components/Topbar/Topbar";
+import { slugMap } from "../components/Topbar/SearchInput";
 import useSearchResult from "../hooks/useSearchResult";
 
 function SearchResults() {
