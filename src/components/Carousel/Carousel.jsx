@@ -11,17 +11,18 @@ const CustomCarousel = () => {
 
   // Auto-advance slides every 5 seconds
   useEffect(() => {
-    if (images?.length === 0) return; // Don't start the timer if there are no images
+    if (!images || images.length === 0) return; // Don't start the timer if there are no images
     const timer = setInterval(() => {
-      if (typeof goToNext === "function") goToNext();
+      goToNext();
     }, 5000);
 
     return () => clearInterval(timer);
   }, [currentIndex, images]);
 
+  // Use the 3:1 aspect ratio for the loading skeleton to prevent layout shift.
   if (isLoading) {
     return (
-      <div className="relative rounded-lg shadow-md max-w-full h-48 sm:h-64 md:h-96 bg-gray-200 animate-pulse flex items-center justify-center">
+      <div className="relative w-full rounded-lg shadow-md max-w-full aspect-[3/1] bg-gray-200 animate-pulse flex items-center justify-center">
         <p className="text-gray-500">Loading Images...</p>
       </div>
     );
@@ -73,8 +74,8 @@ const CustomCarousel = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Carousel wrapper */}
-      <div className="relative h-48 sm:h-64 md:h-96 overflow-hidden">
+      {/* Carousel wrapper with a 3:1 aspect ratio */}
+      <div className="relative w-full aspect-[3/1] overflow-hidden">
         {images.map((src, index) => (
           <div
             key={src}
@@ -97,7 +98,7 @@ const CustomCarousel = () => {
       </div>
 
       {/* Slider indicators */}
-      <div className="absolute  z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
+      <div className="absolute z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
         {images.map((src, index) => (
           <button
             key={`slide-${src}`}
