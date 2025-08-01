@@ -47,16 +47,7 @@ const Navbar = ({ closeMenu }) => {
                         Academics
                     </NavLink>
                 </li>
-                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
-                    <a
-                        href="https://iitdh.ac.in/admissions"
-                        className="py-2 rounded-lg pl-3 font-medium block w-full text-gray-700 hover:text-indigo-600 hover:bg-slate-100"
-                        target="_blank" // optional: opens in new tab
-                        rel="noopener noreferrer" // security best practice
-                    >
-                        Admissions
-                    </a>
-                </li>
+               
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
                     <NavLink
                         to="/people"
@@ -74,6 +65,16 @@ const Navbar = ({ closeMenu }) => {
                     >
                         Research
                     </NavLink>
+                </li>
+                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <a
+                        href="https://iitdh.ac.in/admissions"
+                        className="py-2 rounded-lg pl-3 font-medium block w-full text-gray-700 hover:text-indigo-600 hover:bg-slate-100"
+                        target="_blank" // optional: opens in new tab
+                        rel="noopener noreferrer" // security best practice
+                    >
+                        Admissions
+                    </a>
                 </li>
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
                     <NavLink
