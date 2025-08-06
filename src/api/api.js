@@ -97,3 +97,9 @@ export const getSearchResult = async (query) => {
 	);
 	return data;
 };
+
+export const getJoinAsFacultyData = async () => {
+	const { data } = await axiosInstance.get("/join-as-faculty-pages");
+	// Sort by Level field and return the data array
+	return data?.data?.sort((a, b) => a.Level - b.Level) || [];
+};
