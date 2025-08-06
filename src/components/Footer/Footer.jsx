@@ -1,8 +1,11 @@
 import React from 'react';
 
 const Footer = () => {
-  // You can update this date whenever the site is modified
-  const lastUpdated = "July 2025";
+  // Automatically updated during build time
+  const lastUpdated = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long"
+  });
   const currentYear = new Date().getFullYear();
 
   return (
