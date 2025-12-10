@@ -13,9 +13,8 @@ const formatDate = (dateString) => {
 
 const transformNews = (news) =>
 	news
-		// Sort by the 'date' field instead of 'updatedAt'
-		?.sort((a, b) => new Date(b.date) - new Date(a.date))
-		.map((item) => ({
+		// Present data in the same order as it appears in the Google Sheet (no sorting)
+		?.map((item) => ({
 			title: item.Title || "",
 			date: formatDate(item.date),
 			description: item.description || "",

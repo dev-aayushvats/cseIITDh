@@ -3,9 +3,8 @@ import { getTalksAndEvents } from "../api/api";
 
 const transformTalksAndEvents = (talks) =>
 	talks
-		// Sort by the new 'sortingDate' field instead of 'updatedAt'
-		?.sort((a, b) => new Date(b.sortingDate) - new Date(a.sortingDate))
-		.map((item) => ({
+		// Present data in the same order as it appears in the Google Sheet (no sorting)
+		?.map((item) => ({
 			title: item.Title || "",
 			speaker: item.Speaker || null,
 			designation: item.designation || null,
