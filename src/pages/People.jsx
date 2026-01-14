@@ -16,6 +16,9 @@ const StaffSection = lazy(() => import("../components/People/StaffSection"));
 const FormerMemberSection = lazy(() =>
   import("../components/People/FormerMemberSection")
 );
+const FormerFacultySection = lazy(() =>
+  import("../components/People/FormerFacultySection")
+);
 const PhDScholarSection = lazy(() =>
   import("../components/People/PhDScholarSection")
 );
@@ -46,9 +49,15 @@ function QuickNavigation() {
         viewText={"View Members"}
       />
       <NavCard
-        title="Former Members"
+        title="Former Staff"
         icon={<i className="fas fa-user-graduate"></i>}
         targetId="former-members"
+        viewText={"View Members"}
+      />
+      <NavCard
+        title="Former Faculty"
+        icon={<i className="fas fa-chalkboard"></i>}
+        targetId="former-faculty"
         viewText={"View Members"}
       />
       <NavCard
@@ -94,6 +103,12 @@ const getPeopleData = (data) => {
           period: person.Period,
           currentAffiliation: person.CurrentAffiliation,
         };
+        case "Former Faculty":
+        return {
+          ...base,
+          period: person.Period,
+          currentAffiliation: person.CurrentAffiliation,
+        };
       default:
         return base;
     }
@@ -125,7 +140,7 @@ const People = () => {
   const formerMembers = filterByRole("Former Members");
   const phdScholars = filterByRole("PHD");
   const GraduatedScholars = filterByRole("Graduated Scholars");
-
+const formerFaculty = filterByRole("Former Faculty");
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Page Title */}
@@ -153,6 +168,10 @@ const People = () => {
       {/* Former Members Section */}
       <Suspense fallback={fallback}>
         <FormerMemberSection formerMembers={formerMembers} />
+      </Suspense>
+      {/* Former Faculty Section */}
+      <Suspense fallback={fallback}>
+        <FormerFacultySection formerFaculty={formerFaculty} />
       </Suspense>
       {/* PHD Scholars Section */}
       <Suspense fallback={fallback}>
