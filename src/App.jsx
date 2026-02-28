@@ -121,7 +121,7 @@ function App() {
                   element={<LazyRoute element={AllTalksEvents} />}
                 />
                 <Route
-                  path="/cse-conclave"
+                  path="/cse-conclave-2026"
                   element={<LazyRoute element={CseConclave} />}
                 />
               </Routes>
