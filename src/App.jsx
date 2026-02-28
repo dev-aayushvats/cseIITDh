@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Topbar from "./components/Topbar/Topbar";
 import Home from "./pages/Home"; // Import Home eagerly
 
+
 // Lazy load all other page components
 const Academics = lazy(() => import("./pages/Academics"));
 const Admissions = lazy(() => import("./pages/Admissions"));
@@ -22,6 +23,8 @@ const About = lazy(() => import("./pages/About"));
 const SearchResults = lazy(() => import("./pages/SearchResults"));
 const Allnews = lazy(() => import("./pages/Allnews"));
 const AllTalksEvents = lazy(() => import("./pages/AllTalksEventsPage"));
+const CseConclave = lazy(() => import("./pages/CseConclave"));
+
 
 const queryClient = new QueryClient();
 
@@ -116,6 +119,10 @@ function App() {
                 <Route
                   path="/allTalksEvents"
                   element={<LazyRoute element={AllTalksEvents} />}
+                />
+                <Route
+                  path="/cse-conclave"
+                  element={<LazyRoute element={CseConclave} />}
                 />
               </Routes>
             </div>
