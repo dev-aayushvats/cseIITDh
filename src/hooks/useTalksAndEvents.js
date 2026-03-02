@@ -12,6 +12,7 @@ const transformTalksAndEvents = (talks) =>
 			time: item.date || null,
 			date: null,
 			description: item.description || null,
+			links: item.links || null,
 		})) || [];
 
 export function useTalksAndEvents() {

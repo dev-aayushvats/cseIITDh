@@ -202,6 +202,10 @@ export const getTalksAndEvents = async () => {
 								"summary",
 								"notes",
 							]);
+							const links = getValue([
+								"link",
+								"event links",
+							]);
 
 							return {
 								Title: title,
@@ -211,6 +215,7 @@ export const getTalksAndEvents = async () => {
 								date: date,
 								sortingDate: date, // Use date for sorting
 								description: description,
+								links: links,
 							};
 						});
 

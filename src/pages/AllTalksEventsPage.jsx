@@ -9,6 +9,7 @@ const TalkCard = ({
   time,
   date,
   description,
+  links,
 }) => (
   <div className="
     bg-white rounded-2xl p-6 transition-all duration-300
@@ -26,6 +27,18 @@ const TalkCard = ({
     {time && <div className="mt-1"><strong>⏰ Time:</strong> {time}</div>}
     {date && <div className="mt-1 text-gray-600">{date}</div>}
     {description && <p className="mt-4 font-medium text-gray-700">{description}</p>}
+    {links && (
+  <div className="mt-2">
+    <a
+      href={links}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-600 hover:underline break-words"
+    >
+      🔗 View Event Details
+    </a>
+  </div>
+    )}
   </div>
 );
 
