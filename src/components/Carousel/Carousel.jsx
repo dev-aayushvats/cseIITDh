@@ -9,9 +9,10 @@ const CustomCarousel = () => {
 
   const { data: images, isLoading, isError, error } = useCarouselImages();
 
-  // Auto-advance slides every 5 seconds
+  // Auto slide
   useEffect(() => {
-    if (!images || images.length === 0) return; // Don't start the timer if there are no images
+    if (!images || images.length === 0) return;
+
     const timer = setInterval(() => {
       goToNext();
     }, 5000);
@@ -19,7 +20,7 @@ const CustomCarousel = () => {
     return () => clearInterval(timer);
   }, [currentIndex, images]);
 
-  // Use the 3:1 aspect ratio for the loading skeleton to prevent layout shift.
+  // Loading skeleton
   if (isLoading) {
     return (
       <div className="relative w-full rounded-lg shadow-md max-w-full aspect-[3/1] bg-gray-200 animate-pulse flex items-center justify-center">
@@ -44,7 +45,7 @@ const CustomCarousel = () => {
     setCurrentIndex((prev) => (prev - 1 + length) % length);
   };
 
-  // Handle touch events for swipe functionality
+  // Swipe support
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -54,18 +55,11 @@ const CustomCarousel = () => {
   };
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      goToNext(); // Swipe left
-    }
-
-    if (touchStart - touchEnd < -50) {
-      goToPrev(); // Swipe right
-    }
+    if (touchStart - touchEnd > 50) goToNext();
+    if (touchStart - touchEnd < -50) goToPrev();
   };
 
-  if (length === 0) {
-    return null; // Or a placeholder indicating no images
-  }
+  if (length === 0) return null;
 
   return (
     <div
@@ -74,38 +68,55 @@ const CustomCarousel = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Carousel wrapper with a 3:1 aspect ratio */}
+      {/* Carousel wrapper */}
       <div className="relative w-full aspect-[3/1] overflow-hidden">
-        {images.map((src, index) => (
+        {images.map((item, index) => (
           <div
-            key={src}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-  index === currentIndex
-    ? "opacity-100 pointer-events-auto"
-    : "opacity-0 pointer-events-none"
-}`}
+            key={item.image}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === currentIndex
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
           >
-            <img
-              src={src}
-              alt={`Slide ${index + 1}`}
-              className="absolute w-full h-full object-cover"
-              style={{
-                transform: "translate(-50%, -50%)",
-                top: "50%",
-                left: "50%",
-              }}
- onClick={() =>
-    window.open("https://cse.iitdh.ac.in/cse-conclave-2026", "_blank")
-  }            />
+            {item.link ? (
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={item.image}
+                  alt={`Slide ${index + 1}`}
+                  className="absolute w-full h-full object-cover cursor-pointer"
+                  style={{
+                    transform: "translate(-50%, -50%)",
+                    top: "50%",
+                    left: "50%",
+                  }}
+                />
+              </a>
+            ) : (
+              <img
+                src={item.image}
+                alt={`Slide ${index + 1}`}
+                className="absolute w-full h-full object-cover"
+                style={{
+                  transform: "translate(-50%, -50%)",
+                  top: "50%",
+                  left: "50%",
+                }}
+              />
+            )}
           </div>
         ))}
       </div>
 
-      {/* Slider indicators */}
-      <div className="absolute z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse bottom-4 left-1/2">
-        {images.map((src, index) => (
+      {/* Indicators */}
+      <div className="absolute z-30 flex -translate-x-1/2 space-x-2 sm:space-x-3 bottom-4 left-1/2">
+        {images.map((item, index) => (
           <button
-            key={`slide-${src}`}
+            key={`slide-${item.image}`}
             type="button"
             className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
               currentIndex === index ? "bg-white" : "bg-gray-300"
@@ -116,55 +127,49 @@ const CustomCarousel = () => {
         ))}
       </div>
 
-      {/* Slider controls */}
+      {/* Previous */}
       <button
         type="button"
-        className="hidden sm:flex absolute top-0 left-0 z-30 items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none"
+        className="hidden sm:flex absolute top-0 left-0 z-30 items-center justify-center h-full px-4 cursor-pointer group"
         onClick={goToPrev}
       >
-        <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-white">
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
           <svg
-            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
+            className="w-4 h-4 text-white"
             fill="none"
             viewBox="0 0 6 10"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-label="Previous slide"
           >
-            <title>Previous slide</title>
             <path
               d="M5 1L1 5l4 4"
               stroke="currentColor"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
             />
           </svg>
-          <span className="sr-only">Previous</span>
         </span>
       </button>
+
+      {/* Next */}
       <button
         type="button"
-        className="hidden sm:flex absolute top-0 right-0 z-30 items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none"
+        className="hidden sm:flex absolute top-0 right-0 z-30 items-center justify-center h-full px-4 cursor-pointer group"
         onClick={goToNext}
       >
-        <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:ring-white">
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
           <svg
-            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
+            className="w-4 h-4 text-white"
             fill="none"
             viewBox="0 0 6 10"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-label="Next slide"
           >
-            <title>Next slide</title>
             <path
               d="M1 9l4-4-4-4"
               stroke="currentColor"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
             />
           </svg>
-          <span className="sr-only">Next</span>
         </span>
       </button>
     </div>
