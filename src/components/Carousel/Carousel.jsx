@@ -79,9 +79,11 @@ const CustomCarousel = () => {
         {images.map((src, index) => (
           <div
             key={src}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+  index === currentIndex
+    ? "opacity-100 pointer-events-auto"
+    : "opacity-0 pointer-events-none"
+}`}
           >
             <img
               src={src}
@@ -92,7 +94,9 @@ const CustomCarousel = () => {
                 top: "50%",
                 left: "50%",
               }}
-            />
+ onClick={() =>
+    window.open("https://cse.iitdh.ac.in/cse-conclave-2026", "_blank")
+  }            />
           </div>
         ))}
       </div>
