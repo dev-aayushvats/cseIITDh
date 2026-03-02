@@ -30,7 +30,7 @@ export default function TimeTableSection() {
     You can access the timetable here:
   </p>
   <a
-    href="https://www.iitdh.ac.in/timetable-autumn-2025-26"
+    href="https://www.iitdh.ac.in/timetable-spring-2025-26"
     target="_blank"
     rel="noopener noreferrer"
     className="inline-block px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow hover:bg-indigo-700 transition"
