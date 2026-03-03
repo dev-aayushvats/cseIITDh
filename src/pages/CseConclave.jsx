@@ -155,7 +155,101 @@ const CseConclave = () => {
             <li>• Networking opportunities</li>
           </ul>
         </div>
+{/* Schedule */}
+<div className="border-t border-gray-200 pt-10">
+  <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+    Event Schedule
+  </h2>
 
+  <div className="overflow-x-auto">
+    <table className="min-w-full text-sm text-left border border-gray-200 rounded-lg overflow-hidden">
+      <thead className="bg-purple-50 text-gray-700 uppercase text-xs tracking-wider">
+        <tr>
+          <th className="px-4 py-3">Date</th>
+          <th className="px-4 py-3">Time</th>
+          <th className="px-4 py-3">Session</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200">
+
+        {/* Day 1 */}
+        <tr className="bg-gray-50">
+          <td className="px-4 py-3 font-medium">7 March 2026</td>
+          <td className="px-4 py-3">10:00 – 11:00 AM</td>
+          <td className="px-4 py-3">Dr. Naveen Sivadasan</td>
+        </tr>
+        <tr>
+          <td className="px-4 py-3"></td>
+          <td className="px-4 py-3">11:15 – 12:15 PM</td>
+          <td className="px-4 py-3">Prof. N. R. Aravind</td>
+        </tr>
+        <tr className="bg-gray-50">
+          <td></td>
+          <td className="px-4 py-3">12:15 – 2:00 PM</td>
+          <td className="px-4 py-3">Lunch Break</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="px-4 py-3">2:00 – 3:00 PM</td>
+          <td className="px-4 py-3">Mr. Mehul Jain</td>
+        </tr>
+        <tr className="bg-gray-50">
+          <td></td>
+          <td className="px-4 py-3">3:15 – 4:15 PM</td>
+          <td className="px-4 py-3">Dr. Ashish Mishra</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="px-4 py-3">4:15 – 4:45 PM</td>
+          <td className="px-4 py-3">Tea Break</td>
+        </tr>
+        <tr className="bg-gray-50">
+          <td></td>
+          <td className="px-4 py-3">4:45 – 5:45 PM</td>
+          <td className="px-4 py-3">Sushim Shrivastava</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="px-4 py-3">6:00 – 7:00 PM</td>
+          <td className="px-4 py-3">Panel Discussion</td>
+        </tr>
+
+        {/* Day 2 */}
+        <tr className="bg-purple-50">
+          <td className="px-4 py-3 font-medium">8 March 2026</td>
+          <td className="px-4 py-3">9:00 – 10:00 AM</td>
+          <td className="px-4 py-3">Prof. Hema Murthy</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="px-4 py-3">10:15 – 11:15 AM</td>
+          <td className="px-4 py-3">Dr. Chitradeep M</td>
+        </tr>
+        <tr className="bg-gray-50">
+          <td></td>
+          <td className="px-4 py-3">11:15 – 11:45 AM</td>
+          <td className="px-4 py-3">Tea Break</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="px-4 py-3">11:45 – 12:45 PM</td>
+          <td className="px-4 py-3">Prof. Amit Awekar</td>
+        </tr>
+        <tr className="bg-gray-50">
+          <td></td>
+          <td className="px-4 py-3">12:45 – 2:00 PM</td>
+          <td className="px-4 py-3">Lunch Break</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td className="px-4 py-3">2:00 – 3:00 PM</td>
+          <td className="px-4 py-3">Mr. Himanshu Gautam</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
         {/* CTA */}
         <div className="text-center pt-4">
           <a
