@@ -107,7 +107,16 @@ const CseConclave = () => {
             <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
 
               <li>
-                <span className="font-medium">Prof. N. R. Aravind</span> – IIT Hyderabad
+                        
+                 <a
+                  href="https://people.iith.ac.in/aravind/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 hover:underline"
+                >
+                 Prof. N. R. Aravind
+                </a>{" "}
+              – IIT Hyderabad
               </li>
 
               <li>
@@ -124,7 +133,7 @@ const CseConclave = () => {
 
               <li>
                 <a
-                  href="https://www.tcs.com/who-we-are/research"
+                  href="https://in.linkedin.com/in/naveen-sivadasan-b71027b2?trk=people-guest_people_search-card"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-blue-600 hover:underline"
@@ -135,12 +144,20 @@ const CseConclave = () => {
               </li>
 
               <li>
-                <span className="font-medium">Prof. Amit Awekar</span> – IIT Guwahati
+                 <a
+                  href="https://www.iitg.ac.in/awekar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 hover:underline"
+                >
+                  Prof. Amit Awekar
+                </a>{" "}
+                 – IIT Guwahati
               </li>
 
               <li>
                 <a
-                  href="https://www.hp.com/in-en/research.html"
+                  href="https://www.linkedin.com/in/ashish-mishra-bb378050/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-blue-600 hover:underline"
@@ -151,12 +168,18 @@ const CseConclave = () => {
               </li>
 
               <li>
-                <span className="font-medium">Dr. Chitradeep M</span> – Nokia
+                <a
+                  href="https://in.linkedin.com/in/chitradeep-majumdar-27689113"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 hover:underline"
+                >
+                Dr. Chitradeep M </a>{" "} – Nokia
               </li>
 
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/j13mehul/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-blue-600 hover:underline"
@@ -168,7 +191,7 @@ const CseConclave = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/sushim/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-blue-600 hover:underline"
@@ -180,7 +203,7 @@ const CseConclave = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/himanshu-gautam-69647289/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-blue-600 hover:underline"
