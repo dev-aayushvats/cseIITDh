@@ -269,94 +269,130 @@ const CseConclave = () => {
                   <th className="px-4 py-3">Session</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+<tbody className="divide-y divide-gray-200">
 
-                {/* Day 1 */}
-                <tr className="bg-gray-50">
-                  <td className="px-4 py-3 font-medium">7 March 2026</td>
-                  <td className="px-4 py-3">10:00 – 11:00 AM</td>
-                  <td className="px-4 py-3">Dr. Naveen Sivadasan</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3"></td>
-                  <td className="px-4 py-3">11:15 – 12:15 PM</td>
-                  <td className="px-4 py-3">Prof. N. R. Aravind</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td></td>
-                  <td className="px-4 py-3">12:15 – 2:00 PM</td>
-                  <td className="px-4 py-3">Lunch Break</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="px-4 py-3">2:00 – 3:00 PM</td>
-                  <td className="px-4 py-3">Mr. Mehul Jain</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td></td>
-                  <td className="px-4 py-3">3:15 – 4:15 PM</td>
-                  <td className="px-4 py-3">Dr. Ashish Mishra</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="px-4 py-3">4:15 – 4:45 PM</td>
-                  <td className="px-4 py-3">Tea Break</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td></td>
-                  <td className="px-4 py-3">4:45 – 5:45 PM</td>
-                  <td className="px-4 py-3">Sushim Shrivastava</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="px-4 py-3">6:00 – 7:00 PM</td>
-                  <td className="px-4 py-3">Panel Discussion</td>
-                </tr>
+  {/* Day 1 */}
+  <tr className="bg-gray-50">
+    <td className="px-4 py-3 font-medium">7 March 2026</td>
+    <td className="px-4 py-3">9:30 – 10:00 AM</td>
+    <td className="px-4 py-3">Registration and Opening Remarks</td>
+  </tr>
 
-                {/* Day 2 */}
-                <tr className="bg-purple-50">
-                  <td className="px-4 py-3 font-medium">8 March 2026</td>
-                  <td className="px-4 py-3">9:00 – 10:00 AM</td>
-                  <td className="px-4 py-3">Prof. Hema Murthy</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="px-4 py-3">10:15 – 11:15 AM</td>
-                  <td className="px-4 py-3">Dr. Chitradeep M</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td></td>
-                  <td className="px-4 py-3">11:15 – 11:45 AM</td>
-                  <td className="px-4 py-3">Tea Break</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="px-4 py-3">11:45 – 12:45 PM</td>
-                  <td className="px-4 py-3">Prof. Amit Awekar</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td></td>
-                  <td className="px-4 py-3">12:45 – 2:00 PM</td>
-                  <td className="px-4 py-3">Lunch Break</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td className="px-4 py-3">2:00 – 3:00 PM</td>
-                  <td className="px-4 py-3">Mr. Himanshu Gautam</td>
-                </tr>
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">10:00 – 11:00 AM</td>
+    <td className="px-4 py-3">Dr. Naveen Sivadasan</td>
+  </tr>
 
-              </tbody>
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">11:00 – 11:15 AM</td>
+    <td className="px-4 py-3">Switching / Buffer Time</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">11:15 – 12:15 PM</td>
+    <td className="px-4 py-3">Prof. N. R. Aravind</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">12:15 – 2:00 PM</td>
+    <td className="px-4 py-3">Lunch Break</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">2:00 – 3:00 PM</td>
+    <td className="px-4 py-3">Mr. Mehul Jain</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">3:00 – 3:15 PM</td>
+    <td className="px-4 py-3">Switching / Buffer Time</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">3:15 – 4:15 PM</td>
+    <td className="px-4 py-3">Dr. Ashish Mishra</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">4:15 – 4:45 PM</td>
+    <td className="px-4 py-3">Tea Break-cum-Poster Session</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">4:45 – 5:45 PM</td>
+    <td className="px-4 py-3">Sushim Shrivastava</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">5:45 – 6:00 PM</td>
+    <td className="px-4 py-3">Switching / Buffer Time</td>
+  </tr>
+
+  {/* Day 2 */}
+  <tr className="bg-purple-50">
+    <td className="px-4 py-3 font-medium">8 March 2026</td>
+    <td className="px-4 py-3">9:00 – 10:00 AM</td>
+    <td className="px-4 py-3">Prof. Hema Murthy</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">10:00 – 10:15 AM</td>
+    <td className="px-4 py-3">Switching / Buffer Time</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">10:15 – 11:15 AM</td>
+    <td className="px-4 py-3">Dr. Chitradeep M</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">11:15 – 11:45 AM</td>
+    <td className="px-4 py-3">Tea Break</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">11:45 – 12:45 PM</td>
+    <td className="px-4 py-3">Dr. Amit Awekar</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td className="px-4 py-3">12:45 – 2:00 PM</td>
+    <td className="px-4 py-3">Lunch Break</td>
+  </tr>
+
+  <tr className="bg-gray-50">
+    <td></td>
+    <td className="px-4 py-3">2:00 – 3:00 PM</td>
+    <td className="px-4 py-3">Mr. Himanshu Gautam</td>
+  </tr>
+
+</tbody>
             </table>
           </div>
         </div>
         {/* CTA */}
         <div className="text-center pt-4">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSed9Zk9kgwS-3w0sMKlvCBGOM0F9PfsVtyVdpszaOc0cbWQPg/viewform"
+            href=""
             className="inline-block w-full sm:w-auto px-6 sm:px-8 py-3 bg-purple-700 text-white rounded-lg font-medium shadow-md hover:bg-purple-800 transition"
           >
-            Register Now
-          </a>
+            Registration Closed
+        </a>
 
           <p className="text-xs text-gray-500 mt-3">
             Limited seats • Early registration recommended
