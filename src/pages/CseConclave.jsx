@@ -60,7 +60,7 @@ const CseConclave = () => {
                   Venue
                 </span>
                 <span className="font-medium text-gray-900 text-right max-w-md">
-                  Central Learning Theatre, IIT Dharwad
+                  106, 1st Floor, Central Learning Theatre, IIT Dharwad
                 </span>
               </div>
 
