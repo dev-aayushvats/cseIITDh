@@ -379,7 +379,7 @@ const CseConclave = () => {
           <td></td>
           <td className="px-4 py-3">11:45 – 12:45 PM</td>
           <td className="px-4 py-3">Prof. Amit Awekar</td>
-          <td className="px-4 py-3">Compressed Sensing</td>
+          <td className="px-4 py-3">Model Compression</td>
         </tr>
 
         <tr>
@@ -394,6 +394,13 @@ const CseConclave = () => {
           <td className="px-4 py-3">2:00 – 3:00 PM</td>
           <td className="px-4 py-3">Mr. Himanshu Gautam</td>
           <td className="px-4 py-3">Blockchain Security: From Foundations to Post-Quantum Resilience</td>
+        </tr>
+
+        <tr className="bg-gray-50">
+          <td></td>
+          <td className="px-4 py-3">3:00 – 3:30 PM</td>
+          <td className="px-4 py-3">Tea Break</td>
+          <td className="px-4 py-3">—</td>
         </tr>
 
       </tbody>
