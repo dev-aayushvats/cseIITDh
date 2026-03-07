@@ -329,7 +329,7 @@ const CseConclave = () => {
           <td></td>
           <td className="px-4 py-3">3:15 – 4:15 PM</td>
           <td className="px-4 py-3">Dr. Ashish Mishra</td>
-          <td className="px-4 py-3">Evolution of Limited Supervision in Computer Vision</td>
+          <td className="px-4 py-3">Revolution of Limited Supervision in Computer Vision</td>
         </tr>
 
         <tr className="bg-gray-50">
