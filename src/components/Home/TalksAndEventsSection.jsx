@@ -9,6 +9,7 @@ const TalkCard = ({
   venue,
   time,
   date,
+  dateDisplay,
   description,
   links,
 }) => (
@@ -25,21 +26,21 @@ const TalkCard = ({
         )}
       </div>
     )}
-    {venue && (
+    {dateDisplay && (
       <div className="mb-1">
-        <span className="text-red-600 font-semibold">&#x1F4CD; Venue:</span>{" "}
-        {venue}
+        <span className="text-gray-600 font-semibold">📅 Date:</span> {dateDisplay}
       </div>
     )}
     {time && (
       <div className="mb-1">
-        <span className="text-blue-600 font-semibold">&#x23F0; Time:</span>{" "}
+        <span className="text-blue-600 font-semibold">⏰ Time:</span>{" "}
         {time}
       </div>
     )}
-    {date && (
+    {venue && (
       <div className="mb-1">
-        <span className="text-gray-600">{date}</span>
+        <span className="text-red-600 font-semibold">📍 Venue:</span>{" "}
+        {venue}
       </div>
     )}
     {links && (
@@ -75,7 +76,26 @@ export default function TalksAndEventsSection() {
     error: talksError,
   } = useTalksAndEvents();
 
-  const topTalks = talksAndEvents?.slice(0, 3); // Show only top 3
+  // Filter events based on endDate within 1 month from today
+  const getRecentTalks = () => {
+    if (!talksAndEvents || talksAndEvents.length === 0) return [];
+
+    const now = new Date();
+    const oneMonthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const oneMonthFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+    return talksAndEvents.filter((item) => {
+      // Use endDate if available, otherwise use startDate
+      const eventDate = item.endDate || item.startDate;
+      if (!eventDate) return false;
+      
+      // Include events where endDate is within 1 month window
+      return eventDate >= oneMonthAgo && eventDate <= oneMonthFromNow;
+    }).slice(0, 3); // Show only top 3 recent events
+  };
+
+  const recentTalks = getRecentTalks();
+  const hasRecentEvents = recentTalks.length > 0;
 
   return (
     <div>
@@ -95,20 +115,28 @@ export default function TalksAndEventsSection() {
       {/* Content */}
       <div className="space-y-4">
         {talksLoading ? (
-          <TalkLoading />
+          hasRecentEvents ? <TalkLoading /> : null
         ) : talksError ? (
           <div className="text-red-500 p-4 bg-red-50 rounded-lg">
             <p>Error loading talks and events: {talksError?.message}</p>
             <p className="text-sm mt-2">Please try refreshing the page.</p>
           </div>
-        ) : topTalks?.length > 0 ? (
-          topTalks.map((item) => (
+        ) : hasRecentEvents ? (
+          recentTalks.map((item) => (
             <TalkCard key={`talks-${item?.id || v4()}`} {...item} />
           ))
         ) : (
-          <p className="text-gray-500">
-            No talks or events available at the moment.
-          </p>
+          <div className="text-center py-8 bg-gray-50 rounded-lg">
+            <p className="text-gray-600 mb-4">
+              No upcoming talks or events in the next month.
+            </p>
+            <Link
+              to="/allTalksEvents"
+              className="inline-block text-indigo-600 hover:text-indigo-700 font-medium"
+            >
+              View past events and more →
+            </Link>
+          </div>
         )}
       </div>
     </div>

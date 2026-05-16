@@ -185,12 +185,34 @@ export const getTalksAndEvents = async () => {
 								"room",
 							]);
 
+							// New format: Start Date, End Date, Time
+							const startDate = getValue([
+								"start date",
+								"startdate",
+								"date",
+								"event date",
+							]);
+
+							const endDate = getValue([
+								"end date",
+								"enddate",
+								"date",
+								"event date",
+							]);
+
+							const eventTime = getValue([
+								"time",
+								"event time",
+								"timing",
+								"date/time",
+							]);
+
+							// Use date or startDate for old format compatibility
 							const date = getValue([
 								"date",
 								"event date",
 								"date/time",
 								"datetime",
-								"time",
 								"schedule",
 							]);
 
@@ -202,6 +224,7 @@ export const getTalksAndEvents = async () => {
 								"summary",
 								"notes",
 							]);
+
 							const links = getValue([
 								"link",
 								"event links",
@@ -212,8 +235,11 @@ export const getTalksAndEvents = async () => {
 								Speaker: speaker,
 								designation: designation,
 								venue: venue,
-								date: date,
-								sortingDate: date, // Use date for sorting
+								startDate: startDate || date,
+								endDate: endDate || date,
+								date: endDate || startDate || date, // For backward compatibility
+								time: eventTime,
+								sortingDate: endDate || startDate || date, // Use endDate for sorting
 								description: description,
 								links: links,
 							};

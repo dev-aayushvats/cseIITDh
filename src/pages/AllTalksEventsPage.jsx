@@ -8,6 +8,7 @@ const TalkCard = ({
   venue,
   time,
   date,
+  dateDisplay,
   description,
   links,
 }) => (
@@ -23,9 +24,9 @@ const TalkCard = ({
         {designation && <div className="text-sm text-gray-600">{designation}</div>}
       </div>
     )}
-    {venue && <div className="mt-2"><strong>📍 Venue:</strong> {venue}</div>}
+    {dateDisplay && <div className="mt-1"><strong>📅 Date:</strong> {dateDisplay}</div>}
     {time && <div className="mt-1"><strong>⏰ Time:</strong> {time}</div>}
-    {date && <div className="mt-1 text-gray-600">{date}</div>}
+    {venue && <div className="mt-2"><strong>📍 Venue:</strong> {venue}</div>}
     {description && <p className="mt-4 font-medium text-gray-700">{description}</p>}
     {links && (
   <div className="mt-2">
