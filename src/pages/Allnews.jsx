@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { useNews } from "../hooks/useNews";
 
-const NewsCard = ({ title, date, description, link }) => (
+const NewsCard = ({ title, dateDisplay, description, link }) => (
   <button
     type="button"
     onClick={() => {
@@ -18,7 +18,9 @@ const NewsCard = ({ title, date, description, link }) => (
     <h3 className="text-xl font-semibold text-gray-900">
       {title}
     </h3>
-    <p className="text-sm text-indigo-600 font-medium mt-2">{date}</p>
+    {dateDisplay && (
+      <p className="text-sm text-indigo-600 font-medium mt-2">{dateDisplay}</p>
+    )}
     <p className="text-gray-600 text-base mt-4 flex-grow">{description}</p>
   </button>
 );

@@ -14,6 +14,9 @@ const NavCard = lazy(() => import("../components/Academics/NavCard"));
 const TimeTableSection = lazy(() =>
   import("../components/Academics/TimeTableSection")
 );
+const PlacementSection = lazy(() =>
+  import("../components/Academics/PlacementSection")
+);
 const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
 
 const fallback = (
@@ -36,7 +39,7 @@ const Academics = () => {
       {/* Navigation Cards */}
       <div className="mb-12">
         <Suspense fallback={fallback}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 md:gap-6">
             <NavCard
               title="Time Table"
               icon={<i className="far fa-clock"></i>}
@@ -59,6 +62,12 @@ const Academics = () => {
               title="Rules"
               icon={<i className="fas fa-gavel"></i>}
               targetId="rules"
+              viewText={"View Details"}
+            />
+            <NavCard
+              title="Placements"
+              icon={<i className="fas fa-briefcase"></i>}
+              targetId="placements"
               viewText={"View Details"}
             />
             <NavCard
@@ -89,6 +98,11 @@ const Academics = () => {
       {/* Rules Section */}
       <Suspense fallback={fallback}>
         <AcademicRules />
+      </Suspense>
+
+      {/* Placements Section */}
+      <Suspense fallback={fallback}>
+        <PlacementSection />
       </Suspense>
 
       {/* FAQs Section */}

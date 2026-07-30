@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { useNews } from "../../hooks/useNews";
 import { Link } from "react-router-dom"; // ← make sure this is imported
 
-const NewsCard = ({ title, date, description, link }) => (
+const NewsCard = ({ title, dateDisplay, description, link }) => (
   <button
     type="button"
     onClick={() => {
@@ -11,7 +11,9 @@ const NewsCard = ({ title, date, description, link }) => (
     className="cursor-pointer bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex flex-col h-full text-left"
   >
     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
-    <p className="text-sm text-indigo-600 font-medium mt-1">{date}</p>
+    {dateDisplay && (
+      <p className="text-sm text-indigo-600 font-medium mt-1">{dateDisplay}</p>
+    )}
     <p className="text-gray-600 text-sm mt-2 flex-grow">{description}</p>
   </button>
 );
@@ -26,7 +28,21 @@ const NewsLoading = () => (
 
 export default function NewsSection() {
   const { data: news, isLoading: newsLoading, error: newsError } = useNews();
-  const topNews = news?.slice(0, 3); // show only top 3
+
+  // Archive news older than 1 month (or without a date) out of the home page,
+  // same recency window used for Talks and Events.
+  const getRecentNews = () => {
+    if (!news || news.length === 0) return [];
+
+    const oneMonthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+    return news
+      .filter((item) => item.date && item.date >= oneMonthAgo)
+      .slice(0, 3); // Show only top 3 recent items
+  };
+
+  const recentNews = getRecentNews();
+  const hasRecentNews = recentNews.length > 0;
 
   return (
     <div>
@@ -50,12 +66,20 @@ export default function NewsSection() {
             <p>Error loading news: {newsError?.message}</p>
             <p className="text-sm mt-2">Please try refreshing the page.</p>
           </div>
-        ) : topNews?.length > 0 ? (
-          topNews.map((item) => (
+        ) : hasRecentNews ? (
+          recentNews.map((item) => (
             <NewsCard key={`news-${item?.id || v4()}`} {...item} />
           ))
         ) : (
-          <p className="text-gray-500">No news available at the moment.</p>
+          <div className="text-center py-8 bg-gray-50 rounded-lg">
+            <p className="text-gray-600 mb-4">No recent news in the past month.</p>
+            <Link
+              to="/allnews"
+              className="inline-block text-indigo-600 hover:text-indigo-700 font-medium"
+            >
+              View past news and more →
+            </Link>
+          </div>
         )}
       </div>
     </div>

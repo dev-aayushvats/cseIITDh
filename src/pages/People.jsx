@@ -25,6 +25,9 @@ const PhDScholarSection = lazy(() =>
 const GraduatedScholarSection = lazy(() =>
   import("../components/People/GraduatedScholarSection")
 );
+const StudentsSection = lazy(() =>
+  import("../components/People/StudentsSection")
+);
 const BackToTopButton = lazy(() => import("../components/BackToTopButton"));
 
 function QuickNavigation() {
@@ -70,6 +73,12 @@ function QuickNavigation() {
         title="Graduated Scholars"
         icon={<i className="fas fa-history"></i>}
         targetId="graduated-scholars"
+        viewText={"View Members"}
+      />
+      <NavCard
+        title="Students"
+        icon={<i className="fas fa-user-graduate"></i>}
+        targetId="students"
         viewText={"View Members"}
       />
     </div>
@@ -180,6 +189,10 @@ const formerFaculty = filterByRole("Former Faculty");
       {/* Graduated Scholars */}
       <Suspense fallback={fallback}>
         <GraduatedScholarSection GraduatedScholars={GraduatedScholars} />
+      </Suspense>
+      {/* Students Section */}
+      <Suspense fallback={fallback}>
+        <StudentsSection />
       </Suspense>
       {/* Back to Top Button */}
       <Suspense fallback={null}>
