@@ -12,9 +12,9 @@ const sectionLinks = {
     ],
     people: [
         { id: 'faculty', label: 'Faculty' },
+        { id: 'former-faculty', label: 'Former Faculty' },
         { id: 'staff', label: 'Staff' },
         { id: 'former-members', label: 'Former Staff' },
-        { id: 'former-faculty', label: 'Former Faculty' },
         { id: 'phd-scholars', label: 'PhD Scholars' },
         { id: 'graduated-scholars', label: 'Graduated Scholars' },
         { id: 'students', label: 'Students' },
@@ -139,14 +139,17 @@ const Navbar = ({ closeMenu }) => {
                     handleLinkClick={handleLinkClick}
                 />
 
-                <NavGroup
-                    to="/research"
-                    label="Research"
-                    sections={sectionLinks.research}
-                    isOpen={openDropdown === 'research'}
-                    onToggle={toggleDropdown('research')}
-                    handleLinkClick={handleLinkClick}
-                />
+                <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
+                    <a
+                        href="https://rnd.iitdh.ac.in/"
+                        className="py-2 rounded-lg pl-3 font-medium block w-full text-gray-700 hover:text-indigo-600 hover:bg-slate-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={handleLinkClick}
+                    >
+                        Research
+                    </a>
+                </li>
 
                 <li className='rounded-lg hover:bg-slate-100 transition-all duration-200'>
                     <a

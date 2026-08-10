@@ -6,7 +6,7 @@ export const DIVISIONS = [
   { key: "btech-cse", label: "B.Tech CSE" },
   { key: "btech-mnc", label: "B.Tech Mathematics & Computing" },
   { key: "mtech-cse", label: "M.Tech CSE" },
-  { key: "mfr", label: "MFR (M.Tech for Research)" },
+  { key: "mfr", label: "MTR (M.Tech by Research)" },
 ];
 
 // Each entry: { rollNo, name }
@@ -133,7 +133,7 @@ export const studentsData = {
     { rollNo: "CS26MT020", name: "ARCHIT KUMAR" },
     { rollNo: "CS26MT021", name: "RITIK KUMAR" },
   ],
-  mfr: [
+  MTR: [
     { rollNo: "CS26MR001", name: "ROSHAN SHARMA" },
     { rollNo: "CS26MR002", name: "AKASH NAGAPPAGOL" },
     { rollNo: "CS26MR003", name: "JATIN KALAL" },

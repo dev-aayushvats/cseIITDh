@@ -46,6 +46,12 @@ function QuickNavigation() {
         viewText={"View Members"}
       />
       <NavCard
+        title="Former Faculty"
+        icon={<i className="fas fa-chalkboard"></i>}
+        targetId="former-faculty"
+        viewText={"View Members"}
+      />
+      <NavCard
         title="Staff"
         icon={<i className="fas fa-users"></i>}
         targetId="staff"
@@ -55,12 +61,6 @@ function QuickNavigation() {
         title="Former Staff"
         icon={<i className="fas fa-user-graduate"></i>}
         targetId="former-members"
-        viewText={"View Members"}
-      />
-      <NavCard
-        title="Former Faculty"
-        icon={<i className="fas fa-chalkboard"></i>}
-        targetId="former-faculty"
         viewText={"View Members"}
       />
       <NavCard
@@ -170,6 +170,10 @@ const formerFaculty = filterByRole("Former Faculty");
       <Suspense fallback={fallback}>
         <FacultySection facultyMembers={facultyMembers} />
       </Suspense>
+      {/* Former Faculty Section */}
+      <Suspense fallback={fallback}>
+        <FormerFacultySection formerFaculty={formerFaculty} />
+      </Suspense>
       {/* Staff Section */}
       <Suspense fallback={fallback}>
         <StaffSection staffMembers={staffMembers} />
@@ -177,10 +181,6 @@ const formerFaculty = filterByRole("Former Faculty");
       {/* Former Members Section */}
       <Suspense fallback={fallback}>
         <FormerMemberSection formerMembers={formerMembers} />
-      </Suspense>
-      {/* Former Faculty Section */}
-      <Suspense fallback={fallback}>
-        <FormerFacultySection formerFaculty={formerFaculty} />
       </Suspense>
       {/* PHD Scholars Section */}
       <Suspense fallback={fallback}>
